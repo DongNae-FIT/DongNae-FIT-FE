@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
   const login = (code) => {
     setLoading(true);
     return axios
-      .post("주소", { code })
+      .post("/api/member/kakao", { code })
       .then((response) => {
         const token = response.data.token;
         localStorage.setItem("token", token);

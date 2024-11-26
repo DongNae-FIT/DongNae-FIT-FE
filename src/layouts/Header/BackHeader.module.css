@@ -3,7 +3,7 @@
   top: 0;
   width: 100%;
   height: var(--header-height);
-  padding: 0 var(--default-padding);
+  padding: 0 var(--body-padding);
   display: flex;
   align-items: center;
   background-color: var(--white);

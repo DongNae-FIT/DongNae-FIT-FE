@@ -15,7 +15,7 @@
   background-color: antiquewhite;
   gap: 10px;
   align-items: center;
-  padding: var(--default-padding);
+  padding: var(--default-padding) var(--body-padding);
   border-bottom: 1px solid var(--sub-grey);
 }
 
@@ -44,7 +44,7 @@
   flex-direction: column;
   background-color: white;
   gap: calc(var(--default-padding) * 1.2);
-  padding: calc(var(--default-padding) * 1.6) var(--default-padding);
+  padding: calc(var(--default-padding) * 1.6) var(--body-padding);
   border-bottom: 1px solid var(--sub-grey);
 }
 
@@ -88,7 +88,7 @@
 
 .write__button {
   position: fixed;
-  bottom: var(--default-padding);
+  bottom: var(--body-padding);
   left: 50%;
   transform: translateX(-50%);
   background-color: white;

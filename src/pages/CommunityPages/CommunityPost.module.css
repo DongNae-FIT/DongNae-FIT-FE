@@ -6,7 +6,7 @@
 
 .post__section {
   background-color: var(--white);
-  padding: var(--default-padding);
+  padding: 0 var(--body-padding);
   padding-bottom: calc(var(--default-padding) * 1.5);
   padding-top: calc(var(--default-padding) * 0.7);
   display: flex;
@@ -85,8 +85,9 @@
 
 .post__comments {
   background-color: var(--white);
-  padding: var(--default-padding);
+  padding: 0 var(--body-padding);
   padding-top: calc(var(--default-padding) * 1.5);
+  padding-bottom: var(--default-padding);
   display: flex;
   flex-direction: column;
 }

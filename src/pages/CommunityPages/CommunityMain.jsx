@@ -8,13 +8,15 @@ const CommunityMain = () => {
 
   return (
     <div className={styles["community-main"]}>
-      <div
-        className={styles["community__post"]}
-        onClick={() => {
-          navigate("/community/post");
-        }}
-      >
-        게시글
+      <div className={styles["community__content"]}>
+        <div
+          className={styles["community__post"]}
+          onClick={() => {
+            navigate("/community/post");
+          }}
+        >
+          게시글
+        </div>
       </div>
       <button className={styles["write__button"]}>
         <img

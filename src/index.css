@@ -34,7 +34,7 @@ select {
   --font-family-logo: "HakgyoansimAllimjangTTF-B";
 
   /* 여백 변수 설정 */
-  --body-padding: 100px;
+  --body-padding: 16px;
   --default-padding: 16px;
   --header-height: 60px;
   --banner-height: 250px;
@@ -62,6 +62,9 @@ body {
 
 /* 데스크톱용 스타일 (화면 너비가 1024px 이상일 때) */
 @media (min-width: 1024px) {
+  :root {
+    --body-padding: 32px;
+  }
 }
 
 @font-face {

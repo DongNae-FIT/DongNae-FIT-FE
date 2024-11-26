@@ -4,16 +4,20 @@
   width: 100%;
 }
 
+.community__content {
+  padding: 0 var(--body-padding);
+}
+
 .community__post {
   background-color: var(--white);
-  padding: var(--default-padding);
+  padding: var(--default-padding) 0;
   display: flex;
   flex-direction: column;
 }
 
 .write__button {
   position: fixed;
-  bottom: var(--default-padding);
+  bottom: var(--body-padding);
   left: 50%;
   transform: translateX(-50%);
   background-color: white;

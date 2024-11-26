@@ -6,7 +6,7 @@
 
 .my-page-main__section--profile {
   width: 100%;
-  padding: var(--default-padding);
+  padding: var(--default-padding) var(--body-padding);
   background-color: antiquewhite;
   display: flex;
   flex-direction: column;
@@ -56,7 +56,7 @@
 
 .my-page-main__menus {
   width: 100%;
-  padding: calc(var(--default-padding) * 1.5) var(--default-padding);
+  padding: calc(var(--default-padding) * 1.5) var(--body-padding);
   display: flex;
   flex-direction: column;
   gap: 27px;

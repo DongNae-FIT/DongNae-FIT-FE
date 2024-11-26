@@ -17,8 +17,8 @@
   text-align: start;
   align-items: center;
   display: flex;
-  padding-left: var(--default-padding);
-  padding-right: calc(2 * var(--default-padding));
+  padding-left: var(--body-padding);
+  padding-right: calc(2 * var(--body-padding));
 }
 
 .sidetab__menus {
@@ -31,7 +31,7 @@
   padding: 0.8em 0;
   cursor: pointer;
   font-size: 1rem;
-  padding-left: var(--default-padding);
+  padding-left: var(--body-padding);
 }
 
 .menu__selected {

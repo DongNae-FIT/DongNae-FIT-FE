@@ -15,12 +15,11 @@
 }
 
 .class__section1 {
-  padding: 0 var(--default-padding);
+  padding: var(--default-padding) var(--body-padding);
   width: 100%;
   display: flex;
   flex-direction: row;
   gap: 3px;
-  padding-top: var(--default-padding);
   overflow-x: auto;
   white-space: nowrap;
   font-size: 0.9rem;
@@ -56,7 +55,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0 var(--default-padding);
+  padding: 0 var(--body-padding);
 }
 
 .class__info {

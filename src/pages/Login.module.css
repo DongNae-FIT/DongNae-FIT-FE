@@ -1,0 +1,24 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 60px);
+  padding: calc(3 * var(--default-padding)) calc(2.5 * var(--default-padding));
+}
+
+.login__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.login__img {
+  height: 350px;
+  width: 100%;
+  margin: 25px 0;
+  background-color: grey;
+}
+
+.login__kakao {
+  width: 100%;
+}

@@ -1,0 +1,71 @@
+{
+  "title": "동네-핏",
+  "buttons": {
+    "done": "완료",
+    "find_path": "길찾기"
+  },
+  "login": {
+    "title": "로그인",
+    "kakao": "카카오로 로그인"
+  },
+  "menus": {
+    "home": "홈",
+    "class": "스포츠 강좌",
+    "gym": "체육 시설",
+    "community": "커뮤니티",
+    "mypage": "마이페이지"
+  },
+  "home": {
+    "subtitle1": "[Pick] 추천 스포츠 강좌",
+    "subtitle2": "원하는 체육 시설을 찾아보세요!",
+    "subtitle3": "실시간 인기글"
+  },
+  "class": {
+    "align1": "거리순",
+    "filter1": "가격",
+    "filter2": "요일",
+    "filter3": "청소년",
+    "filter4": "유아동",
+    "review_title": "강좌 후기",
+    "review_button": "후기 작성",
+    "review_write": "강좌 후기 작성",
+    "review_question1": "누구에게 수강했나요?",
+    "review_question2": "언제부터 언제까지 수강했나요?",
+    "review_question3": "무슨 요일, 몇 시에 수강했나요?",
+    "review_question4": "후기를 작성해주세요.",
+    "question4_placeholder": "수강한 강좌에 대한 후기를 자유롭게 작성해주세요."
+  },
+  "gym": {
+    "align1": "거리순",
+    "category": "카테고리",
+    "filter1": "공공체육시설",
+    "time": "운영시간"
+  },
+  "community": {
+    "write": "글쓰기",
+    "save": "저장",
+    "likes": "좋아요",
+    "comment": "댓글",
+    "comment_placeholder": "댓글을 입력하세요.",
+    "post_placeholder1": "제목을 입력하세요.",
+    "post_placeholder2": "내용을 입력하세요."
+  },
+  "mypage": {
+    "edit_profile": "프로필 수정",
+    "nickname": "닉네임",
+    "age": "나이",
+    "set_locaiton": "동네 설정",
+    "myclass": "저장한 강좌",
+    "myreview": "후기 쓴 강좌",
+    "mypost": "작성한 글",
+    "mycomment": "댓글 단 글",
+    "mysave": "저장한 글",
+    "etc": "기타",
+    "logout": "로그아웃",
+    "delete": "탈퇴하기"
+  },
+  "search": {
+    "placeholder": "내 주변에서 검색하기",
+    "all": "전체"
+  }
+}

@@ -1,0 +1,32 @@
+.community-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.community__post {
+  background-color: var(--white);
+  padding: var(--default-padding);
+  display: flex;
+  flex-direction: column;
+}
+
+.write__button {
+  position: fixed;
+  bottom: var(--default-padding);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid var(--main-grey);
+  border-radius: 30px;
+  padding: 0.5em 1.2em;
+  font-size: 0.9rem;
+  gap: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.write__icon {
+  width: 16px;
+}

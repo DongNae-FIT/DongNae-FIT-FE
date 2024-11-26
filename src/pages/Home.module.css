@@ -1,0 +1,28 @@
+.home-page {
+  width: 100%;
+}
+
+.home__contents {
+  padding: 0 var(--default-padding);
+  background-color: antiquewhite;
+}
+
+.home__section {
+  background-color: burlywood;
+  padding: var(--default-padding) 0;
+}
+
+.home__subtitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding-bottom: calc(var(--default-padding) * 0.5);
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: var(--white);
+}
+
+.home__right-icon {
+  width: 13px;
+}

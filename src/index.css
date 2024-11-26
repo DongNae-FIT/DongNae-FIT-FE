@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit; /* 부모 요소의 폰트를 상속받도록 설정 */
+}
+
+:root {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 16px;
+
+  font-synthesis: none; /* 가짜 글꼴 생성 금지 */
+  text-rendering: optimizeLegibility; /* 가독성 우선 렌더링 */
+  -webkit-font-smoothing: antialiased; /* Webkit 브라우저에서 부드러운 텍스트 */
+  -moz-osx-font-smoothing: grayscale; /* macOS에서 흑백 안티앨리어싱 */
+
+  /* 컬러 변수 설정*/
+  --main-color: #ff6347;
+  --sub-color: #718bfe;
+  --main-grey: #b9b8b8;
+  --sub-grey: #e2e2e2;
+  --very-light-grey: #f9f8f8;
+  --white: #ffffff;
+  --black: #000000;
+
+  /* 폰트 변수 설정*/
+  --font-family-logo: "HakgyoansimAllimjangTTF-B";
+
+  /* 여백 변수 설정 */
+  --body-padding: 100px;
+  --default-padding: 16px;
+  --header-height: 60px;
+  --banner-height: 250px;
+  --map-height: 300px;
+
+  --font-size-logo: 30px;
+  --font-size-logo-en: 27px;
+
+  background-color: blue;
+}
+
+body {
+  width: 100%;
+  max-width: 1024px;
+  min-width: 300px;
+  min-height: 100vh;
+  background-color: beige;
+  line-height: 1.5;
+  margin: auto;
+}
+
+/* 태블릿용 스타일 (화면 너비가 768px 이상일 때) */
+@media (min-width: 768px) {
+}
+
+/* 데스크톱용 스타일 (화면 너비가 1024px 이상일 때) */
+@media (min-width: 1024px) {
+}
+
+@font-face {
+  font-family: "HakgyoansimAllimjangTTF-B";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimAllimjangTTF-B.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}

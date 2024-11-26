@@ -1,0 +1,16 @@
+.banner-swiper {
+  width: 100%;
+  height: auto;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-slide img {
+  height: var(--banner-height);
+  object-fit: contain;
+  margin: 0 auto;
+}

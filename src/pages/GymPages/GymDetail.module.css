@@ -1,0 +1,19 @@
+.gym-detail {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.gym__map {
+  height: var(--map-height);
+  background-color: azure;
+}
+
+.gym-detail__section {
+  width: 100%;
+  padding: calc(var(--default-padding) * 1.5) var(--default-padding);
+}
+
+.gym-detail__info {
+  background-color: var(--white);
+}

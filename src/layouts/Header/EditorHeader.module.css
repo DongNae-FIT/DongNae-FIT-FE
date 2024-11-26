@@ -1,0 +1,29 @@
+.editor-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: var(--header-height);
+  padding: 0 var(--default-padding);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--white);
+  gap: 10px;
+  z-index: 20;
+  padding-top: 10px;
+}
+
+.cancel-icon {
+  width: 18px;
+}
+
+.header__title {
+  flex: 1;
+  text-align: center;
+}
+
+.done-button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}

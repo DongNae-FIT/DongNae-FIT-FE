@@ -1,0 +1,16 @@
+.back-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: var(--header-height);
+  padding: 0 var(--default-padding);
+  display: flex;
+  align-items: center;
+  background-color: var(--white);
+  z-index: 20;
+  padding-top: 10px;
+}
+
+.back-icon {
+  width: 18px;
+}

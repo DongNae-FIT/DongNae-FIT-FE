@@ -1,0 +1,72 @@
+{
+  "title": "DongNae-FIT",
+  "buttons": {
+    "done": "Done",
+    "find_path": "Find Path"
+  },
+  "login": {
+    "title": "Login",
+    "intro": "introduction",
+    "kakao": "Login with Kakako"
+  },
+  "menus": {
+    "home": "Home",
+    "class": "Sports Classes",
+    "gym": "Sports Facilities",
+    "community": "Community",
+    "mypage": "My Page"
+  },
+  "home": {
+    "subtitle1": "[Pick] Sports Classes",
+    "subtitle2": "Find Sports Facilities Nearby!",
+    "subtitle3": "Trending Posts"
+  },
+  "class": {
+    "align1": "Closest",
+    "filter1": "Price",
+    "filter2": "Day",
+    "filter3": "Teenagers",
+    "filter4": "Kids",
+    "review_title": "Class Reviews",
+    "review_button": "Write Review",
+    "review_write": "Write a Review",
+    "review_question1": "Who was your instructor?",
+    "review_question2": "When did you take the class?",
+    "review_question3": "What day and time did you attend?",
+    "review_question4": "Write your review.",
+    "question4_placeholder": "Feel free to share your thoughts about the class."
+  },
+  "gym": {
+    "align1": "Closest",
+    "category": "Category",
+    "filter1": "Public Facilities",
+    "time": "Operating Hours"
+  },
+  "community": {
+    "write": "Write Post",
+    "save": "Save",
+    "likes": "Likes",
+    "comment": "Comment",
+    "comment_placeholder": "Enter your comment.",
+    "post_placeholder1": "Enter a title.",
+    "post_placeholder2": "Enter content."
+  },
+  "mypage": {
+    "edit_profile": "Edit Profile",
+    "nickname": "Nickname",
+    "age": "Age",
+    "set_locaiton": "Set location",
+    "myclass": "Saved Classes",
+    "myreview": "Classes I Reviewed",
+    "mypost": "My Posts",
+    "mycomment": "Posts I Commented On",
+    "mysave": "Saved Posts",
+    "etc": "Other",
+    "logout": "Logout",
+    "delete": "Delete Account"
+  },
+  "search": {
+    "placeholder": "Search Around Me",
+    "all": "All"
+  }
+}

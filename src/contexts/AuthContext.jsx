@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         console.error("Failed to login:", error);
-        window.alert("로그인 실패:", error);
+        window.alert("로그인 실패");
         setError(error);
       })
       .finally(() => {

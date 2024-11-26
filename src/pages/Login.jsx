@@ -15,8 +15,6 @@ const Login = () => {
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_API_Key}&redirect_uri=${redirect_uri}&response_type=code`;
   const handleLogin = () => {
     window.location.href = kakaoURL;
-    const code = new URL(document.location.toString()).searchParams.get("code"); // 이상한코드가한가득
-    console.log(code);
   };
 
   return (

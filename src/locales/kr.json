@@ -10,6 +10,15 @@
     "title": "로그인",
     "kakao": "카카오로 로그인"
   },
+  "additional_info": {
+    "title": "더 많은 기능을 이용하기 위해 \n\n추가 정보가 필요해요.",
+    "nickname": "닉네임",
+    "nickname_placeholder": "닉네임 조건",
+    "age": "나이",
+    "age_placeholder": "나이를 입력해주세요.",
+    "location": "동네 설정",
+    "location_placeholder": "내 동네를 설정해주세요."
+  },
   "menus": {
     "home": "홈",
     "class": "스포츠 강좌",

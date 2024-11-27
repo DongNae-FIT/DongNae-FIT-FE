@@ -25,7 +25,7 @@ const KakaoRedirect = () => {
   useEffect(() => {
     if (!loading) {
       if (isAuthenticated) {
-        navigate("/");
+        navigate("/login/info");
       } else if (error) {
         navigate("/login");
       }

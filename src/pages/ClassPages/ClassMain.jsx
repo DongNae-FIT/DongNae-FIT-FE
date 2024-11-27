@@ -13,8 +13,37 @@ const ClassMain = () => {
   const [activeFilters, setActiveFilters] = useState({});
   const dropdownRef = useRef(null);
 
-  const [priceMin, setPriceMin] = useState();
-  const [priceMax, setPriceMax] = useState();
+  const [priceMin, setPriceMin] = useState(0);
+  const [priceMax, setPriceMax] = useState(0);
+
+  const MAX_PRICE = 99999999999; // 99억 9999만 9999원
+  const [warningMessage, setWarningMessage] = useState("");
+
+  const handlePriceMinChange = (e) => {
+    let value = e.target.value.replace(/[^0-9]/g, ""); // 숫자만 남기기
+    value = value ? Number(value) : null; // 빈값은 null로 처리
+    if (value > MAX_PRICE) value = MAX_PRICE; // 최대값 제한
+
+    setPriceMin(value);
+    checkPriceValidity(value, priceMax);
+  };
+
+  const handlePriceMaxChange = (e) => {
+    let value = e.target.value.replace(/[^0-9]/g, ""); // 숫자만 남기기
+    value = value ? Number(value) : null; // 빈값은 null로 처리
+    if (value > MAX_PRICE) value = MAX_PRICE; // 최대값 제한
+
+    setPriceMax(value);
+    checkPriceValidity(priceMin, value);
+  };
+
+  const checkPriceValidity = (min, max) => {
+    if (min && max && min > max) {
+      setWarningMessage("최소 금액보다 최대 금액이 작아요.");
+    } else {
+      setWarningMessage(""); // 유효한 경우 경고 메시지 제거
+    }
+  };
 
   const toggleFilter = (filterName) => {
     setActiveFilters((prev) => ({
@@ -115,21 +144,26 @@ const ClassMain = () => {
             <div className={styles["price__title"]}>{t("class.filter1")}</div>
             <div className={styles["price__container"]}>
               <input
-                type="number"
+                type="text"
                 className={styles["price__input"]}
-                placeholder={t("class.price_max_placeholder")}
-                value={priceMin}
-                onChange={(e) => setPriceMin(e.target.value)}
+                placeholder={t("class.price_min_placeholder")}
+                value={priceMin ? priceMin.toLocaleString() : ""} // 화면에 표시 시 숫자 포맷
+                onChange={handlePriceMinChange}
               />
               <span className={styles["price__wave"]}>~</span>
               <input
-                type="number"
+                type="text"
                 className={styles["price__input"]}
                 placeholder={t("class.price_max_placeholder")}
-                value={priceMax}
-                onChange={(e) => setPriceMax(e.target.value)}
+                value={priceMax ? priceMax.toLocaleString() : ""} // 화면에 표시 시 숫자 포맷
+                onChange={handlePriceMaxChange}
               />
             </div>
+
+            {warningMessage && (
+              <div className={styles["price__warning"]}>{warningMessage}</div>
+            )}
+
             <div className={styles["price__buttons"]}>
               <button
                 className={styles["reset-button"]}
@@ -140,7 +174,13 @@ const ClassMain = () => {
               >
                 {t("buttons.reset")}
               </button>
-              <button className={styles["apply-button"]}>
+              <button
+                className={styles["apply-button"]}
+                onClick={() => {
+                  if (warningMessage)
+                    window.alert("최소 금액보다 최대 금액이 작습니다.");
+                }}
+              >
                 {t("buttons.apply")}
               </button>
             </div>

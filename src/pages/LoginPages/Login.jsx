@@ -1,4 +1,4 @@
-import styles from "@/pages/Login.module.css";
+import styles from "@/pages/LoginPages/Login.module.css";
 import { useTranslation } from "react-i18next";
 
 const Login = () => {

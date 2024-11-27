@@ -11,6 +11,13 @@
     "intro": "introduction",
     "kakao": "Login with Kakako"
   },
+  "additional_info": {
+    "title": "We need additional information to use more features",
+    "nickname": "Nickname",
+    "age": "Age",
+    "location": "Where you live",
+    "location_placeholder": "Enter Where you live"
+  },
   "menus": {
     "home": "Home",
     "class": "Sports Classes",

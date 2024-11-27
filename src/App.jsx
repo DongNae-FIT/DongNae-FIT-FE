@@ -10,8 +10,9 @@ import BackHeader from "@/layouts/Header/BackHeader";
 import EditorHeader from "@/layouts/Header/EditorHeader";
 
 import Home from "@/pages/Home";
-import Login from "@/pages/Login";
-import KakaoRedirect from "@/pages/KakaoRedirect";
+import Login from "@/pages/LoginPages/Login";
+import KakaoRedirect from "@/pages/LoginPages/KakaoRedirect";
+import AdditionalInfo from "@/pages/LoginPages/AdditionalInfo";
 
 import ClassMain from "@/pages/ClassPages/ClassMain";
 import ClassDetail from "@/pages/ClassPages/ClassDetail";
@@ -60,6 +61,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<KakaoRedirect />} />
+        <Route path="/login/info" element={<AdditionalInfo />} />
 
         <Route path="/class" element={<ClassMain />} />
         <Route path="/class/detail" element={<ClassDetail />} />

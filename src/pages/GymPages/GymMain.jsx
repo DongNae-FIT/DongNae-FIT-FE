@@ -4,18 +4,43 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const GymMain = () => {
-  const { t } = useTranslation();
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+  const [isAlignOpen, setAlignOpen] = useState(false);
   const [selectedAlign, setSelectedAlign] = useState(t("class.align1"));
+
+  const [isCategoryOpen, setCategoryOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState({});
+
   const [activeFilters, setActiveFilters] = useState({});
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setSelectedAlign(t("class.align1"));
+  }, [i18n.language, t]);
 
   const toggleFilter = (filterName) => {
     setActiveFilters((prev) => ({
       ...prev,
       [filterName]: !prev[filterName],
     }));
+  };
+
+  const toggleCategory = (categoryName) => {
+    setSelectedCategory((prev) => ({
+      ...prev,
+      [categoryName]: !prev[categoryName],
+    }));
+  };
+
+  const resetCategories = () => {
+    setSelectedCategory((prevCategories) => {
+      const resetCategories = {};
+      Object.keys(prevCategories).forEach((category) => {
+        resetCategories[category] = false;
+      });
+      return resetCategories;
+    });
   };
 
   const handleAlignSelect = (align) => {
@@ -25,7 +50,7 @@ const GymMain = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
+        setAlignOpen(false);
       }
     };
 
@@ -41,7 +66,7 @@ const GymMain = () => {
       <div className={styles["gym__section1"]}>
         <div
           className={styles["gym__align"]}
-          onClick={() => setDropdownOpen((prev) => !prev)}
+          onClick={() => setAlignOpen((prev) => !prev)}
           ref={dropdownRef}
         >
           <img
@@ -49,7 +74,7 @@ const GymMain = () => {
             className={styles["gym_down-icon"]}
           />
           {selectedAlign}
-          {isDropdownOpen && (
+          {isAlignOpen && (
             <div className={styles["dropdown-menu"]}>
               <div
                 className={`${styles["dropdown-item"]} ${
@@ -64,7 +89,10 @@ const GymMain = () => {
             </div>
           )}
         </div>
-        <div className={styles["gym__category"]}>
+        <div
+          className={styles["gym__category"]}
+          onClick={() => setCategoryOpen((prev) => !prev)}
+        >
           <img
             src={"/icon/icon_down_grey.png"}
             className={styles["gym_down-icon"]}
@@ -97,6 +125,42 @@ const GymMain = () => {
           시설
         </div>
       </div>
+
+      {isCategoryOpen && (
+        <>
+          <div
+            className={styles.overlay}
+            onClick={() => setCategoryOpen(false)}
+          />
+          <div className={styles["category-filter"]}>
+            <div className={styles["category__title"]}>{t("gym.category")}</div>
+            <div className={styles["category-lists"]}>
+              {["category1", "category2"].map((category, index) => (
+                <div
+                  key={index}
+                  className={`${styles["category-item"]} ${
+                    selectedCategory[category] ? styles["category-active"] : ""
+                  }`}
+                  onClick={() => toggleCategory(category)}
+                >
+                  {t(`gym.${category}`)}
+                </div>
+              ))}
+            </div>
+            <div className={styles["category__buttons"]}>
+              <button
+                className={styles["reset-button"]}
+                onClick={resetCategories}
+              >
+                {t("buttons.reset")}
+              </button>
+              <button className={styles["apply-button"]}>
+                {t("buttons.apply")}
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

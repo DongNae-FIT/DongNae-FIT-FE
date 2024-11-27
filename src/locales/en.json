@@ -2,7 +2,9 @@
   "title": "DongNae-FIT",
   "buttons": {
     "done": "Done",
-    "find_path": "Find Path"
+    "find_path": "Find Path",
+    "reset": "Reset",
+    "apply": "Apply"
   },
   "login": {
     "title": "Login",
@@ -18,12 +20,14 @@
   },
   "home": {
     "subtitle1": "[Pick] Sports Classes",
-    "subtitle2": "Find Sports Facilities Nearby!",
+    "subtitle2": "Find Sports Facilities you want!",
     "subtitle3": "Trending Posts"
   },
   "class": {
     "align1": "Closest",
     "filter1": "Price",
+    "price_min_placeholder": "Min",
+    "price_max_placeholder": "Max",
     "filter2": "Day",
     "filter3": "Teenagers",
     "filter4": "Kids",
@@ -39,6 +43,8 @@
   "gym": {
     "align1": "Closest",
     "category": "Category",
+    "category1": "Gym",
+    "category2": "Swim",
     "filter1": "Public Facilities",
     "time": "Operating Hours"
   },

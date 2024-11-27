@@ -79,6 +79,16 @@
   gap: 3px;
 }
 
+.like--active {
+  color: var(--sub-color);
+  border-color: var(--sub-color);
+}
+
+.save--active {
+  color: var(--main-color);
+  border-color: var(--main-color);
+}
+
 .post__icon {
   width: 16px;
 }

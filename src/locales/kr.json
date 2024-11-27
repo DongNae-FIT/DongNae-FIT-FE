@@ -2,7 +2,9 @@
   "title": "동네-핏",
   "buttons": {
     "done": "완료",
-    "find_path": "길찾기"
+    "find_path": "길찾기",
+    "reset": "초기화",
+    "apply": "적용하기"
   },
   "login": {
     "title": "로그인",
@@ -23,6 +25,8 @@
   "class": {
     "align1": "거리순",
     "filter1": "가격",
+    "price_min_placeholder": "최소 금액",
+    "price_max_placeholder": "최대 금액",
     "filter2": "요일",
     "filter3": "청소년",
     "filter4": "유아동",
@@ -38,6 +42,8 @@
   "gym": {
     "align1": "거리순",
     "category": "카테고리",
+    "category1": "운동장",
+    "category2": "수영장",
     "filter1": "공공체육시설",
     "time": "운영시간"
   },

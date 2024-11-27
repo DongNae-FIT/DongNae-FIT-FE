@@ -4,13 +4,17 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const ClassMain = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isAlignOpen, setAlignOpen] = useState(false);
   const [selectedAlign, setSelectedAlign] = useState(t("class.align1"));
+  const [isPriceOpen, setPriceOpen] = useState(false);
   const [activeFilters, setActiveFilters] = useState({});
   const dropdownRef = useRef(null);
+
+  const [priceMin, setPriceMin] = useState();
+  const [priceMax, setPriceMax] = useState();
 
   const toggleFilter = (filterName) => {
     setActiveFilters((prev) => ({
@@ -26,7 +30,7 @@ const ClassMain = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
+        setAlignOpen(false);
       }
     };
 
@@ -37,13 +41,17 @@ const ClassMain = () => {
     };
   }, []);
 
+  useEffect(() => {
+    setSelectedAlign(t("class.align1"));
+  }, [i18n.language, t]);
+
   return (
     <div className={styles["class-main"]}>
       <div className={styles["class__map"]}>지도</div>
       <div className={styles["class__section1"]}>
         <div
-          className={styles["class__align"]}
-          onClick={() => setDropdownOpen((prev) => !prev)}
+          className={styles["class__dropdown"]}
+          onClick={() => setAlignOpen((prev) => !prev)}
           ref={dropdownRef}
         >
           <img
@@ -51,7 +59,7 @@ const ClassMain = () => {
             className={styles["class_down-icon"]}
           />
           {selectedAlign}
-          {isDropdownOpen && (
+          {isAlignOpen && (
             <div className={styles["dropdown-menu"]}>
               <div
                 className={`${styles["dropdown-item"]} ${
@@ -66,8 +74,18 @@ const ClassMain = () => {
             </div>
           )}
         </div>
+        <div
+          className={styles["class__dropdown"]}
+          onClick={() => setPriceOpen((prev) => !prev)}
+        >
+          <img
+            src={"/icon/icon_down_grey.png"}
+            className={styles["class_down-icon"]}
+          />
+          {t("class.filter1")}
+        </div>
 
-        {["filter1", "filter2", "filter3", "filter4"].map((filter, index) => (
+        {["filter3", "filter4"].map((filter, index) => (
           <div
             key={index}
             className={`${styles["class__filter"]} ${
@@ -89,6 +107,46 @@ const ClassMain = () => {
           수업
         </div>
       </div>
+
+      {isPriceOpen && (
+        <>
+          <div className={styles.overlay} onClick={() => setPriceOpen(false)} />
+          <div className={styles["price-filter"]}>
+            <div className={styles["price__title"]}>{t("class.filter1")}</div>
+            <div className={styles["price__container"]}>
+              <input
+                type="number"
+                className={styles["price__input"]}
+                placeholder={t("class.price_max_placeholder")}
+                value={priceMin}
+                onChange={(e) => setPriceMin(e.target.value)}
+              />
+              <span className={styles["price__wave"]}>~</span>
+              <input
+                type="number"
+                className={styles["price__input"]}
+                placeholder={t("class.price_max_placeholder")}
+                value={priceMax}
+                onChange={(e) => setPriceMax(e.target.value)}
+              />
+            </div>
+            <div className={styles["price__buttons"]}>
+              <button
+                className={styles["reset-button"]}
+                onClick={() => {
+                  setPriceMin(0);
+                  setPriceMax(0);
+                }}
+              >
+                {t("buttons.reset")}
+              </button>
+              <button className={styles["apply-button"]}>
+                {t("buttons.apply")}
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -1,21 +1,31 @@
 import styles from "@/pages/CommunityPages/CommunityPost.module.css";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const CommunityPost = () => {
   const { t } = useTranslation();
 
   const [commentValue, setCommentValue] = useState("");
+  const [like, setLike] = useState(false);
+  const [save, setSave] = useState(false);
 
   const handleEnterKeyDown = (e) => {
     if (e.key === "Enter") {
-      console.log(`엔터 : ${e.target.value}`);
+      handleSubmitComment();
     }
   };
 
   const handleSubmitComment = () => {
+    console.log(`${commentValue}`);
     console.log("submit");
+  };
+
+  const onLikeButtonClick = () => {
+    setLike((prevLike) => !prevLike);
+  };
+
+  const onSaveButtonClick = () => {
+    setSave((prevSave) => !prevSave);
   };
 
   return (
@@ -35,28 +45,44 @@ const CommunityPost = () => {
           <img
             src={"/icon/icon_dots_grey.png"}
             className={styles["post__dots-icon"]}
-            onClick={handleSubmitComment}
+            onClick={() => {}}
           />
         </div>
-        <div className={styles["post__tite"]}>구갈동 스포츠센터 어때요?</div>
+        <div className={styles["post__title"]}>구갈동 스포츠센터 어때요?</div>
         <div className={styles["post__content"]}>
           구갈동에 있는 스포츠센터 다니시는 분 있으신가요? 수영 다니고 싶은데
           어떤지 궁금해서요!
         </div>
         <div className={styles["post__buttons"]}>
-          <button className={styles["button"]}>
+          <button
+            className={`${styles["button"]} ${
+              like ? styles["like--active"] : ""
+            }`}
+            onClick={onLikeButtonClick}
+          >
             <img
-              src={"/icon/icon_likes_grey.png"}
+              src={
+                like
+                  ? "/icon/icon_likes_colored.png"
+                  : "/icon/icon_likes_grey.png"
+              }
               className={styles["post__icon"]}
-              onClick={handleSubmitComment}
             />
             {t("community.likes")}
           </button>
-          <button className={styles["button"]}>
+          <button
+            className={`${styles["button"]} ${
+              save ? styles["save--active"] : ""
+            }`}
+            onClick={onSaveButtonClick}
+          >
             <img
-              src={"/icon/icon_save_grey.png"}
+              src={
+                save
+                  ? "/icon/icon_save_colored.png"
+                  : "/icon/icon_save_grey.png"
+              }
               className={styles["post__icon"]}
-              onClick={handleSubmitComment}
             />
             {t("community.save")}
           </button>

@@ -6,6 +6,11 @@ import { useNavigate } from "react-router-dom";
 const ClassDetail = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [Like, setLike] = useState(false);
+
+  const onClickLike = () => {
+    setLike((prevLike) => !prevLike);
+  };
 
   const Divider = () => (
     <div style={{ height: "1px", backgroundColor: "var(--sub-grey)" }} />
@@ -37,8 +42,13 @@ const ClassDetail = () => {
         <div className={styles["section__title"]}>
           강좌명 오전골프05
           <img
-            src={"/icon/icon_empty_heart.png"}
+            src={
+              Like
+                ? "/icon/icon_filled_heart.png"
+                : "/icon/icon_empty_heart.png"
+            }
             className={styles["class_likes-icon"]}
+            onClick={onClickLike}
           />
         </div>
         <div className={styles["section__content"]}>

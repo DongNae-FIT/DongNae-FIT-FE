@@ -22,3 +22,25 @@
 .login__kakao {
   width: 100%;
 }
+
+.kakao-login {
+  background-color: #fee500;
+
+  padding: 0.8em;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.kakao-login__symbol {
+  padding-right: 10px;
+}
+
+.kakao-login__text {
+  font-size: 1rem;
+  font-family: var(--font-family-kakao);
+  font-weight: 500;
+}

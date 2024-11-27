@@ -46,6 +46,7 @@ input::-webkit-inner-spin-button {
 
   /* 폰트 변수 설정*/
   --font-family-logo: "HakgyoansimAllimjangTTF-B";
+  --font-family-kakao: "Noto Sans KR", sans-serif;
 
   /* 여백 변수 설정 */
   --body-padding: 16px;
@@ -96,3 +97,12 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "Noto Sans KR", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@import url("//fonts.googleapis.com/earlyaccess/notosanskr.css");

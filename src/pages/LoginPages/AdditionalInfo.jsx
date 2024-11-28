@@ -3,9 +3,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const AdditionalInfo = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [nickname, setNickname] = useState();
-  const [age, setAge] = useState();
   const [location, setLocation] = useState();
 
   return (
@@ -16,26 +15,20 @@ const AdditionalInfo = () => {
           <div className={styles["section-title"]}>
             {t("additional_info.nickname")}
           </div>
-          <input
-            type="text"
-            className={styles["info__input"]}
-            placeholder={t("additional_info.nickname_placeholder")}
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-          />
-        </div>
-        <div className={styles["input-section"]}>
-          <div className={styles["section-title"]}>
-            {t("additional_info.age")}
+          <div className={styles["nickname_section"]}>
+            <input
+              type="text"
+              className={styles["info__input"]}
+              placeholder={t("additional_info.nickname_placeholder")}
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
+            <button className={styles["duplicate-check-button"]}>
+              {t("buttons.duplication_check")}
+            </button>
           </div>
-          <input
-            type="number"
-            className={styles["info__input"]}
-            placeholder={t("additional_info.age_placeholder")}
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-          />
         </div>
+
         <div className={styles["input-section"]}>
           <div className={styles["section-title"]}>
             {t("additional_info.location")}

@@ -4,16 +4,17 @@
     "done": "Done",
     "find_path": "Find Path",
     "reset": "Reset",
-    "apply": "Apply"
+    "apply": "Apply",
+    "duplication_check": "Check"
   },
   "login": {
     "title": "Login",
     "kakao": "Login with Kakako"
   },
   "additional_info": {
-    "title": "We need additional information to use more features",
+    "title": "We need extra-information \n to use more features",
     "nickname": "Nickname",
-    "age": "Age",
+    "nickname_placeholder": "Nickname condition.",
     "location": "Where you live",
     "location_placeholder": "Enter Where you live"
   },

@@ -1,0 +1,61 @@
+.new-review {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 60px);
+  padding: 0 var(--body-padding);
+}
+
+.page-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: calc(2.5 * var(--default-padding));
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-row {
+  display: flex;
+  flex-wrap: wrap; /* 줄바꿈 처리 */
+  align-items: flex-start; /* 세로 정렬을 위쪽으로 */
+  gap: 5px;
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 500;
+  padding-top: calc(var(--default-padding) * 2);
+  padding-bottom: calc(0.3 * var(--default-padding));
+}
+
+.review__input {
+  background-color: white;
+  padding: 0.6em 1em;
+  font-size: 0.9rem;
+  border: 1px solid var(--sub-grey);
+  border-radius: 5px;
+  width: 100%;
+  flex: 3;
+}
+
+.review-detail__input {
+  background-color: white;
+  padding: 0.8em 1em; /* 텍스트 위치를 위쪽으로 조정 */
+  font-size: 0.9rem;
+  border: 1px solid var(--sub-grey);
+  border-radius: 5px;
+  width: 100%; /* 가로폭을 부모에 맞춤 */
+  height: 25vh; /* 높이는 유지 */
+}

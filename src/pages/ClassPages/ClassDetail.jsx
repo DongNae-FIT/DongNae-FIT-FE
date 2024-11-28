@@ -79,11 +79,15 @@ const ClassDetail = () => {
         ))}
       </div>
 
-      <button className={styles["write__button"]}>
+      <button
+        className={styles["write__button"]}
+        onClick={() => {
+          navigate("/class/review/new");
+        }}
+      >
         <img
           src={"/icon/icon_write_colored.png"}
           className={styles["write__icon"]}
-          onClick={() => {}}
         />
         {t("class.review_button")}
       </button>

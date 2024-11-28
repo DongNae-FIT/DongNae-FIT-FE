@@ -42,6 +42,7 @@
     "review_button": "후기 작성",
     "review_write": "강좌 후기 작성",
     "review_question1": "누구에게 수강했나요?",
+    "question1_placeholder": "예) 홍길동",
     "review_question2": "언제부터 언제까지 수강했나요?",
     "review_question3": "무슨 요일, 몇 시에 수강했나요?",
     "review_question4": "후기를 작성해주세요.",

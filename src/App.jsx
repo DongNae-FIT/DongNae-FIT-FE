@@ -16,6 +16,7 @@ import AdditionalInfo from "@/pages/LoginPages/AdditionalInfo";
 
 import ClassMain from "@/pages/ClassPages/ClassMain";
 import ClassDetail from "@/pages/ClassPages/ClassDetail";
+import NewReview from "@/pages/ClassPages/NewReview";
 
 import GymMain from "@/pages/GymPages/GymMain";
 import GymDetail from "@/pages/GymPages/GymDetail";
@@ -40,11 +41,17 @@ function App() {
     "/gym/detail",
     "/community/post",
     "/auth",
+    "/community/post",
+    "/class/review/new",
   ];
 
   const backHeaderPaths = ["/class/detail", "/gym/detail"];
 
-  const editorHeaderPath = ["/community/post"];
+  const editorHeaderTexts = {
+    "/class/review/new": t("class.review_write"),
+  };
+
+  const editorHeaderTitle = editorHeaderTexts[location.pathname] || "";
 
   return (
     <AuthProvider>
@@ -53,9 +60,7 @@ function App() {
       </Helmet>
       {!excludeHeaderPaths.includes(location.pathname) && <DefaultHeader />}
       {backHeaderPaths.includes(location.pathname) && <BackHeader />}
-      {editorHeaderPath.includes(location.pathname) && (
-        <EditorHeader title={"글 쓰기"} />
-      )}
+      {editorHeaderTitle && <EditorHeader title={editorHeaderTitle} />}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -65,6 +70,7 @@ function App() {
 
         <Route path="/class" element={<ClassMain />} />
         <Route path="/class/detail" element={<ClassDetail />} />
+        <Route path="/class/review/new" element={<NewReview />} />
 
         <Route path="/gym" element={<GymMain />} />
         <Route path="/gym/detail" element={<GymDetail />} />

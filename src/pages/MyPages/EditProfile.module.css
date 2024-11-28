@@ -1,0 +1,52 @@
+.edit-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 calc(var(--body-padding) * 2);
+}
+
+.edit-profile__img {
+  padding: calc(var(--default-padding) * 3) 0;
+}
+
+.profile__img {
+  width: 70px;
+}
+
+.info__input {
+  background-color: white;
+  padding: 0.4em 0.8em;
+  font-size: 0.9rem;
+  border: 1px solid var(--sub-grey);
+  border-radius: 5px;
+  width: 100%;
+  flex: 3;
+}
+
+.edit-profile__nickname {
+  width: 100%;
+}
+
+.nickname-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nickname-row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  width: 100%;
+}
+
+.duplicate-check-button {
+  background-color: var(--sub-grey);
+  padding: 0 0.5em;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  font-weight: 500;
+  flex: 1;
+}

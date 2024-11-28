@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const MyPageMain = () => {
   const { t } = useTranslation();
-  const [isAuthentication, setIsAuthentication] = useState(false);
+  const isAuthentication = false;
   const navigate = useNavigate();
 
   return (
@@ -39,7 +39,12 @@ const MyPageMain = () => {
           </div>
         </div>
         <div className={styles["my-page-main__buttons"]}>
-          <button className={styles["button"]}>
+          <button
+            className={styles["button"]}
+            onClick={() => {
+              navigate("/mypage/edit/profile");
+            }}
+          >
             {t("mypage.edit_profile")}
           </button>
           <button className={styles["button"]}>

@@ -4,11 +4,30 @@ import { useTranslation } from "react-i18next";
 
 const NewReview = () => {
   const { t } = useTranslation();
-  const [input1, setInput1] = useState();
-  const [dateFrom, setDateFrom] = useState();
-  const [dateTo, setDateTo] = useState();
-  const [input3, setInput3] = useState();
-  const [input4, setInput4] = useState();
+  const [reviewTitle, setReviewTitle] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
+  const [reviewDetails, setReviewDetails] = useState("");
+
+  const handleDateFromChange = (e) => {
+    const newDateFrom = e.target.value;
+    setDateFrom(newDateFrom);
+
+    // dateTo가 dateFrom보다 작은 경우 dateTo 초기화
+    if (dateTo && new Date(newDateFrom) > new Date(dateTo)) {
+      setDateTo("");
+    }
+  };
+
+  const handleDateToChange = (e) => {
+    const newDateTo = e.target.value;
+    setDateTo(newDateTo);
+
+    // dateFrom이 dateTo보다 큰 경우 dateFrom 초기화
+    if (dateFrom && new Date(newDateTo) < new Date(dateFrom)) {
+      setDateFrom("");
+    }
+  };
 
   return (
     <div className={styles["new-review"]}>
@@ -17,13 +36,12 @@ const NewReview = () => {
           <div className={styles["section-title"]}>
             {t("class.review_question1")}
           </div>
-
           <input
             type="text"
             className={styles["review__input"]}
             placeholder={t("class.question1_placeholder")}
-            value={input1}
-            onChange={(e) => setInput1(e.target.value)}
+            value={reviewTitle}
+            onChange={(e) => setReviewTitle(e.target.value)}
           />
         </div>
 
@@ -36,40 +54,29 @@ const NewReview = () => {
               type="date"
               className={styles["review__input"]}
               value={dateFrom}
-              onChange={(e) => setDateFrom(e.target.value)}
+              onChange={handleDateFromChange}
+              max={dateTo || undefined}
             />
             ~
             <input
               type="date"
               className={styles["review__input"]}
               value={dateTo}
-              onChange={(e) => setDateTo(e.target.value)}
+              onChange={handleDateToChange}
+              min={dateFrom || undefined}
             />
           </div>
         </div>
-        <div className={styles["input-section"]}>
-          <div className={styles["section-title"]}>
-            {t("class.review_question3")}
-          </div>
-          <div className={styles["input-row"]}>
-            <input
-              type="text"
-              className={styles["review__input"]}
-              value={input3}
-              onChange={(e) => setInput3(e.target.value)}
-            />
-          </div>
-        </div>
+
         <div className={styles["input-section"]}>
           <div className={styles["section-title"]}>
             {t("class.review_question4")}
           </div>
           <textarea
-            type="text"
             className={styles["review-detail__input"]}
             placeholder={t("class.question4_placeholder")}
-            value={input4}
-            onChange={(e) => setInput4(e.target.value)}
+            value={reviewDetails}
+            onChange={(e) => setReviewDetails(e.target.value)}
           />
         </div>
       </div>

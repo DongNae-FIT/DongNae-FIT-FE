@@ -18,11 +18,15 @@ const CommunityMain = () => {
           게시글
         </div>
       </div>
-      <button className={styles["write__button"]}>
+      <button
+        className={styles["write__button"]}
+        onClick={() => {
+          navigate("/community/post/new");
+        }}
+      >
         <img
           src={"/icon/icon_write_colored.png"}
           className={styles["write__icon"]}
-          onClick={() => {}}
         />
         {t("community.write")}
       </button>

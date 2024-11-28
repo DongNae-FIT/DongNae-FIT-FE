@@ -62,10 +62,11 @@
     "likes": "좋아요",
     "comment": "댓글",
     "comment_placeholder": "댓글을 입력하세요.",
-    "post_placeholder1": "제목을 입력하세요.",
-    "post_placeholder2": "내용을 입력하세요."
+    "title_placeholder": "제목을 입력하세요.",
+    "content_placeholder": "내용을 입력하세요."
   },
   "mypage": {
+    "auth_false": "로그인이 필요합니다",
     "edit_profile": "프로필 수정",
     "nickname": "닉네임",
     "age": "나이",

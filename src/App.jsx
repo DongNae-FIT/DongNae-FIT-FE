@@ -23,6 +23,7 @@ import GymDetail from "@/pages/GymPages/GymDetail";
 
 import CommunityMain from "@/pages/CommunityPages/CommunityMain";
 import CommunityPost from "@/pages/CommunityPages/CommunityPost";
+import NewPost from "@/pages/CommunityPages/NewPost";
 
 import MyPageMain from "@/pages/MyPages/MyPageMain";
 
@@ -43,12 +44,15 @@ function App() {
     "/auth",
     "/community/post",
     "/class/review/new",
+    "/community/post/new",
+    "/login",
   ];
 
-  const backHeaderPaths = ["/class/detail", "/gym/detail"];
+  const backHeaderPaths = ["/class/detail", "/gym/detail", "/login"];
 
   const editorHeaderTexts = {
     "/class/review/new": t("class.review_write"),
+    "/community/post/new": t("community.write"),
   };
 
   const editorHeaderTitle = editorHeaderTexts[location.pathname] || "";
@@ -77,6 +81,7 @@ function App() {
 
         <Route path="/community" element={<CommunityMain />} />
         <Route path="/community/post" element={<CommunityPost />} />
+        <Route path="/community/post/new" element={<NewPost />} />
 
         <Route path="/mypage" element={<MyPageMain />} />
 

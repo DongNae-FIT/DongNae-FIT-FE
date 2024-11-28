@@ -1,8 +1,12 @@
 import styles from "@/pages/MyPages/MyPageMain.module.css";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const MyPageMain = () => {
   const { t } = useTranslation();
+  const [isAuthentication, setIsAuthentication] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className={styles["my-page-main"]}>
@@ -13,8 +17,25 @@ const MyPageMain = () => {
             className={styles["profile__img"]}
           />
           <div className={styles["profile-text__wrapper"]}>
-            <div className={styles["profile__nickname"]}>닉네임</div>
-            <div className={styles["profile__id"]}>@아이디d4f5g4d8</div>
+            {isAuthentication ? (
+              <>
+                <div className={styles["profile__nickname"]}>닉네임</div>
+                <div className={styles["profile__id"]}>@아이디d4f5g4d8</div>
+              </>
+            ) : (
+              <div
+                className={styles["profile__auth-false"]}
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                {t("mypage.auth_false")}
+                <img
+                  src={"/icon/icon_right_grey.png"}
+                  className={styles["right-arrow-icon"]}
+                />
+              </div>
+            )}
           </div>
         </div>
         <div className={styles["my-page-main__buttons"]}>

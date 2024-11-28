@@ -62,8 +62,8 @@
     "likes": "Likes",
     "comment": "Comment",
     "comment_placeholder": "Enter your comment.",
-    "post_placeholder1": "Enter a title.",
-    "post_placeholder2": "Enter content."
+    "title_placeholder": "Enter a title.",
+    "content_placeholder": "Enter content."
   },
   "mypage": {
     "edit_profile": "Edit Profile",

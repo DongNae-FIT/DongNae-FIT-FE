@@ -39,6 +39,19 @@
   color: var(--main-grey);
 }
 
+.profile__auth-false {
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+
+.right-arrow-icon {
+  width: 13px;
+  height: 13px;
+}
+
 .my-page-main__buttons {
   display: flex;
   flex-direction: row;

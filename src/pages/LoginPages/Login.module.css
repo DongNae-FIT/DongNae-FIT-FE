@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: calc(100vh - 60px);
-  padding: calc(3 * var(--default-padding)) calc(2.5 * var(--default-padding));
+  padding: 0 calc(2.5 * var(--default-padding));
 }
 
 .login__title {
@@ -13,7 +13,7 @@
 }
 
 .login__img {
-  height: 350px;
+  height: 400px;
   width: 100%;
   margin: 25px 0;
   background-color: grey;
@@ -25,7 +25,6 @@
 
 .kakao-login {
   background-color: #fee500;
-
   padding: 0.8em;
   border-radius: 12px;
   display: flex;

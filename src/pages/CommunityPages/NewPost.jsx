@@ -1,6 +1,7 @@
-import styles from "@/pages/CommunityPages/NewPost.module.css";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import styles from "@/pages/CommunityPages/NewPost.module.css";
 
 const NewPost = () => {
   const { t } = useTranslation();
@@ -11,13 +12,13 @@ const NewPost = () => {
     <div className={styles["new-post"]}>
       <input
         type="text"
-        className={styles["new-post__title"]}
+        className={styles["title"]}
         placeholder={t("community.title_placeholder")}
         value={postTitle}
         onChange={(e) => setPostTitle(e.target.value)}
       />
       <textarea
-        className={styles["new-post__content"]}
+        className={styles["content"]}
         placeholder={t("community.content_placeholder")}
         value={postContent}
         onChange={(e) => setPostContent(e.target.value)}

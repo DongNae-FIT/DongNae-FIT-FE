@@ -7,6 +7,9 @@
     "apply": "Apply",
     "duplication_check": "Check"
   },
+  "warning": {
+    "price": "The maximum is less than the minimum."
+  },
   "login": {
     "title": "Login",
     "kakao": "Login with Kakako"
@@ -35,9 +38,8 @@
     "filter1": "Price",
     "price_min_placeholder": "Min",
     "price_max_placeholder": "Max",
-    "filter2": "Day",
-    "filter3": "Teenagers",
-    "filter4": "Kids",
+    "filter2": "Teenagers",
+    "filter3": "Kids",
     "target": "Target",
     "period": "Period",
     "day_and_time": "Day and Time",

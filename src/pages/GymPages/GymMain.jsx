@@ -1,7 +1,8 @@
-import styles from "@/pages/GymPages/GymMain.module.css";
-import { useTranslation } from "react-i18next";
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+
+import styles from "@/pages/GymPages/GymMain.module.css";
 
 const GymMain = () => {
   const { t, i18n } = useTranslation();
@@ -63,15 +64,15 @@ const GymMain = () => {
 
   return (
     <div className={styles["gym-main"]}>
-      <div className={styles["gym__section1"]}>
+      <div className={styles["filter-section"]}>
         <div
-          className={styles["gym__align"]}
+          className={styles["align"]}
           onClick={() => setAlignOpen((prev) => !prev)}
           ref={dropdownRef}
         >
           <img
             src={"/icon/icon_down_grey.png"}
-            className={styles["gym_down-icon"]}
+            className={styles["down-arrow-icon"]}
           />
           {selectedAlign}
           {isAlignOpen && (
@@ -90,12 +91,12 @@ const GymMain = () => {
           )}
         </div>
         <div
-          className={styles["gym__category"]}
+          className={styles["category"]}
           onClick={() => setCategoryOpen((prev) => !prev)}
         >
           <img
             src={"/icon/icon_down_grey.png"}
-            className={styles["gym_down-icon"]}
+            className={styles["down-arrow-icon"]}
           />
           {t("gym.category")}
         </div>
@@ -105,7 +106,7 @@ const GymMain = () => {
           return (
             <div
               key={index}
-              className={`${styles["gym__filter"]} ${
+              className={`${styles["toggle-type"]} ${
                 activeFilters[filterName] ? styles["filter-active"] : ""
               }`}
               onClick={() => toggleFilter(filterName)}
@@ -115,9 +116,9 @@ const GymMain = () => {
           );
         })}
       </div>
-      <div className={styles["gym__section2"]}>
+      <div className={styles["gym-item-wrapper"]}>
         <div
-          className={styles["gym__info"]}
+          className={styles["gym-item"]}
           onClick={() => {
             navigate("/gym/detail");
           }}
@@ -133,8 +134,8 @@ const GymMain = () => {
             onClick={() => setCategoryOpen(false)}
           />
           <div className={styles["category-filter"]}>
-            <div className={styles["category__title"]}>{t("gym.category")}</div>
-            <div className={styles["category-lists"]}>
+            <div className={styles["category-title"]}>{t("gym.category")}</div>
+            <div className={styles["category-list"]}>
               {["category1", "category2"].map((category, index) => (
                 <div
                   key={index}
@@ -147,7 +148,7 @@ const GymMain = () => {
                 </div>
               ))}
             </div>
-            <div className={styles["category__buttons"]}>
+            <div className={styles["category-button-wrapper"]}>
               <button
                 className={styles["reset-button"]}
                 onClick={resetCategories}

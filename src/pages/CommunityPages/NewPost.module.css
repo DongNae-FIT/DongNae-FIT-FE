@@ -7,14 +7,7 @@
   align-items: start;
 }
 
-.section-title {
-  font-size: 1rem;
-  font-weight: 500;
-  padding-top: calc(var(--default-padding) * 2);
-  padding-bottom: calc(0.3 * var(--default-padding));
-}
-
-.new-post__title {
+.title {
   background-color: white;
   padding: 0.8em 1em;
   font-size: 0.9rem;
@@ -23,7 +16,7 @@
   width: 100%;
 }
 
-.new-post__content {
+.content {
   background-color: white;
   padding: 0.8em 1em;
   font-size: 0.9rem;

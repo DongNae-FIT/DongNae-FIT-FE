@@ -4,18 +4,18 @@
   width: 100%;
 }
 
-.community__content {
+.post-list {
   padding: 0 var(--body-padding);
 }
 
-.community__post {
+.post-item {
   background-color: var(--white);
   padding: var(--default-padding) 0;
   display: flex;
   flex-direction: column;
 }
 
-.write__button {
+.write-button {
   position: fixed;
   bottom: var(--body-padding);
   left: 50%;
@@ -31,6 +31,6 @@
   align-items: center;
 }
 
-.write__icon {
+.write-icon {
   width: 16px;
 }

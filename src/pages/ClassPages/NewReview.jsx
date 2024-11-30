@@ -31,7 +31,7 @@ const NewReview = () => {
 
   return (
     <div className={styles["new-review"]}>
-      <div className={styles["page-content"]}>
+      <div className={styles["container"]}>
         <div className={styles["input-section"]}>
           <div className={styles["section-title"]}>
             {t("class.review_question1")}
@@ -73,7 +73,7 @@ const NewReview = () => {
             {t("class.review_question4")}
           </div>
           <textarea
-            className={styles["review-detail__input"]}
+            className={styles["review-detail-input"]}
             placeholder={t("class.question4_placeholder")}
             value={reviewDetails}
             onChange={(e) => setReviewDetails(e.target.value)}

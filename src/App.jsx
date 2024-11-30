@@ -47,7 +47,7 @@ function App() {
 
   // 경로별 헤더 관리
   const headerConfig = {
-    default: ["/", "/class", "/gym", "/community", "/mypage", "/search"],
+    default: ["/", "/class", "/gym", "/community", "/mypage"],
     back: [
       "/class/detail",
       "/gym/detail",

@@ -1,30 +1,30 @@
-import styles from "@/pages/MyPages/MyPageMain.module.css";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
+import styles from "@/pages/MyPages/MyPageMain.module.css";
 
 const MyPageMain = () => {
   const { t } = useTranslation();
-  const isAuthentication = false;
+  const isAuthentication = true;
   const navigate = useNavigate();
 
   return (
     <div className={styles["my-page-main"]}>
-      <div className={styles["my-page-main__section--profile"]}>
-        <div className={styles["user-info__wrapper"]}>
+      <div className={styles["profile-container"]}>
+        <div className={styles["user-info-wrapper"]}>
           <img
             src={"/default/default_profile.png"}
-            className={styles["profile__img"]}
+            className={styles["user-info-img"]}
           />
-          <div className={styles["profile-text__wrapper"]}>
+          <div className={styles["user-info-text"]}>
             {isAuthentication ? (
               <>
-                <div className={styles["profile__nickname"]}>닉네임</div>
-                <div className={styles["profile__id"]}>@아이디d4f5g4d8</div>
+                <div className={styles["nickname"]}>닉네임</div>
+                <div className={styles["id"]}>@아이디d4f5g4d8</div>
               </>
             ) : (
               <div
-                className={styles["profile__auth-false"]}
+                className={styles["nav-login"]}
                 onClick={() => {
                   navigate("/login");
                 }}
@@ -38,7 +38,7 @@ const MyPageMain = () => {
             )}
           </div>
         </div>
-        <div className={styles["my-page-main__buttons"]}>
+        <div className={styles["button-wrapper"]}>
           <button
             className={styles["button"]}
             onClick={() => {
@@ -58,11 +58,11 @@ const MyPageMain = () => {
         </div>
       </div>
 
-      <div className={styles["my-page-main__menus"]}>
-        <div className={styles["my-page-main__section"]}>
-          <div className={styles["section__title"]}>{t("menus.class")}</div>
+      <div className={styles["menu-wrapper"]}>
+        <div className={styles["menu-section"]}>
+          <div className={styles["section-title"]}>{t("menus.class")}</div>
           <div
-            className={styles["section__menu"]}
+            className={styles["menu"]}
             onClick={() => {
               navigate("/mypage/class/save");
             }}
@@ -70,7 +70,7 @@ const MyPageMain = () => {
             {t("mypage.myclass")}
           </div>
           <div
-            className={styles["section__menu"]}
+            className={styles["menu"]}
             onClick={() => {
               navigate("/mypage/class/review");
             }}
@@ -79,10 +79,10 @@ const MyPageMain = () => {
           </div>
         </div>
 
-        <div className={styles["my-page-main__section"]}>
-          <div className={styles["section__title"]}>{t("menus.community")}</div>
+        <div className={styles["menu-section"]}>
+          <div className={styles["section-title"]}>{t("menus.community")}</div>
           <div
-            className={styles["section__menu"]}
+            className={styles["menu"]}
             onClick={() => {
               navigate("/mypage/community/post");
             }}
@@ -90,7 +90,7 @@ const MyPageMain = () => {
             {t("mypage.mypost")}
           </div>
           <div
-            className={styles["section__menu"]}
+            className={styles["menu"]}
             onClick={() => {
               navigate("/mypage/community/comment");
             }}
@@ -98,7 +98,7 @@ const MyPageMain = () => {
             {t("mypage.mycomment")}
           </div>
           <div
-            className={styles["section__menu"]}
+            className={styles["menu"]}
             onClick={() => {
               navigate("/mypage/community/save");
             }}
@@ -106,11 +106,11 @@ const MyPageMain = () => {
             {t("mypage.mysave")}
           </div>
         </div>
-        <div className={styles["my-page-main__section"]}>
-          <div className={styles["section__title"]}>{t("mypage.etc")}</div>
-          <div className={styles["section__menu"]}>{t("mypage.logout")}</div>
+        <div className={styles["menu-section"]}>
+          <div className={styles["section-title"]}>{t("mypage.etc")}</div>
+          <div className={styles["menu"]}>{t("mypage.logout")}</div>
           <div
-            className={styles["section__menu"]}
+            className={styles["menu"]}
             onClick={() => {
               navigate("/delete/account");
             }}

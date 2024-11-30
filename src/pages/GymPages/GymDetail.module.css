@@ -4,16 +4,16 @@
   width: 100%;
 }
 
-.gym__map {
+.map {
   height: var(--map-height);
   background-color: azure;
 }
 
-.gym-detail__section {
+.wrapper {
   width: 100%;
   padding: calc(var(--default-padding) * 1.5) var(--body-padding);
 }
 
-.gym-detail__info {
+.info {
   background-color: var(--white);
 }

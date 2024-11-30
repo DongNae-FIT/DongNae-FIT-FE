@@ -7,6 +7,9 @@
     "apply": "적용하기",
     "duplication_check": "중복 확인"
   },
+  "warning": {
+    "price": "최대 금액이 최소 금액보다 작아요."
+  },
   "login": {
     "title": "로그인",
     "kakao": "카카오 로그인"
@@ -35,9 +38,8 @@
     "filter1": "가격",
     "price_min_placeholder": "최소 금액",
     "price_max_placeholder": "최대 금액",
-    "filter2": "요일",
-    "filter3": "청소년",
-    "filter4": "유아동",
+    "filter2": "청소년",
+    "filter3": "유아동",
     "target": "대상",
     "period": "기간",
     "day_and_time": "요일 및 시간",

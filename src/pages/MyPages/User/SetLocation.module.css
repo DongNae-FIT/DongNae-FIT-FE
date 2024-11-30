@@ -7,10 +7,10 @@
 .input-row {
   display: flex;
   flex-direction: row;
-  padding: var(--default-padding) var(--body-padding);
-  width: 100%;
   align-items: center;
   gap: 5px;
+  padding: var(--default-padding) var(--body-padding);
+  width: 100%;
 }
 
 .location-icon {
@@ -19,10 +19,10 @@
 
 .input {
   background-color: white;
-  padding: 0.4em 0.8em;
-  font-size: 0.9rem;
   border: 1px solid var(--sub-grey);
   border-radius: 5px;
+  padding: 0.4em 0.8em;
+  font-size: 0.9rem;
   width: 100%;
   flex: 1;
 }

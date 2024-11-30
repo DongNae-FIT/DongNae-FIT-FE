@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import styles from "@/pages/ClassPages/ClassMain.module.css";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+
+import styles from "@/pages/ClassPages/ClassMain.module.css";
 
 const ClassMain = () => {
   const { t, i18n } = useTranslation();
@@ -39,7 +40,7 @@ const ClassMain = () => {
 
   const checkPriceValidity = (min, max) => {
     if (min && max && min > max) {
-      setWarningMessage("최소 금액보다 최대 금액이 작아요.");
+      setWarningMessage(`${t("warning.price")}`);
     } else {
       setWarningMessage(""); // 유효한 경우 경고 메시지 제거
     }
@@ -60,6 +61,9 @@ const ClassMain = () => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setAlignOpen(false);
+        setPriceMax(0);
+        setPriceMin(0);
+        setWarningMessage("");
       }
     };
 
@@ -76,16 +80,16 @@ const ClassMain = () => {
 
   return (
     <div className={styles["class-main"]}>
-      <div className={styles["class__map"]}>지도</div>
-      <div className={styles["class__section1"]}>
+      <div className={styles["map"]}>지도</div>
+      <div className={styles["filter-wrapper"]}>
         <div
-          className={styles["class__dropdown"]}
+          className={styles["dropdown-type"]}
           onClick={() => setAlignOpen((prev) => !prev)}
           ref={dropdownRef}
         >
           <img
             src={"/icon/icon_down_grey.png"}
-            className={styles["class_down-icon"]}
+            className={styles["down-arrow-icon"]}
           />
           {selectedAlign}
           {isAlignOpen && (
@@ -93,7 +97,7 @@ const ClassMain = () => {
               <div
                 className={`${styles["dropdown-item"]} ${
                   selectedAlign === t("class.align1")
-                    ? styles["selected-item"]
+                    ? styles["selected-align"]
                     : ""
                 }`}
                 onClick={() => handleAlignSelect(t("class.align1"))}
@@ -104,20 +108,20 @@ const ClassMain = () => {
           )}
         </div>
         <div
-          className={styles["class__dropdown"]}
+          className={styles["dropdown-type"]}
           onClick={() => setPriceOpen((prev) => !prev)}
         >
           <img
             src={"/icon/icon_down_grey.png"}
-            className={styles["class_down-icon"]}
+            className={styles["down-arrow-icon"]}
           />
           {t("class.filter1")}
         </div>
 
-        {["filter3", "filter4"].map((filter, index) => (
+        {["filter2", "filter3"].map((filter, index) => (
           <div
             key={index}
-            className={`${styles["class__filter"]} ${
+            className={`${styles["toggle-type"]} ${
               activeFilters[filter] ? styles["filter-active"] : ""
             }`}
             onClick={() => toggleFilter(filter)}
@@ -126,9 +130,9 @@ const ClassMain = () => {
           </div>
         ))}
       </div>
-      <div className={styles["class__section2"]}>
+      <div className={styles["class-item-wrapper"]}>
         <div
-          className={styles["class__info"]}
+          className={styles["class-item"]}
           onClick={() => {
             navigate("/class/detail");
           }}
@@ -141,19 +145,19 @@ const ClassMain = () => {
         <>
           <div className={styles.overlay} onClick={() => setPriceOpen(false)} />
           <div className={styles["price-filter"]}>
-            <div className={styles["price__title"]}>{t("class.filter1")}</div>
-            <div className={styles["price__container"]}>
+            <div className={styles["price-title"]}>{t("class.filter1")}</div>
+            <div className={styles["price-content"]}>
               <input
                 type="text"
-                className={styles["price__input"]}
+                className={styles["price-input"]}
                 placeholder={t("class.price_min_placeholder")}
                 value={priceMin ? priceMin.toLocaleString() : ""} // 화면에 표시 시 숫자 포맷
                 onChange={handlePriceMinChange}
               />
-              <span className={styles["price__wave"]}>~</span>
+              <span className={styles["price-wave"]}>~</span>
               <input
                 type="text"
-                className={styles["price__input"]}
+                className={styles["price-input"]}
                 placeholder={t("class.price_max_placeholder")}
                 value={priceMax ? priceMax.toLocaleString() : ""} // 화면에 표시 시 숫자 포맷
                 onChange={handlePriceMaxChange}
@@ -161,10 +165,10 @@ const ClassMain = () => {
             </div>
 
             {warningMessage && (
-              <div className={styles["price__warning"]}>{warningMessage}</div>
+              <div className={styles["price-warning"]}>{warningMessage}</div>
             )}
 
-            <div className={styles["price__buttons"]}>
+            <div className={styles["price-button-wrapper"]}>
               <button
                 className={styles["reset-button"]}
                 onClick={() => {

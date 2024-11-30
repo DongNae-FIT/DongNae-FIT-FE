@@ -1,6 +1,7 @@
-import styles from "@/pages/CommunityPages/CommunityMain.module.css";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+
+import styles from "@/pages/CommunityPages/CommunityMain.module.css";
 
 const CommunityMain = () => {
   const { t } = useTranslation();
@@ -8,9 +9,9 @@ const CommunityMain = () => {
 
   return (
     <div className={styles["community-main"]}>
-      <div className={styles["community__content"]}>
+      <div className={styles["post-list"]}>
         <div
-          className={styles["community__post"]}
+          className={styles["post-item"]}
           onClick={() => {
             navigate("/community/post");
           }}
@@ -19,14 +20,14 @@ const CommunityMain = () => {
         </div>
       </div>
       <button
-        className={styles["write__button"]}
+        className={styles["write-button"]}
         onClick={() => {
           navigate("/community/post/new");
         }}
       >
         <img
           src={"/icon/icon_write_colored.png"}
-          className={styles["write__icon"]}
+          className={styles["write-icon"]}
         />
         {t("community.write")}
       </button>

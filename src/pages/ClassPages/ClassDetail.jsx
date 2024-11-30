@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import styles from "@/pages/ClassPages/ClassDetail.module.css";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import styles from "@/pages/ClassPages/ClassDetail.module.css";
 
 const ClassDetail = () => {
   const { t } = useTranslation();
@@ -12,18 +12,9 @@ const ClassDetail = () => {
     setLike((prevLike) => !prevLike);
   };
 
-  const Divider = () => (
-    <div style={{ height: "1px", backgroundColor: "var(--sub-grey)" }} />
-  );
-
   return (
     <div className={styles["class-detail"]}>
-      <div className={styles["class-detail__img"]}>
-        {/* <img
-          src={""}
-          className={styles[""]}
-        /> */}
-      </div>
+      <div className={styles["class-detail__map"]} />
       <div className={styles["class__section--location"]}>
         <img
           src={"/default/default_location.png"}
@@ -53,11 +44,11 @@ const ClassDetail = () => {
         </div>
         <div className={styles["section__content"]}>
           <div className={styles["content__left"]}>
-            <div>대상</div>
-            <div>요일</div>
-            <div>대상</div>
-            <div>요일</div>
-            <div>요일</div>
+            <div>{t("class.target")}</div>
+            <div>{t("class.period")}</div>
+            <div>{t("class.day_and_time")}</div>
+            <div>{t("class.price")}</div>
+            <div>{t("class.url")}</div>
           </div>
           <div className={styles["content__right"]}>
             <div>성인</div>
@@ -70,13 +61,10 @@ const ClassDetail = () => {
       </div>
 
       <div className={styles["class__section"]}>
-        <div className={styles["section__title"]}>강좌 후기</div>
-        {[...Array(3)].map((_, index) => (
-          <div key={index}>
-            <div className={styles["class__review"]}>후기 {index + 1}</div>
-            {index < 2 && <Divider />}
-          </div>
-        ))}
+        <div className={styles["section__title"]}>
+          {t("class.review_title")}
+        </div>
+        <div className={styles["class__review"]}>후기 </div>
       </div>
 
       <button

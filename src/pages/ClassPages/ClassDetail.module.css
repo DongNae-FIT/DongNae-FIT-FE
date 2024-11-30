@@ -4,7 +4,7 @@
   width: 100%;
 }
 
-.class-detail__img {
+.class-detail__map {
   height: calc(var(--map-height) * 0.8);
   background-color: azure;
 }

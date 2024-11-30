@@ -31,7 +31,7 @@ const DefaultHeader = () => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       setShowMenu(false);
     }
-  }, []); // 의존성 배열이 비어 있어 최초 렌더링 시 한 번만 생성됨
+  }, []);
 
   // 외부 클릭 감지 및 드롭다운 닫기
   useEffect(() => {
@@ -39,7 +39,7 @@ const DefaultHeader = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [handleClickOutside]); // handleClickOutside가 변경될 때만 이벤트 리스너 재등록
+  }, [handleClickOutside]);
 
   return (
     <div className={styles.header}>

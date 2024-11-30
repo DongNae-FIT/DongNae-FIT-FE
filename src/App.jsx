@@ -26,14 +26,17 @@ import CommunityPost from "@/pages/CommunityPages/CommunityPost";
 import NewPost from "@/pages/CommunityPages/NewPost";
 
 import MyPageMain from "@/pages/MyPages/MyPageMain";
-import EditProfile from "@/pages/MyPages/EditProfile";
-import SetLocation from "@/pages/MyPages/SetLocation";
-import SavedClass from "@/pages/MyPages/SavedClass";
-import ReviewedClass from "@/pages/MyPages/ReviewedClass";
-import MyPost from "@/pages/MyPages/MyPost";
-import CommentedPost from "@/pages/MyPages/CommentedPost";
-import SavedPost from "@/pages/MyPages/SavedPost";
-import DeletedAccount from "@/pages/MyPages/DeletedAccount";
+
+import EditProfile from "@/pages/MyPages/User/EditProfile";
+import SetLocation from "@/pages/MyPages/User/SetLocation";
+import DeletedAccount from "@/pages/MyPages/User/DeletedAccount";
+
+import SavedClass from "@/pages/MyPages/Class/SavedClass";
+import ReviewedClass from "@/pages/MyPages/Class/ReviewedClass";
+
+import MyPost from "@/pages/MyPages/Community/MyPost";
+import CommentedPost from "@/pages/MyPages/Community/CommentedPost";
+import SavedPost from "@/pages/MyPages/Community/SavedPost";
 
 import SearchMain from "@/pages/SearchPages/SearchIMain";
 import SearchResultAll from "@/pages/SearchPages/SearchResultAll";
@@ -96,11 +99,14 @@ function App() {
         <Route path="/mypage" element={<MyPageMain />} />
         <Route path="/mypage/edit/profile" element={<EditProfile />} />
         <Route path="/mypage/set/location" element={<SetLocation />} />
+
         <Route path="/mypage/class/save" element={<SavedClass />} />
         <Route path="/mypage/class/review" element={<ReviewedClass />} />
+
         <Route path="/mypage/community/post" element={<MyPost />} />
         <Route path="/mypage/community/comment" element={<CommentedPost />} />
         <Route path="/mypage/community/save" element={<SavedPost />} />
+
         <Route path="/delete/account" element={<DeletedAccount />} />
 
         <Route path="/search" element={<SearchMain />} />

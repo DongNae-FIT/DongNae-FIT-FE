@@ -1,4 +1,4 @@
-import styles from "@/pages/MyPages/SetLocation.module.css";
+import styles from "@/pages/MyPages/User/SetLocation.module.css";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";

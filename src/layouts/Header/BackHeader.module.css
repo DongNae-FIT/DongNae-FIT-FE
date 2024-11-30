@@ -1,16 +1,15 @@
 .back-header {
   position: sticky;
   top: 0;
+  z-index: 20;
   width: 100%;
   height: var(--header-height);
-  padding: 0 var(--body-padding);
   display: flex;
   align-items: center;
+  padding: 10px var(--body-padding) 0;
   background-color: var(--white);
-  z-index: 20;
-  padding-top: 10px;
 }
 
-.back-icon {
+.back-arrow-icon {
   width: 18px;
 }

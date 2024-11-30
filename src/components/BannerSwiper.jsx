@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -9,9 +8,19 @@ import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import "@/components/BannerSwiper.css";
 
 const BannerSwiper = () => {
-  const [bgColor, setBgColor] = useState("#FFF8F2");
+  const [bgColor, setBgColor] = useState("#DFF5FF");
   const canvasRef = useRef(null);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+  const imagePaths = [
+    "/banner_home/banner_home_1.png",
+    "/banner_home/banner_home_2.png",
+    "/banner_home/banner_home_3.png",
+    "/banner_home/banner_home_4.png",
+    "/banner_home/banner_home_5.png",
+    "/banner_home/banner_home_6.png",
+    // 새 배너 추가 시 이 배열에 경로만 추가하면 됩니다.
+  ];
 
   const updateBackgroundColor = (imgElement) => {
     const canvas = canvasRef.current;
@@ -67,14 +76,7 @@ const BannerSwiper = () => {
           setIsFirstLoad(false);
         }}
       >
-        {[
-          "/banner_home/banner_home_1.png",
-          "/banner_home/banner_home_2.png",
-          "/banner_home/banner_home_3.png",
-          "/banner_home/banner_home_4.png",
-          "/banner_home/banner_home_5.png",
-          "/banner_home/banner_home_6.png",
-        ].map((image, index) => (
+        {imagePaths.map((image, index) => (
           <SwiperSlide key={index}>
             <img
               src={image}

@@ -1,42 +1,42 @@
-.sidetab {
+.menu-tab {
   position: fixed;
   top: 0;
   left: var(--side-tab-left);
+  z-index: 30;
+  width: 80vw;
+  max-width: 500px;
   height: 100%;
   background-color: var(--white);
   color: var(--black);
-  z-index: 30;
-  max-width: 500px;
-  width: 80vw;
 }
 
-.sidetab__logo {
-  font-family: var(--font-family-logo);
-  color: var(--main-color);
-  font-size: var(--font-size-logo);
-  height: 100px;
-  text-align: start;
-  align-items: center;
+.menu-tab__logo {
   display: flex;
+  align-items: center;
+  height: 100px;
   padding-left: var(--body-padding);
   padding-right: calc(2 * var(--body-padding));
+  text-align: start;
+  font-family: var(--font-family-logo);
+  font-size: var(--font-size-logo);
+  color: var(--main-color);
 }
 
-.sidetab__menus {
-  list-style: none;
+.menu-tab__menu-list {
   display: flex;
   flex-direction: column;
+  list-style: none;
 }
 
-.sidetab__menus li {
+.menu-tab__menu-list li {
   padding: 0.8em 0;
-  cursor: pointer;
-  font-size: 1rem;
   padding-left: var(--body-padding);
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-.menu__selected {
-  color: var(--main-color);
+.menu-item--selected {
   background-color: var(--very-light-grey);
+  color: var(--main-color);
   font-weight: 500;
 }

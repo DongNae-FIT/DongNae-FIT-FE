@@ -42,57 +42,38 @@ function App() {
   const { t } = useTranslation();
   const location = useLocation();
 
-  // 헤더를 제외할 경로를 설정
-  const excludeHeaderPaths = [
-    "/search",
-    "/search/result/all",
-    "/class/detail",
-    "/gym/detail",
-    "/community/post",
-    "/auth",
-    "/community/post",
-    "/class/review/new",
-    "/community/post/new",
-    "/login",
-    "/mypage/edit/profile",
-    "/mypage/set/location",
-    "/mypage/class/save",
-    "/mypage/class/review",
-    "/mypage/community/post",
-    "/mypage/community/comment",
-    "/mypage/community/save",
-    "/delete/account",
-  ];
-
-  const backHeaderPaths = [
-    "/class/detail",
-    "/gym/detail",
-    "/login",
-    "/community/post",
-    "/mypage/class/save",
-    "/mypage/class/review",
-    "/mypage/community/post",
-    "/mypage/community/comment",
-    "/mypage/community/save",
-    "/delete/account",
-  ];
-
-  const editorHeaderTexts = {
-    "/class/review/new": t("class.review_write"),
-    "/community/post/new": t("community.write"),
-    "/mypage/edit/profile": t("mypage.edit_profile"),
-    "/mypage/set/location": t("mypage.set_locaiton"),
+  // 경로별 헤더 관리
+  const headerConfig = {
+    default: ["/", "/class", "/gym", "/community", "/mypage", "/search"],
+    back: [
+      "/class/detail",
+      "/gym/detail",
+      "/login",
+      "/community/post",
+      "/mypage/class/save",
+      "/mypage/class/review",
+      "/mypage/community/post",
+      "/mypage/community/comment",
+      "/mypage/community/save",
+      "/delete/account",
+    ],
+    editor: {
+      "/class/review/new": t("class.review_write"),
+      "/community/post/new": t("community.write"),
+      "/mypage/edit/profile": t("mypage.edit_profile"),
+      "/mypage/set/location": t("mypage.set_location"),
+    },
   };
 
-  const editorHeaderTitle = editorHeaderTexts[location.pathname] || "";
+  const editorHeaderTitle = headerConfig.editor[location.pathname] || "";
 
   return (
     <AuthProvider>
       <Helmet>
         <title>{t("title")}</title>
       </Helmet>
-      {!excludeHeaderPaths.includes(location.pathname) && <DefaultHeader />}
-      {backHeaderPaths.includes(location.pathname) && <BackHeader />}
+      {headerConfig.default.includes(location.pathname) && <DefaultHeader />}
+      {headerConfig.back.includes(location.pathname) && <BackHeader />}
       {editorHeaderTitle && <EditorHeader title={editorHeaderTitle} />}
 
       <Routes>

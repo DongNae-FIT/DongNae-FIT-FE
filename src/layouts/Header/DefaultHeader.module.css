@@ -4,6 +4,7 @@
   width: 100%;
   height: var(--header-height);
   padding: 0 var(--body-padding);
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -11,7 +12,6 @@
   background-color: var(--white);
   gap: 10px;
   z-index: 20;
-  padding-top: 10px;
 }
 
 .header__icon {
@@ -45,19 +45,18 @@
   padding: 0.6em 0.5em;
 }
 
+.header__language-dropdown__selected {
+  color: var(--main-color);
+}
+
 .header__language-dropdown li {
   cursor: pointer;
   padding: 0.1em 0.3em;
-  cursor: pointer;
   text-align: center;
   font-size: 0.8rem;
 }
 
-.header__language-dropdown li.selected {
-  color: var(--main-color);
-}
-
-.overlay {
+.header__overlay {
   position: fixed;
   top: 0;
   left: var(--side-tab-left);

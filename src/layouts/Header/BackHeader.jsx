@@ -1,5 +1,5 @@
-import styles from "@/layouts/Header/BackHeader.module.css";
 import { useNavigate } from "react-router-dom";
+import styles from "@/layouts/Header/BackHeader.module.css";
 
 const BackHeader = () => {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ const BackHeader = () => {
     <div className={styles["back-header"]}>
       <img
         src={"/icon/icon_left_black.png"}
-        className={styles["back-icon"]}
+        className={styles["back-arrow-icon"]}
         onClick={() => navigate(-1)}
       />
     </div>

@@ -53,7 +53,7 @@ const MyPageMain = () => {
               navigate("/mypage/set/location");
             }}
           >
-            {t("mypage.set_locaiton")}
+            {t("mypage.set_location")}
           </button>
         </div>
       </div>

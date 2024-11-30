@@ -66,6 +66,7 @@
     "content_placeholder": "Enter content."
   },
   "mypage": {
+    "auth_false": "Login is required",
     "edit_profile": "Edit Profile",
     "nickname": "Nickname",
     "age": "Age",

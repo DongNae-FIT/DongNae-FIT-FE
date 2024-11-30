@@ -47,7 +47,12 @@ const MyPageMain = () => {
           >
             {t("mypage.edit_profile")}
           </button>
-          <button className={styles["button"]}>
+          <button
+            className={styles["button"]}
+            onClick={() => {
+              navigate("/mypage/set/location");
+            }}
+          >
             {t("mypage.set_locaiton")}
           </button>
         </div>

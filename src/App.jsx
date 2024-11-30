@@ -27,6 +27,7 @@ import NewPost from "@/pages/CommunityPages/NewPost";
 
 import MyPageMain from "@/pages/MyPages/MyPageMain";
 import EditProfile from "@/pages/MyPages/EditProfile";
+import SetLocation from "@/pages/MyPages/SetLocation";
 
 import SearchMain from "@/pages/SearchPages/SearchIMain";
 import SearchResultAll from "@/pages/SearchPages/SearchResultAll";
@@ -48,14 +49,21 @@ function App() {
     "/community/post/new",
     "/login",
     "/mypage/edit/profile",
+    "/mypage/set/location",
   ];
 
-  const backHeaderPaths = ["/class/detail", "/gym/detail", "/login"];
+  const backHeaderPaths = [
+    "/class/detail",
+    "/gym/detail",
+    "/login",
+    "/community/post",
+  ];
 
   const editorHeaderTexts = {
     "/class/review/new": t("class.review_write"),
     "/community/post/new": t("community.write"),
     "/mypage/edit/profile": t("mypage.edit_profile"),
+    "/mypage/set/location": t("mypage.set_locaiton"),
   };
 
   const editorHeaderTitle = editorHeaderTexts[location.pathname] || "";
@@ -88,6 +96,7 @@ function App() {
 
         <Route path="/mypage" element={<MyPageMain />} />
         <Route path="/mypage/edit/profile" element={<EditProfile />} />
+        <Route path="/mypage/set/location" element={<SetLocation />} />
 
         <Route path="/search" element={<SearchMain />} />
         <Route path="/search/result/all" element={<SearchResultAll />} />

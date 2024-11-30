@@ -17,7 +17,6 @@ const DefaultHeader = () => {
     i18n.changeLanguage(lang);
     setSelectedLang(lang); // 언어 변경 시 선택된 언어 업데이트
     setShowDropdown(false);
-    console.log(lang);
   };
 
   const onClickTitle = (e) => {
@@ -48,14 +47,7 @@ const DefaultHeader = () => {
         className={styles["header__icon"]}
         onClick={() => setShowMenu(true)}
       />
-      <div
-        className={`${styles["header__title"]} ${
-          selectedLang === "ko"
-            ? styles["header__title-ko"]
-            : styles["header__title-en"]
-        }`}
-        onClick={onClickTitle}
-      >
+      <div className={styles["header__title"]} onClick={onClickTitle}>
         {t("title")}
       </div>
 

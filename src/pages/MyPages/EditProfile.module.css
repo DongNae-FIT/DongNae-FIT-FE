@@ -7,11 +7,13 @@
 }
 
 .edit-profile__img {
-  padding: calc(var(--default-padding) * 3) 0;
+  padding-top: calc(var(--default-padding) * 3);
+  padding-bottom: calc(var(--default-padding) * 2);
 }
 
 .profile__img {
-  width: 70px;
+  width: var(--profile-edit-img);
+  border-radius: 50%;
 }
 
 .info__input {

@@ -72,14 +72,14 @@
   padding: calc(var(--default-padding) * 1.5) var(--body-padding);
   display: flex;
   flex-direction: column;
-  gap: 27px;
+  gap: 30px;
 }
 
 .my-page-main__section {
   background-color: white;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .section__title {

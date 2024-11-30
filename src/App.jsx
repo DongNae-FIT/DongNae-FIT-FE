@@ -28,6 +28,12 @@ import NewPost from "@/pages/CommunityPages/NewPost";
 import MyPageMain from "@/pages/MyPages/MyPageMain";
 import EditProfile from "@/pages/MyPages/EditProfile";
 import SetLocation from "@/pages/MyPages/SetLocation";
+import SavedClass from "@/pages/MyPages/SavedClass";
+import ReviewedClass from "@/pages/MyPages/ReviewedClass";
+import MyPost from "@/pages/MyPages/MyPost";
+import CommentedPost from "@/pages/MyPages/CommentedPost";
+import SavedPost from "@/pages/MyPages/SavedPost";
+import DeletedAccount from "@/pages/MyPages/DeletedAccount";
 
 import SearchMain from "@/pages/SearchPages/SearchIMain";
 import SearchResultAll from "@/pages/SearchPages/SearchResultAll";
@@ -50,6 +56,12 @@ function App() {
     "/login",
     "/mypage/edit/profile",
     "/mypage/set/location",
+    "/mypage/class/save",
+    "/mypage/class/review",
+    "/mypage/community/post",
+    "/mypage/community/comment",
+    "/mypage/community/save",
+    "/delete/account",
   ];
 
   const backHeaderPaths = [
@@ -57,6 +69,12 @@ function App() {
     "/gym/detail",
     "/login",
     "/community/post",
+    "/mypage/class/save",
+    "/mypage/class/review",
+    "/mypage/community/post",
+    "/mypage/community/comment",
+    "/mypage/community/save",
+    "/delete/account",
   ];
 
   const editorHeaderTexts = {
@@ -97,6 +115,12 @@ function App() {
         <Route path="/mypage" element={<MyPageMain />} />
         <Route path="/mypage/edit/profile" element={<EditProfile />} />
         <Route path="/mypage/set/location" element={<SetLocation />} />
+        <Route path="/mypage/class/save" element={<SavedClass />} />
+        <Route path="/mypage/class/review" element={<ReviewedClass />} />
+        <Route path="/mypage/community/post" element={<MyPost />} />
+        <Route path="/mypage/community/comment" element={<CommentedPost />} />
+        <Route path="/mypage/community/save" element={<SavedPost />} />
+        <Route path="/delete/account" element={<DeletedAccount />} />
 
         <Route path="/search" element={<SearchMain />} />
         <Route path="/search/result/all" element={<SearchResultAll />} />

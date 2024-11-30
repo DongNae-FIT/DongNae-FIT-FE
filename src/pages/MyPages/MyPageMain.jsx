@@ -61,19 +61,62 @@ const MyPageMain = () => {
       <div className={styles["my-page-main__menus"]}>
         <div className={styles["my-page-main__section"]}>
           <div className={styles["section__title"]}>{t("menus.class")}</div>
-          <div className={styles["section__menu"]}>{t("mypage.myclass")}</div>
-          <div className={styles["section__menu"]}>{t("mypage.myreview")}</div>
+          <div
+            className={styles["section__menu"]}
+            onClick={() => {
+              navigate("/mypage/class/save");
+            }}
+          >
+            {t("mypage.myclass")}
+          </div>
+          <div
+            className={styles["section__menu"]}
+            onClick={() => {
+              navigate("/mypage/class/review");
+            }}
+          >
+            {t("mypage.myreview")}
+          </div>
         </div>
+
         <div className={styles["my-page-main__section"]}>
           <div className={styles["section__title"]}>{t("menus.community")}</div>
-          <div className={styles["section__menu"]}>{t("mypage.mypost")}</div>
-          <div className={styles["section__menu"]}>{t("mypage.mycomment")}</div>
-          <div className={styles["section__menu"]}>{t("mypage.mysave")}</div>
+          <div
+            className={styles["section__menu"]}
+            onClick={() => {
+              navigate("/mypage/community/post");
+            }}
+          >
+            {t("mypage.mypost")}
+          </div>
+          <div
+            className={styles["section__menu"]}
+            onClick={() => {
+              navigate("/mypage/community/comment");
+            }}
+          >
+            {t("mypage.mycomment")}
+          </div>
+          <div
+            className={styles["section__menu"]}
+            onClick={() => {
+              navigate("/mypage/community/save");
+            }}
+          >
+            {t("mypage.mysave")}
+          </div>
         </div>
         <div className={styles["my-page-main__section"]}>
           <div className={styles["section__title"]}>{t("mypage.etc")}</div>
           <div className={styles["section__menu"]}>{t("mypage.logout")}</div>
-          <div className={styles["section__menu"]}>{t("mypage.delete")}</div>
+          <div
+            className={styles["section__menu"]}
+            onClick={() => {
+              navigate("/delete/account");
+            }}
+          >
+            {t("mypage.delete")}
+          </div>
         </div>
       </div>
     </div>

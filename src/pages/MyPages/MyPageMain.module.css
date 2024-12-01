@@ -7,7 +7,6 @@
 .profile-container {
   width: 100%;
   padding: var(--default-padding) var(--body-padding);
-  background-color: antiquewhite;
   display: flex;
   flex-direction: column;
 }
@@ -18,7 +17,6 @@
   align-items: center;
   gap: 10px;
   padding: var(--default-padding) 0;
-  background-color: azure;
 }
 
 .user-info-img {

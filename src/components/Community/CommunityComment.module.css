@@ -1,7 +1,6 @@
 .community-comment {
   display: flex;
   flex-direction: column;
-  background-color: bisque;
   padding: calc(var(--default-padding) * 0.5) 0;
 }
 

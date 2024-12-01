@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import styles from "@/components/CommunityComment.module.css";
+import styles from "@/components/Community/CommunityComment.module.css";
 
 const CommunityComment = ({
   profileImg = "/default/default_profile.png",

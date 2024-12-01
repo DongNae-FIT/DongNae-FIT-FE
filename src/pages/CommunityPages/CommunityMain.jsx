@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import styles from "@/pages/CommunityPages/CommunityMain.module.css";
-import CommunityItem from "@/components/CommunityItem";
+import CommunityItem from "@/components/Community/CommunityItem";
 
 const CommunityMain = () => {
   const { t } = useTranslation();

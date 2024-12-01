@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import styles from "@/components/ForHome/FacilityCategoryItem.module.css";
+import styles from "@/components/Home/FacilityCategoryItem.module.css";
 
 const FacilityCategoryItem = ({ name, imgSrc = "/example.jpg" }) => {
   const { t } = useTranslation();

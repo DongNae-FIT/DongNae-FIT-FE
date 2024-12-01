@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import styles from "@/pages/ClassPages/ClassDetail.module.css";
-import ClassReviewItem from "@/components/ClassReviewItem";
+import ClassReviewItem from "@/components/Class/ClassReviewItem";
 
 const ClassDetail = () => {
   const { t } = useTranslation();

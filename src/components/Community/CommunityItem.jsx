@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import styles from "@/components/CommunityItem.module.css";
+import styles from "@/components/Community/CommunityItem.module.css";
 
 const CommunityItem = ({ title, content, imgSrc }) => {
   const { t } = useTranslation();

@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
-import "@/components/BannerSwiper.css";
+import "@/components/Home/BannerSwiper.css";
 
 const BannerSwiper = () => {
   const [bgColor, setBgColor] = useState("#DFF5FF");

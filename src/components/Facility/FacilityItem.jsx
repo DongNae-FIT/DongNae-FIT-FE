@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import styles from "@/components/FacilityItem.module.css";
+import styles from "@/components/Facility/FacilityItem.module.css";
 
 const FacilityItem = ({ name, type, distance, isPublic = false }) => {
   const { t } = useTranslation();

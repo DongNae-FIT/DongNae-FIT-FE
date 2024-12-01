@@ -2,10 +2,10 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import styles from "@/pages/Home.module.css";
-import BannerSwiper from "@/components/BannerSwiper";
-import ClassItemForHome from "@/components/ForHome/ClassItemForHome";
-import FacilityCategoryItem from "@/components/ForHome/FacilityCategoryItem";
-import CommunityItemForHome from "@/components/ForHome/CommunityItemForHome";
+import BannerSwiper from "@/components/Home/BannerSwiper";
+import ClassItemForHome from "@/components/Home/ClassItemForHome";
+import FacilityCategoryItem from "@/components/Home/FacilityCategoryItem";
+import CommunityItemForHome from "@/components/Home/CommunityItemForHome";
 
 const Home = () => {
   const { t } = useTranslation();

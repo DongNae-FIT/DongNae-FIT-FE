@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import styles from "@/components/ClassItem.module.css";
+import styles from "@/components/Class/ClassItem.module.css";
 
 const ClassItem = ({ name, facility, price }) => {
   const { t } = useTranslation();

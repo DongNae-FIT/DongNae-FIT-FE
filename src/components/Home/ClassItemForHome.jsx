@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import styles from "@/components/ForHome/ClassItemForHome.module.css";
+import styles from "@/components/Home/ClassItemForHome.module.css";
 
 const ClassItemForHome = ({ name, facility, price }) => {
   const { t } = useTranslation();

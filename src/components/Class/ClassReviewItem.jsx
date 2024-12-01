@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import styles from "@/components/ClassReviewItem.module.css";
+import styles from "@/components/Class/ClassReviewItem.module.css";
 
 const ClassReviewItem = ({ instructor, period, content }) => {
   const { t } = useTranslation();

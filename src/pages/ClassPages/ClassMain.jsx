@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import styles from "@/pages/ClassPages/ClassMain.module.css";
-import ClassItem from "@/components/ClassItem";
+import ClassItem from "@/components/Class/ClassItem";
 
 const ClassMain = () => {
   const { t, i18n } = useTranslation();

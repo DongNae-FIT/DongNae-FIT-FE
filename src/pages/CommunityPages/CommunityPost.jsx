@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/CommunityPages/CommunityPost.module.css";
-import CommunityComment from "@/components/CommunityComment";
+import CommunityComment from "@/components/Community/CommunityComment";
 
 const CommunityPost = () => {
   const { t } = useTranslation();

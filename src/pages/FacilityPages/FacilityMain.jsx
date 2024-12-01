@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import styles from "@/pages/FacilityPages/FacilityMain.module.css";
-import FacilityItem from "@/components/FacilityItem";
+import FacilityItem from "@/components/Facility/FacilityItem";
 
 const FacilityMain = () => {
   const { t, i18n } = useTranslation();

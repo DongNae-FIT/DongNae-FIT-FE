@@ -30,6 +30,9 @@ const ClassDetail = () => {
             주소입력 강남구 3049-29
           </div>
         </div>
+        <button className={styles["find-path-button"]}>
+          {t("buttons.find_path")}
+        </button>
       </div>
       <div className={styles["info-wrapper"]}>
         <div className={styles["title"]}>

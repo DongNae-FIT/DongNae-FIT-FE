@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ClassProvider } from "@/contexts/ClassContext";
 
 import DefaultHeader from "@/layouts/Header/DefaultHeader";
 import BackHeader from "@/layouts/Header/BackHeader";
@@ -72,46 +73,48 @@ function App() {
 
   return (
     <AuthProvider>
-      <Helmet>
-        <title>{t("title")}</title>
-      </Helmet>
-      {headerConfig.default.includes(location.pathname) && <DefaultHeader />}
-      {headerConfig.back.includes(location.pathname) && <BackHeader />}
-      {editorHeaderTitle && <EditorHeader title={editorHeaderTitle} />}
+      <ClassProvider>
+        <Helmet>
+          <title>{t("title")}</title>
+        </Helmet>
+        {headerConfig.default.includes(location.pathname) && <DefaultHeader />}
+        {headerConfig.back.includes(location.pathname) && <BackHeader />}
+        {editorHeaderTitle && <EditorHeader title={editorHeaderTitle} />}
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/auth" element={<KakaoRedirect />} />
-        <Route path="/login/info" element={<AdditionalInfo />} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/auth" element={<KakaoRedirect />} />
+          <Route path="/login/info" element={<AdditionalInfo />} />
 
-        <Route path="/class" element={<ClassMain />} />
-        <Route path="/class/detail" element={<ClassDetail />} />
-        <Route path="/class/review/new" element={<NewReview />} />
+          <Route path="/class" element={<ClassMain />} />
+          <Route path="/class/detail" element={<ClassDetail />} />
+          <Route path="/class/review/new" element={<NewReview />} />
 
-        <Route path="/facility" element={<FacilityMain />} />
-        <Route path="/facility/detail" element={<FacilityDetail />} />
+          <Route path="/facility" element={<FacilityMain />} />
+          <Route path="/facility/detail" element={<FacilityDetail />} />
 
-        <Route path="/community" element={<CommunityMain />} />
-        <Route path="/community/post" element={<CommunityPost />} />
-        <Route path="/community/post/new" element={<NewPost />} />
+          <Route path="/community" element={<CommunityMain />} />
+          <Route path="/community/post" element={<CommunityPost />} />
+          <Route path="/community/post/new" element={<NewPost />} />
 
-        <Route path="/mypage" element={<MyPageMain />} />
-        <Route path="/mypage/edit/profile" element={<EditProfile />} />
-        <Route path="/mypage/set/location" element={<SetLocation />} />
+          <Route path="/mypage" element={<MyPageMain />} />
+          <Route path="/mypage/edit/profile" element={<EditProfile />} />
+          <Route path="/mypage/set/location" element={<SetLocation />} />
 
-        <Route path="/mypage/class/save" element={<SavedClass />} />
-        <Route path="/mypage/class/review" element={<ReviewedClass />} />
+          <Route path="/mypage/class/save" element={<SavedClass />} />
+          <Route path="/mypage/class/review" element={<ReviewedClass />} />
 
-        <Route path="/mypage/community/post" element={<MyPost />} />
-        <Route path="/mypage/community/comment" element={<CommentedPost />} />
-        <Route path="/mypage/community/save" element={<SavedPost />} />
+          <Route path="/mypage/community/post" element={<MyPost />} />
+          <Route path="/mypage/community/comment" element={<CommentedPost />} />
+          <Route path="/mypage/community/save" element={<SavedPost />} />
 
-        <Route path="/delete/account" element={<DeletedAccount />} />
+          <Route path="/delete/account" element={<DeletedAccount />} />
 
-        <Route path="/search" element={<SearchMain />} />
-        <Route path="/search/result/all" element={<SearchResultAll />} />
-      </Routes>
+          <Route path="/search" element={<SearchMain />} />
+          <Route path="/search/result/all" element={<SearchResultAll />} />
+        </Routes>
+      </ClassProvider>
     </AuthProvider>
   );
 }

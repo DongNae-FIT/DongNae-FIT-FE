@@ -28,6 +28,7 @@
 .location-text-wrapper {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .facility-name {
@@ -38,6 +39,14 @@
 .facility-address {
   font-size: 0.85rem;
   color: var(--main-grey);
+}
+
+.find-path-button {
+  background-color: white;
+  border: 1px solid var(--sub-grey);
+  border-radius: 5px;
+  padding: 0.2em 1em;
+  font-size: 0.8rem;
 }
 
 .info-wrapper {

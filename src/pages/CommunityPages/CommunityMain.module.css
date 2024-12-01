@@ -1,11 +1,17 @@
 .community-main {
-  display: flex;
-  flex-direction: column;
   width: 100%;
+  padding: var(--default-padding) var(--body-padding);
 }
 
 .post-list {
-  padding: 0 var(--body-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.post-list > *:not(:last-child) {
+  border-bottom: 1px solid var(--sub-grey);
+  padding-bottom: 15px;
 }
 
 .post-item {

@@ -131,15 +131,10 @@ const ClassMain = () => {
           </div>
         ))}
       </div>
-      <div className={styles["class-item-wrapper"]}>
-        <div
-          className={styles["class-item"]}
-          onClick={() => {
-            navigate("/class/detail");
-          }}
-        >
-          <ClassItem name="강좌명" facility="시설이름" price="80,000원" />
-        </div>
+      <div className={styles["class-list"]}>
+        <ClassItem name="강좌명" facility="시설이름" price="80,000원" />
+        <ClassItem name="강좌명" facility="시설이름" price="80,000원" />
+        <ClassItem name="강좌명" facility="시설이름" price="80,000원" />
       </div>
 
       {isPriceOpen && (

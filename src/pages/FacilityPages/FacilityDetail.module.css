@@ -5,13 +5,14 @@
 }
 
 .map {
-  height: var(--map-height);
+  height: calc(var(--map-height) * 1.2);
   background-color: azure;
 }
 
 .contents {
   width: 100%;
   padding: calc(var(--default-padding) * 1.5) var(--body-padding);
+  padding-bottom: 0;
 }
 
 .info-wrapper {

@@ -1,12 +1,17 @@
-import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import styles from "@/components/Class/ClassItem.module.css";
 
 const ClassItem = ({ name, facility, price }) => {
-  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
-    <div className={styles["class-item"]}>
+    <div
+      className={styles["class-item"]}
+      onClick={() => {
+        navigate("/class/detail");
+      }}
+    >
       <img src={"/example.jpg"} className={styles["class-img"]} />
       <div className={styles["text-wrapper"]}>
         <div className={styles["name"]}>{name}</div>

@@ -74,17 +74,17 @@
   color: var(--main-color);
 }
 
-.class-item-wrapper {
+.class-list {
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: 0 var(--body-padding);
+  gap: 15px;
 }
 
-.class-item {
-  background-color: var(--white);
-  padding: var(--default-padding) 0;
+.class-list > *:not(:last-child) {
   border-bottom: 1px solid var(--sub-grey);
+  padding-bottom: 15px;
 }
 
 .price-filter {

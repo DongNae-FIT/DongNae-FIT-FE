@@ -92,26 +92,37 @@ const CommunityPost = () => {
         <span className={styles["comment-title"]}>
           {t("community.comment")}
         </span>
-        <CommunityComment
-          nickname="홍길동"
-          content="운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!!"
-        />
+        <div className={styles["comment-list"]}>
+          <CommunityComment
+            nickname="홍길동"
+            content="운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!!"
+          />
+          <CommunityComment
+            nickname="홍길동"
+            content="운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!!"
+          />
+          <CommunityComment
+            nickname="홍길동"
+            content="운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!!"
+          />
+        </div>
       </div>
-
-      <div className={styles["comment-input-box"]}>
-        <input
-          type="text"
-          className={styles["comment-input"]}
-          placeholder={t("community.comment_placeholder")}
-          value={commentValue}
-          onChange={(e) => setCommentValue(e.target.value)}
-          onKeyDown={handleEnterKeyDown}
-        />
-        <img
-          src={"/icon/icon_submit_colored.png"}
-          className={styles["comment-submit-icon"]}
-          onClick={handleSubmitComment}
-        />
+      <div className={styles["comment-input-wrapper"]}>
+        <div className={styles["comment-input-box"]}>
+          <input
+            type="text"
+            className={styles["comment-input"]}
+            placeholder={t("community.comment_placeholder")}
+            value={commentValue}
+            onChange={(e) => setCommentValue(e.target.value)}
+            onKeyDown={handleEnterKeyDown}
+          />
+          <img
+            src={"/icon/icon_submit_colored.png"}
+            className={styles["comment-submit-icon"]}
+            onClick={handleSubmitComment}
+          />
+        </div>
       </div>
     </div>
   );

@@ -108,12 +108,29 @@
   font-weight: 600;
 }
 
-.comment-input-box {
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.comment-list > *:not(:last-child) {
+  border-bottom: 1px solid var(--sub-grey);
+  padding-bottom: 15px;
+}
+
+.comment-input-wrapper {
+  background-color: white;
+  width: 100%;
   position: fixed;
-  bottom: var(--default-padding);
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - var(--default-padding) * 2);
+  padding: var(--default-padding) var(--body-padding);
+}
+
+.comment-input-box {
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: row;

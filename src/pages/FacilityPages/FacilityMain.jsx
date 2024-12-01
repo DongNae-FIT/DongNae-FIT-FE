@@ -117,20 +117,51 @@ const FacilityMain = () => {
           );
         })}
       </div>
-      <div className={styles["facility-item-wrapper"]}>
-        <div
-          className={styles["facility-item"]}
-          onClick={() => {
-            navigate("/facility/detail");
-          }}
-        >
-          <FacilityItem
-            name={"홍익대학교운동장"}
-            type={"공공운동장"}
-            distance={"12.6km"}
-            isPublic={true}
-          />
-        </div>
+      <div className={styles["facility-list"]}>
+        <FacilityItem
+          name={"홍익대학교운동장"}
+          type={"공공운동장"}
+          distance={"12.6km"}
+          isPublic={true}
+        />
+        <FacilityItem
+          name={"홍익대학교운동장"}
+          type={"공공운동장"}
+          distance={"12.6km"}
+        />
+        <FacilityItem
+          name={"홍익대학교운동장"}
+          type={"공공운동장"}
+          distance={"12.6km"}
+          isPublic={true}
+        />
+        <FacilityItem
+          name={"홍익대학교운동장"}
+          type={"공공운동장"}
+          distance={"12.6km"}
+        />
+        <FacilityItem
+          name={"홍익대학교운동장"}
+          type={"공공운동장"}
+          distance={"12.6km"}
+          isPublic={true}
+        />
+        <FacilityItem
+          name={"홍익대학교운동장"}
+          type={"공공운동장"}
+          distance={"12.6km"}
+        />
+        <FacilityItem
+          name={"홍익대학교운동장"}
+          type={"공공운동장"}
+          distance={"12.6km"}
+          isPublic={true}
+        />
+        <FacilityItem
+          name={"홍익대학교운동장"}
+          type={"공공운동장"}
+          distance={"12.6km"}
+        />
       </div>
 
       {isCategoryOpen && (

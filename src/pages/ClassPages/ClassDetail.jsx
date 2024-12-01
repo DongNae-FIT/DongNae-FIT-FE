@@ -16,21 +16,23 @@ const ClassDetail = () => {
 
   return (
     <div className={styles["class-detail"]}>
-      <div className={styles["map-wrapper"]} />
+      <div className={styles["map"]} />
       <div className={styles["location-wrapper"]}>
         <img
           src={"/default/default_location.png"}
           className={styles["location-img"]}
         />
         <div className={styles["location-text-wrapper"]}>
-          <div className={styles["center-name"]}>시설이름 강남구스포츠센터</div>
-          <div className={styles["center-address"]}>
+          <div className={styles["facility-name"]}>
+            시설이름 강남구스포츠센터
+          </div>
+          <div className={styles["facility-address"]}>
             주소입력 강남구 3049-29
           </div>
         </div>
       </div>
-      <div className={styles["section"]}>
-        <div className={styles["section-title"]}>
+      <div className={styles["info-wrapper"]}>
+        <div className={styles["title"]}>
           강좌명 오전골프05
           <img
             src={
@@ -42,7 +44,7 @@ const ClassDetail = () => {
             onClick={onClickLike}
           />
         </div>
-        <div className={styles["section-content"]}>
+        <div className={styles["content"]}>
           <div className={styles["content-left"]}>
             <div>{t("class.target")}</div>
             <div>{t("class.period")}</div>
@@ -60,9 +62,14 @@ const ClassDetail = () => {
         </div>
       </div>
 
-      <div className={styles["section"]}>
-        <div className={styles["section-title"]}>{t("class.review_title")}</div>
-        <div className={styles["review"]}>
+      <div className={styles["review-wrapper"]}>
+        <div className={styles["title"]}>{t("class.review_title")}</div>
+        <div className={styles["review-list"]}>
+          <ClassReviewItem
+            instructor="홍길동"
+            period="20241101 ~ 20212445"
+            content="한 달 간 배우면서 실력 많이 늘었어요! 이번 달에도 신청하려고 합니다. 꼭 신청 성공하면 좋겠네요."
+          />
           <ClassReviewItem
             instructor="홍길동"
             period="20241101 ~ 20212445"

@@ -81,11 +81,17 @@
   color: var(--main-color);
 }
 
-.facility-item-wrapper {
+.facility-list {
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: 0 var(--body-padding);
+  gap: 15px;
+}
+
+.facility-list > *:not(:last-child) {
+  border-bottom: 1px solid var(--sub-grey);
+  padding-bottom: 15px;
 }
 
 .facility-item {

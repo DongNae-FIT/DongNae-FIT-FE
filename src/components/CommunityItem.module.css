@@ -1,0 +1,36 @@
+.community-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100% - 110px);
+}
+
+.title {
+  font-weight: 500;
+  white-space: nowrap; /* 텍스트를 한 줄로 제한 */
+  overflow: hidden; /* 넘치는 텍스트를 숨김 */
+  text-overflow: ellipsis; /* 넘치는 부분에 ... 표시 */
+}
+
+.content {
+  color: var(--main-grey);
+  font-size: 0.9rem;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.post-img {
+  width: 100px;
+  border-radius: 3px;
+}

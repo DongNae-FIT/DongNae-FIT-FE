@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/CommunityPages/CommunityPost.module.css";
+import CommunityComment from "@/components/CommunityComment";
 
 const CommunityPost = () => {
   const { t } = useTranslation();
@@ -91,23 +92,12 @@ const CommunityPost = () => {
         <span className={styles["comment-title"]}>
           {t("community.comment")}
         </span>
-        <div className={styles["comment-item"]}>
-          <div className={styles["comment__info-wrapper"]}>
-            <img
-              src={"/default/default_profile.png"}
-              className={styles["profile__info-img"]}
-            />
-
-            <div className={styles["comment__nickname"]}>운동조아</div>
-            <img
-              src={"/icon/icon_dots_grey.png"}
-              className={styles["comment__dots-menu-icon"]}
-              onClick={handleSubmitComment}
-            />
-          </div>
-          <div className={styles["comment-content"]}>같이 운동합시당</div>
-        </div>
+        <CommunityComment
+          nickname="홍길동"
+          content="운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!!"
+        />
       </div>
+
       <div className={styles["comment-input-box"]}>
         <input
           type="text"

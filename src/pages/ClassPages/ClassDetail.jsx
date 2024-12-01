@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import styles from "@/pages/ClassPages/ClassDetail.module.css";
+import ClassReviewItem from "@/components/ClassReviewItem";
 
 const ClassDetail = () => {
   const { t } = useTranslation();
@@ -61,7 +62,13 @@ const ClassDetail = () => {
 
       <div className={styles["section"]}>
         <div className={styles["section-title"]}>{t("class.review_title")}</div>
-        <div className={styles["review"]}>후기 </div>
+        <div className={styles["review"]}>
+          <ClassReviewItem
+            instructor="홍길동"
+            period="20241101 ~ 20212445"
+            content="한 달 간 배우면서 실력 많이 늘었어요! 이번 달에도 신청하려고 합니다. 꼭 신청 성공하면 좋겠네요."
+          />
+        </div>
       </div>
 
       <button

@@ -42,6 +42,7 @@
     "filter3": "유아동",
     "target": "대상",
     "period": "기간",
+    "instructor": "강사",
     "day_and_time": "요일 및 시간",
     "price": "가격",
     "url": "사이트",
@@ -62,7 +63,6 @@
     "category2": "수영장",
     "filter1": "공공체육시설",
     "time": "운영시간"
-    
   },
   "community": {
     "write": "글쓰기",

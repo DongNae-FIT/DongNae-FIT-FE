@@ -108,40 +108,6 @@
   font-weight: 600;
 }
 
-.comment-item {
-  display: flex;
-  flex-direction: column;
-  background-color: bisque;
-  padding: var(--default-padding) 0;
-}
-
-.comment__info-wrapper {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-  align-items: center;
-  justify-content: space-between; /* dots-icon을 오른쪽 끝으로 */
-}
-
-.profile__info-img {
-  width: 30px;
-  border-radius: 50px;
-}
-
-.comment__nickname {
-  font-size: 0.9rem;
-  flex-grow: 1; /* 텍스트 영역 확장 */
-}
-
-.comment__dots-menu-icon {
-  width: 13px;
-}
-
-.comment-content {
-  font-size: 0.9rem;
-  padding-top: calc(var(--default-padding) * 0.7);
-}
-
 .comment-input-box {
   position: fixed;
   bottom: var(--default-padding);

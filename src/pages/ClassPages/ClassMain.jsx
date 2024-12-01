@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import styles from "@/pages/ClassPages/ClassMain.module.css";
+import ClassItem from "@/components/ClassItem";
 
 const ClassMain = () => {
   const { t, i18n } = useTranslation();
@@ -137,7 +138,7 @@ const ClassMain = () => {
             navigate("/class/detail");
           }}
         >
-          수업
+          <ClassItem name="강좌명" facility="시설이름" price="80,000원" />
         </div>
       </div>
 

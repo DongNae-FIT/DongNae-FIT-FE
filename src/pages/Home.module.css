@@ -12,6 +12,21 @@
   padding: var(--default-padding) 0;
 }
 
+.class-list,
+.category-list {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.community-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .home__subtitle {
   display: flex;
   flex-direction: row;

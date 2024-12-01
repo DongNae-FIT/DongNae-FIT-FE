@@ -59,6 +59,7 @@ input::-webkit-inner-spin-button {
   --map-height: 300px;
   --profile-edit-img: 80px;
   --side-tab-left: 0;
+  --main-class-num: 2;
 
   --font-size-logo: 27px;
   --font-size-logo-en: 25px;
@@ -82,6 +83,7 @@ body {
     --default-padding: 18px;
     font-size: 18px;
     --profile-edit-img: 90px;
+    --main-class-num: 3;
   }
 }
 
@@ -93,6 +95,7 @@ body {
     font-size: 18px;
     --profile-edit-img: 90px;
     --side-tab-left: calc((100vw - 900px) * 0.5);
+    --main-class-num: 4;
   }
   body {
     width: 900px;

@@ -1,10 +1,35 @@
-.community-item {
+.community-item-for-home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  background-color: white;
+  border: 1px solid var(--sub-grey);
+  background-color: white;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.info-wrapper {
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 10px;
   align-items: center;
-  background-color: white;
+  gap: 5px;
+}
+
+.profile-img {
+  width: 25px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  height: auto;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.nickname {
+  font-size: 0.9rem;
 }
 
 .text-wrapper {
@@ -31,13 +56,4 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
-}
-
-.post-img {
-  width: 100px;
-  height: 68px;
-  object-fit: cover;
-  height: auto;
-  border-radius: 3px;
-  flex-shrink: 0;
 }

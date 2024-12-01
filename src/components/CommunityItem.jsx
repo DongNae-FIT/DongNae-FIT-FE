@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 
 import styles from "@/components/CommunityItem.module.css";
 
-const CommunityItem = ({ title, content }) => {
+const CommunityItem = ({ title, content, imgSrc }) => {
   const { t } = useTranslation();
 
   return (
@@ -11,7 +11,7 @@ const CommunityItem = ({ title, content }) => {
         <div className={styles["title"]}>{title}</div>
         <div className={styles["content"]}>{content}</div>
       </div>
-      <img src={"/example.jpg"} className={styles["post-img"]} />
+      {imgSrc ? <img src={imgSrc} className={styles["post-img"]} /> : ""}
     </div>
   );
 };

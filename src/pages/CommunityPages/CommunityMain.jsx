@@ -24,6 +24,7 @@ const CommunityMain = () => {
             content={
               "게시글 내용입니다. 이런식으로 보이면 좋을 것 같아요. 일단 아무말이나 적어보겠습니다. 잘 보일까요? 잘 보였으면 좋겠네요."
             }
+            imgSrc="/example.jpg"
           />
         </div>
       </div>

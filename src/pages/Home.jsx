@@ -66,16 +66,12 @@ const Home = () => {
             />
           </div>
           <div className={styles["category-list"]}>
-            <FacilityCategoryItem name={"운동장"} />
-            <FacilityCategoryItem name={"운동장"} />
-            <FacilityCategoryItem name={"운동장"} />
-            <FacilityCategoryItem name={"운동장"} />
-            <FacilityCategoryItem name={"운동장"} />
-            <FacilityCategoryItem name={"운동장"} />
-            <FacilityCategoryItem name={"운동장"} />
-            <FacilityCategoryItem name={"운동장"} />
-            <FacilityCategoryItem name={"운동장"} />
-            <FacilityCategoryItem name={"운동장"} />
+            {Array.from({ length: 13 }, (_, index) => (
+              <FacilityCategoryItem
+                key={index}
+                name={t(`facility.category${index + 1}`)}
+              />
+            ))}
           </div>
         </div>
         <div className={styles["home__section"]}>

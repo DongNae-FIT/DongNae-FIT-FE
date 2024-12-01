@@ -16,7 +16,7 @@
 .category-list {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 8px;
   overflow-x: auto;
   white-space: nowrap;
 }
@@ -24,7 +24,7 @@
 .community-list {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 
 .home__subtitle {

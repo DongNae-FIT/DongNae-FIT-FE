@@ -1,0 +1,69 @@
+.facility-detail {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.map {
+  height: var(--map-height);
+  background-color: azure;
+}
+
+.contents {
+  width: 100%;
+  padding: calc(var(--default-padding) * 1.5) var(--body-padding);
+}
+
+.info-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: var(--white);
+  padding-bottom: calc(var(--default-padding) * 0.5);
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.find-path-button {
+  background-color: white;
+  border: 1px solid var(--sub-grey);
+  border-radius: 5px;
+  padding: 0.2em 1em;
+  font-size: 0.8rem;
+}
+
+.text-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.type,
+.distance,
+.public {
+  font-size: 0.9rem;
+  color: var(--main-grey);
+}
+
+.img-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.facility-img {
+  width: 100px;
+  border-radius: 3px;
+}

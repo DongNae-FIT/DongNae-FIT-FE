@@ -18,8 +18,8 @@ import ClassMain from "@/pages/ClassPages/ClassMain";
 import ClassDetail from "@/pages/ClassPages/ClassDetail";
 import NewReview from "@/pages/ClassPages/NewReview";
 
-import GymMain from "@/pages/GymPages/GymMain";
-import GymDetail from "@/pages/GymPages/GymDetail";
+import FacilityMain from "@/pages/FacilityPages/FacilityMain";
+import FacilityDetail from "@/pages/FacilityPages/FacilityDetail";
 
 import CommunityMain from "@/pages/CommunityPages/CommunityMain";
 import CommunityPost from "@/pages/CommunityPages/CommunityPost";
@@ -47,10 +47,10 @@ function App() {
 
   // 경로별 헤더 관리
   const headerConfig = {
-    default: ["/", "/class", "/gym", "/community", "/mypage"],
+    default: ["/", "/class", "/facility", "/community", "/mypage"],
     back: [
       "/class/detail",
-      "/gym/detail",
+      "/facility/detail",
       "/login",
       "/community/post",
       "/mypage/class/save",
@@ -89,8 +89,8 @@ function App() {
         <Route path="/class/detail" element={<ClassDetail />} />
         <Route path="/class/review/new" element={<NewReview />} />
 
-        <Route path="/gym" element={<GymMain />} />
-        <Route path="/gym/detail" element={<GymDetail />} />
+        <Route path="/facility" element={<FacilityMain />} />
+        <Route path="/facility/detail" element={<FacilityDetail />} />
 
         <Route path="/community" element={<CommunityMain />} />
         <Route path="/community/post" element={<CommunityPost />} />

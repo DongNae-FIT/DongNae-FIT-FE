@@ -24,7 +24,7 @@
   "menus": {
     "home": "홈",
     "class": "스포츠 강좌",
-    "gym": "체육 시설",
+    "facility": "체육 시설",
     "community": "커뮤니티",
     "mypage": "마이페이지"
   },
@@ -55,13 +55,14 @@
     "review_question4": "후기를 작성해주세요.",
     "question4_placeholder": "수강한 강좌에 대한 후기를 자유롭게 작성해주세요."
   },
-  "gym": {
+  "facility": {
     "align1": "거리순",
     "category": "카테고리",
     "category1": "운동장",
     "category2": "수영장",
     "filter1": "공공체육시설",
     "time": "운영시간"
+    
   },
   "community": {
     "write": "글쓰기",

@@ -24,7 +24,7 @@
   "menus": {
     "home": "Home",
     "class": "Sports Classes",
-    "gym": "Sports Facilities",
+    "facility": "Sports Facilities",
     "community": "Community",
     "mypage": "My Page"
   },
@@ -55,10 +55,10 @@
     "review_question4": "Write your review.",
     "question4_placeholder": "Feel free to share your thoughts about the class."
   },
-  "gym": {
+  "facility": {
     "align1": "Closest",
     "category": "Category",
-    "category1": "Gym",
+    "category1": "Soccer",
     "category2": "Swim",
     "filter1": "Public Facilities",
     "time": "Operating Hours"

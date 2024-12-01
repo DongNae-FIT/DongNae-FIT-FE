@@ -2,9 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import styles from "@/pages/GymPages/GymMain.module.css";
+import styles from "@/pages/FacilityPages/FacilityMain.module.css";
+import FacilityItem from "@/components/FacilityItem";
 
-const GymMain = () => {
+const FacilityMain = () => {
   const { t, i18n } = useTranslation();
   const [isAlignOpen, setAlignOpen] = useState(false);
   const [selectedAlign, setSelectedAlign] = useState(t("class.align1"));
@@ -63,7 +64,7 @@ const GymMain = () => {
   }, []);
 
   return (
-    <div className={styles["gym-main"]}>
+    <div className={styles["facility-main"]}>
       <div className={styles["filter-section"]}>
         <div
           className={styles["align"]}
@@ -79,13 +80,13 @@ const GymMain = () => {
             <div className={styles["dropdown-menu"]}>
               <div
                 className={`${styles["dropdown-item"]} ${
-                  selectedAlign === t("gym.align1")
+                  selectedAlign === t("facility.align1")
                     ? styles["selected-item"]
                     : ""
                 }`}
-                onClick={() => handleAlignSelect(t("gym.align1"))}
+                onClick={() => handleAlignSelect(t("facility.align1"))}
               >
-                {t("gym.align1")}
+                {t("facility.align1")}
               </div>
             </div>
           )}
@@ -98,7 +99,7 @@ const GymMain = () => {
             src={"/icon/icon_down_grey.png"}
             className={styles["down-arrow-icon"]}
           />
-          {t("gym.category")}
+          {t("facility.category")}
         </div>
 
         {[...Array(1)].map((_, index) => {
@@ -111,19 +112,24 @@ const GymMain = () => {
               }`}
               onClick={() => toggleFilter(filterName)}
             >
-              {t(`gym.${filterName}`)}
+              {t(`facility.${filterName}`)}
             </div>
           );
         })}
       </div>
-      <div className={styles["gym-item-wrapper"]}>
+      <div className={styles["facility-item-wrapper"]}>
         <div
-          className={styles["gym-item"]}
+          className={styles["facility-item"]}
           onClick={() => {
-            navigate("/gym/detail");
+            navigate("/facility/detail");
           }}
         >
-          시설
+          <FacilityItem
+            name={"홍익대학교운동장"}
+            type={"공공운동장"}
+            distance={"12.6km"}
+            isPublic={true}
+          />
         </div>
       </div>
 
@@ -134,7 +140,9 @@ const GymMain = () => {
             onClick={() => setCategoryOpen(false)}
           />
           <div className={styles["category-filter"]}>
-            <div className={styles["category-title"]}>{t("gym.category")}</div>
+            <div className={styles["category-title"]}>
+              {t("facility.category")}
+            </div>
             <div className={styles["category-list"]}>
               {["category1", "category2"].map((category, index) => (
                 <div
@@ -144,7 +152,7 @@ const GymMain = () => {
                   }`}
                   onClick={() => toggleCategory(category)}
                 >
-                  {t(`gym.${category}`)}
+                  {t(`facility.${category}`)}
                 </div>
               ))}
             </div>
@@ -166,4 +174,4 @@ const GymMain = () => {
   );
 };
 
-export default GymMain;
+export default FacilityMain;

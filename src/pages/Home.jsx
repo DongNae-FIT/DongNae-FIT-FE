@@ -26,7 +26,7 @@ const Home = () => {
         <div className={styles["home__section"]}>
           <div
             className={styles["home__subtitle"]}
-            onClick={() => navigate("/gym")}
+            onClick={() => navigate("/facility")}
           >
             {t("home.subtitle2")}
             <img

@@ -1,4 +1,4 @@
-import styles from "@/pages/ClassPages/NewReview.module.css";
+import styles from "@/pages/ProgramPages/NewReview.module.css";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -34,12 +34,12 @@ const NewReview = () => {
       <div className={styles["container"]}>
         <div className={styles["input-section"]}>
           <div className={styles["section-title"]}>
-            {t("class.review_question1")}
+            {t("program.review_question1")}
           </div>
           <input
             type="text"
             className={styles["review__input"]}
-            placeholder={t("class.question1_placeholder")}
+            placeholder={t("program.question1_placeholder")}
             value={reviewTitle}
             onChange={(e) => setReviewTitle(e.target.value)}
           />
@@ -47,7 +47,7 @@ const NewReview = () => {
 
         <div className={styles["input-section"]}>
           <div className={styles["section-title"]}>
-            {t("class.review_question2")}
+            {t("program.review_question2")}
           </div>
           <div className={styles["input-row"]}>
             <input
@@ -70,11 +70,11 @@ const NewReview = () => {
 
         <div className={styles["input-section"]}>
           <div className={styles["section-title"]}>
-            {t("class.review_question4")}
+            {t("program.review_question4")}
           </div>
           <textarea
             className={styles["review-detail-input"]}
-            placeholder={t("class.question4_placeholder")}
+            placeholder={t("program.question4_placeholder")}
             value={reviewDetails}
             onChange={(e) => setReviewDetails(e.target.value)}
           />

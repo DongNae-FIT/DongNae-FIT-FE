@@ -8,7 +8,7 @@ import FacilityItem from "@/components/Facility/FacilityItem";
 const FacilityMain = () => {
   const { t, i18n } = useTranslation();
   const [isAlignOpen, setAlignOpen] = useState(false);
-  const [selectedAlign, setSelectedAlign] = useState(t("class.align1"));
+  const [selectedAlign, setSelectedAlign] = useState(t("program.align1"));
 
   const [isCategoryOpen, setCategoryOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState({});
@@ -18,7 +18,7 @@ const FacilityMain = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setSelectedAlign(t("class.align1"));
+    setSelectedAlign(t("program.align1"));
   }, [i18n.language, t]);
 
   const toggleFilter = (filterName) => {

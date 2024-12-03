@@ -1,5 +1,5 @@
 .facility-category-item {
-  width: calc((100% / (var(--main-class-num) * 2)) - 8px);
+  width: calc((100% / (var(--main-program-num) * 2)) - 8px);
   max-width: 100px;
   display: flex;
   flex-direction: column;

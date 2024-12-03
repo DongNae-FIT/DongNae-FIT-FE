@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "@/pages/Home.module.css";
 import BannerSwiper from "@/components/Home/BannerSwiper";
-import ClassItemForHome from "@/components/Home/ClassItemForHome";
+import ProgramItemForHome from "@/components/Home/ProgramItemForHome";
 import FacilityCategoryItem from "@/components/Home/FacilityCategoryItem";
 import CommunityItemForHome from "@/components/Home/CommunityItemForHome";
 
@@ -18,7 +18,7 @@ const Home = () => {
         <div className={styles["home__section"]}>
           <div
             className={styles["home__subtitle"]}
-            onClick={() => navigate("/class")}
+            onClick={() => navigate("/program")}
           >
             {t("home.subtitle1")}
             <img
@@ -26,28 +26,28 @@ const Home = () => {
               className={styles["home__right-icon"]}
             />
           </div>
-          <div className={styles["class-list"]}>
-            <ClassItemForHome
+          <div className={styles["program-list"]}>
+            <ProgramItemForHome
               name={"오전골프05"}
               facility={"강남구스포츠센터"}
               price={"80,000원"}
             />
-            <ClassItemForHome
+            <ProgramItemForHome
               name={"오전골프05"}
               facility={"강남구스포츠센터"}
               price={"80,000원"}
             />
-            <ClassItemForHome
+            <ProgramItemForHome
               name={"오전골프05"}
               facility={"강남구스포츠센터"}
               price={"80,000원"}
             />
-            <ClassItemForHome
+            <ProgramItemForHome
               name={"오전골프05"}
               facility={"강남구스포츠센터"}
               price={"80,000원"}
             />
-            <ClassItemForHome
+            <ProgramItemForHome
               name={"오전골프05"}
               facility={"강남구스포츠센터"}
               price={"80,000원"}

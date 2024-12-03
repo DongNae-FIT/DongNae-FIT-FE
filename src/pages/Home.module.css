@@ -10,7 +10,7 @@
   padding: var(--default-padding) 0;
 }
 
-.class-list,
+.program-list,
 .category-list {
   display: flex;
   flex-direction: row;

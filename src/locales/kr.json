@@ -23,7 +23,7 @@
   },
   "menus": {
     "home": "홈",
-    "class": "스포츠 강좌",
+    "program": "스포츠 강좌",
     "facility": "체육 시설",
     "community": "커뮤니티",
     "mypage": "마이페이지"
@@ -33,7 +33,7 @@
     "subtitle2": "원하는 체육 시설을 찾아보세요!",
     "subtitle3": "실시간 인기글"
   },
-  "class": {
+  "program": {
     "align1": "거리순",
     "filter1": "가격",
     "price_min_placeholder": "최소 금액",
@@ -90,7 +90,7 @@
     "nickname": "닉네임",
     "age": "나이",
     "set_location": "동네 설정",
-    "myclass": "저장한 강좌",
+    "myprogram": "저장한 강좌",
     "myreview": "후기 쓴 강좌",
     "mypost": "내가 쓴 글",
     "mycomment": "댓글 단 글",

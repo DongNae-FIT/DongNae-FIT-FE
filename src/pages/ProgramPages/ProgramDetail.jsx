@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import styles from "@/pages/ClassPages/ClassDetail.module.css";
-import ClassReviewItem from "@/components/Class/ClassReviewItem";
+import styles from "@/pages/ProgramPages/ProgramDetail.module.css";
+import ProgramReviewItem from "@/components/Program/ProgramReviewItem";
 
-const ClassDetail = () => {
+const ProgramDetail = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [Like, setLike] = useState(false);
@@ -15,7 +15,7 @@ const ClassDetail = () => {
   };
 
   return (
-    <div className={styles["class-detail"]}>
+    <div className={styles["program-detail"]}>
       <div className={styles["map"]} />
       <div className={styles["location-wrapper"]}>
         <img
@@ -43,17 +43,17 @@ const ClassDetail = () => {
                 ? "/icon/icon_filled_heart.png"
                 : "/icon/icon_empty_heart.png"
             }
-            className={styles["class-like-icon"]}
+            className={styles["program-like-icon"]}
             onClick={onClickLike}
           />
         </div>
         <div className={styles["content"]}>
           <div className={styles["content-left"]}>
-            <div>{t("class.target")}</div>
-            <div>{t("class.period")}</div>
-            <div>{t("class.day_and_time")}</div>
-            <div>{t("class.price")}</div>
-            <div>{t("class.url")}</div>
+            <div>{t("program.target")}</div>
+            <div>{t("program.period")}</div>
+            <div>{t("program.day_and_time")}</div>
+            <div>{t("program.price")}</div>
+            <div>{t("program.url")}</div>
           </div>
           <div className={styles["content-right"]}>
             <div>성인</div>
@@ -66,14 +66,14 @@ const ClassDetail = () => {
       </div>
 
       <div className={styles["review-wrapper"]}>
-        <div className={styles["title"]}>{t("class.review_title")}</div>
+        <div className={styles["title"]}>{t("program.review_title")}</div>
         <div className={styles["review-list"]}>
-          <ClassReviewItem
+          <ProgramReviewItem
             instructor="홍길동"
             period="20241101 ~ 20212445"
             content="한 달 간 배우면서 실력 많이 늘었어요! 이번 달에도 신청하려고 합니다. 꼭 신청 성공하면 좋겠네요."
           />
-          <ClassReviewItem
+          <ProgramReviewItem
             instructor="홍길동"
             period="20241101 ~ 20212445"
             content="한 달 간 배우면서 실력 많이 늘었어요! 이번 달에도 신청하려고 합니다. 꼭 신청 성공하면 좋겠네요."
@@ -84,17 +84,17 @@ const ClassDetail = () => {
       <button
         className={styles["review-button"]}
         onClick={() => {
-          navigate("/class/review/new");
+          navigate("/program/review/new");
         }}
       >
         <img
           src={"/icon/icon_write_colored.png"}
           className={styles["write-icon"]}
         />
-        {t("class.review_button")}
+        {t("program.review_button")}
       </button>
     </div>
   );
 };
 
-export default ClassDetail;
+export default ProgramDetail;

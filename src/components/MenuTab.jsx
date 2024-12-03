@@ -6,7 +6,7 @@ import styles from "@/components/MenuTab.module.css";
 
 const MENU_ITEMS = [
   { key: "", label: "menus.home" },
-  { key: "class", label: "menus.class" },
+  { key: "program", label: "menus.program" },
   { key: "facility", label: "menus.facility" },
   { key: "community", label: "menus.community" },
   { key: "mypage", label: "menus.mypage" },

@@ -1,16 +1,17 @@
-.class-item {
-  width: 100%;
+.program-item {
+  width: calc((100% / var(--main-program-num)) - 10px);
+  max-width: 250px;
   display: flex;
-  flex-direction: row;
-  gap: 15px;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
   background-color: white;
   flex-shrink: 0;
 }
 
-.class-img {
-  width: 110px;
-  height: 90px;
+.program-img {
+  width: 100%;
+  height: 120px;
   object-fit: cover;
   border-radius: 3px;
 }

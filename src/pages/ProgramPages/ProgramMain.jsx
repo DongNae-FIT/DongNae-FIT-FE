@@ -2,15 +2,15 @@ import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import styles from "@/pages/ClassPages/ClassMain.module.css";
-import ClassItem from "@/components/Class/ClassItem";
+import styles from "@/pages/ProgramPages/ProgramMain.module.css";
+import ProgramItem from "@/components/Program/ProgramItem";
 
-const ClassMain = () => {
+const ProgramMain = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
   const [isAlignOpen, setAlignOpen] = useState(false);
-  const [selectedAlign, setSelectedAlign] = useState(t("class.align1"));
+  const [selectedAlign, setSelectedAlign] = useState(t("program.align1"));
   const [isPriceOpen, setPriceOpen] = useState(false);
   const [activeFilters, setActiveFilters] = useState({});
   const dropdownRef = useRef(null);
@@ -76,11 +76,11 @@ const ClassMain = () => {
   }, []);
 
   useEffect(() => {
-    setSelectedAlign(t("class.align1"));
+    setSelectedAlign(t("program.align1"));
   }, [i18n.language, t]);
 
   return (
-    <div className={styles["class-main"]}>
+    <div className={styles["program-main"]}>
       <div className={styles["map"]}>지도</div>
       <div className={styles["filter-wrapper"]}>
         <div
@@ -97,13 +97,13 @@ const ClassMain = () => {
             <div className={styles["dropdown-menu"]}>
               <div
                 className={`${styles["dropdown-item"]} ${
-                  selectedAlign === t("class.align1")
+                  selectedAlign === t("program.align1")
                     ? styles["selected-align"]
                     : ""
                 }`}
-                onClick={() => handleAlignSelect(t("class.align1"))}
+                onClick={() => handleAlignSelect(t("program.align1"))}
               >
-                {t("class.align1")}
+                {t("program.align1")}
               </div>
             </div>
           )}
@@ -116,7 +116,7 @@ const ClassMain = () => {
             src={"/icon/icon_down_grey.png"}
             className={styles["down-arrow-icon"]}
           />
-          {t("class.filter1")}
+          {t("program.filter1")}
         </div>
 
         {["filter2", "filter3"].map((filter, index) => (
@@ -127,26 +127,26 @@ const ClassMain = () => {
             }`}
             onClick={() => toggleFilter(filter)}
           >
-            {t(`class.${filter}`)}
+            {t(`program.${filter}`)}
           </div>
         ))}
       </div>
-      <div className={styles["class-list"]}>
-        <ClassItem name="강좌명" facility="시설이름" price="80,000원" />
-        <ClassItem name="강좌명" facility="시설이름" price="80,000원" />
-        <ClassItem name="강좌명" facility="시설이름" price="80,000원" />
+      <div className={styles["program-list"]}>
+        <ProgramItem name="강좌명" facility="시설이름" price="80,000원" />
+        <ProgramItem name="강좌명" facility="시설이름" price="80,000원" />
+        <ProgramItem name="강좌명" facility="시설이름" price="80,000원" />
       </div>
 
       {isPriceOpen && (
         <>
           <div className={styles.overlay} onClick={() => setPriceOpen(false)} />
           <div className={styles["price-filter"]}>
-            <div className={styles["price-title"]}>{t("class.filter1")}</div>
+            <div className={styles["price-title"]}>{t("program.filter1")}</div>
             <div className={styles["price-content"]}>
               <input
                 type="text"
                 className={styles["price-input"]}
-                placeholder={t("class.price_min_placeholder")}
+                placeholder={t("program.price_min_placeholder")}
                 value={priceMin ? priceMin.toLocaleString() : ""} // 화면에 표시 시 숫자 포맷
                 onChange={handlePriceMinChange}
               />
@@ -154,7 +154,7 @@ const ClassMain = () => {
               <input
                 type="text"
                 className={styles["price-input"]}
-                placeholder={t("class.price_max_placeholder")}
+                placeholder={t("program.price_max_placeholder")}
                 value={priceMax ? priceMax.toLocaleString() : ""} // 화면에 표시 시 숫자 포맷
                 onChange={handlePriceMaxChange}
               />
@@ -191,4 +191,4 @@ const ClassMain = () => {
   );
 };
 
-export default ClassMain;
+export default ProgramMain;

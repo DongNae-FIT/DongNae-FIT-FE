@@ -1,4 +1,4 @@
-.class-main {
+.program-main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,7 +74,7 @@
   color: var(--main-color);
 }
 
-.class-list {
+.program-list {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -82,7 +82,7 @@
   gap: 15px;
 }
 
-.class-list > *:not(:last-child) {
+.program-list > *:not(:last-child) {
   border-bottom: 1px solid var(--sub-grey);
   padding-bottom: 15px;
 }

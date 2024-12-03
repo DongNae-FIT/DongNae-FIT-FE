@@ -60,19 +60,19 @@ const MyPageMain = () => {
 
       <div className={styles["menu-wrapper"]}>
         <div className={styles["menu-section"]}>
-          <div className={styles["section-title"]}>{t("menus.class")}</div>
+          <div className={styles["section-title"]}>{t("menus.program")}</div>
           <div
             className={styles["menu"]}
             onClick={() => {
-              navigate("/mypage/class/save");
+              navigate("/mypage/program/save");
             }}
           >
-            {t("mypage.myclass")}
+            {t("mypage.myprogram")}
           </div>
           <div
             className={styles["menu"]}
             onClick={() => {
-              navigate("/mypage/class/review");
+              navigate("/mypage/program/review");
             }}
           >
             {t("mypage.myreview")}

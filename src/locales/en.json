@@ -23,17 +23,17 @@
   },
   "menus": {
     "home": "Home",
-    "class": "Sports Classes",
+    "program": "Sports Programs",
     "facility": "Sports Facilities",
     "community": "Community",
     "mypage": "My Page"
   },
   "home": {
-    "subtitle1": "[Pick] Sports Classes",
+    "subtitle1": "[Pick] Sports Programs",
     "subtitle2": "Find Sports Facilities you want!",
     "subtitle3": "Trending Posts"
   },
-  "class": {
+  "program": {
     "align1": "Closest",
     "filter1": "Price",
     "price_min_placeholder": "Min",
@@ -43,18 +43,18 @@
     "target": "Target",
     "period": "Period",
     "instructor": "Instructor",
-    "class_period": "Period",
+    "program_period": "Period",
     "day_and_time": "Day and Time",
     "url": "URL",
-    "review_title": "Class Reviews",
+    "review_title": "Program Reviews",
     "review_button": "Write Review",
     "review_write": "Write a Review",
     "review_question1": "Who was your instructor?",
     "question1_placeholder": "ex) Hong Gil-dong",
-    "review_question2": "When did you take the class?",
+    "review_question2": "When did you take the program?",
     "review_question3": "What day and time did you attend?",
     "review_question4": "Write your review.",
-    "question4_placeholder": "Feel free to share your thoughts about the class."
+    "question4_placeholder": "Feel free to share your thoughts about the program."
   },
   "facility": {
     "align1": "Closest",
@@ -90,8 +90,8 @@
     "nickname": "Nickname",
     "age": "Age",
     "set_location": "Set location",
-    "myclass": "Saved Classes",
-    "myreview": "Classes I Reviewed",
+    "myprogram": "Saved Programs",
+    "myreview": "Programs I Reviewed",
     "mypost": "My Posts",
     "mycomment": "Posts I Commented On",
     "mysave": "Saved Posts",

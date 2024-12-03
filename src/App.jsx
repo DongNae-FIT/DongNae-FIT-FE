@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
 import { AuthProvider } from "@/contexts/AuthContext";
-import { ClassProvider } from "@/contexts/ClassContext";
+import { ProgramProvider } from "@/contexts/ProgramContext";
 
 import DefaultHeader from "@/layouts/Header/DefaultHeader";
 import BackHeader from "@/layouts/Header/BackHeader";
@@ -15,9 +15,9 @@ import Login from "@/pages/LoginPages/Login";
 import KakaoRedirect from "@/pages/LoginPages/KakaoRedirect";
 import AdditionalInfo from "@/pages/LoginPages/AdditionalInfo";
 
-import ClassMain from "@/pages/ClassPages/ClassMain";
-import ClassDetail from "@/pages/ClassPages/ClassDetail";
-import NewReview from "@/pages/ClassPages/NewReview";
+import ProgramMain from "@/pages/ProgramPages/ProgramMain";
+import ProgramDetail from "@/pages/ProgramPages/ProgramDetail";
+import NewReview from "@/pages/ProgramPages/NewReview";
 
 import FacilityMain from "@/pages/FacilityPages/FacilityMain";
 import FacilityDetail from "@/pages/FacilityPages/FacilityDetail";
@@ -32,8 +32,8 @@ import EditProfile from "@/pages/MyPages/User/EditProfile";
 import SetLocation from "@/pages/MyPages/User/SetLocation";
 import DeletedAccount from "@/pages/MyPages/User/DeletedAccount";
 
-import SavedClass from "@/pages/MyPages/Class/SavedClass";
-import ReviewedClass from "@/pages/MyPages/Class/ReviewedClass";
+import SavedProgram from "@/pages/MyPages/Program/SavedProgram";
+import ReviewedProgram from "@/pages/MyPages/Program/ReviewedProgram";
 
 import MyPost from "@/pages/MyPages/Community/MyPost";
 import CommentedPost from "@/pages/MyPages/Community/CommentedPost";
@@ -48,21 +48,21 @@ function App() {
 
   // 경로별 헤더 관리
   const headerConfig = {
-    default: ["/", "/class", "/facility", "/community", "/mypage"],
+    default: ["/", "/program", "/facility", "/community", "/mypage"],
     back: [
-      "/class/detail",
+      "/program/detail",
       "/facility/detail",
       "/login",
       "/community/post",
-      "/mypage/class/save",
-      "/mypage/class/review",
+      "/mypage/program/save",
+      "/mypage/program/review",
       "/mypage/community/post",
       "/mypage/community/comment",
       "/mypage/community/save",
       "/delete/account",
     ],
     editor: {
-      "/class/review/new": t("class.review_write"),
+      "/program/review/new": t("program.review_write"),
       "/community/post/new": t("community.write"),
       "/mypage/edit/profile": t("mypage.edit_profile"),
       "/mypage/set/location": t("mypage.set_location"),
@@ -73,7 +73,7 @@ function App() {
 
   return (
     <AuthProvider>
-      <ClassProvider>
+      <ProgramProvider>
         <Helmet>
           <title>{t("title")}</title>
         </Helmet>
@@ -87,9 +87,9 @@ function App() {
           <Route path="/auth" element={<KakaoRedirect />} />
           <Route path="/login/info" element={<AdditionalInfo />} />
 
-          <Route path="/class" element={<ClassMain />} />
-          <Route path="/class/detail" element={<ClassDetail />} />
-          <Route path="/class/review/new" element={<NewReview />} />
+          <Route path="/program" element={<ProgramMain />} />
+          <Route path="/program/detail" element={<ProgramDetail />} />
+          <Route path="/program/review/new" element={<NewReview />} />
 
           <Route path="/facility" element={<FacilityMain />} />
           <Route path="/facility/detail" element={<FacilityDetail />} />
@@ -102,8 +102,8 @@ function App() {
           <Route path="/mypage/edit/profile" element={<EditProfile />} />
           <Route path="/mypage/set/location" element={<SetLocation />} />
 
-          <Route path="/mypage/class/save" element={<SavedClass />} />
-          <Route path="/mypage/class/review" element={<ReviewedClass />} />
+          <Route path="/mypage/program/save" element={<SavedProgram />} />
+          <Route path="/mypage/program/review" element={<ReviewedProgram />} />
 
           <Route path="/mypage/community/post" element={<MyPost />} />
           <Route path="/mypage/community/comment" element={<CommentedPost />} />
@@ -114,7 +114,7 @@ function App() {
           <Route path="/search" element={<SearchMain />} />
           <Route path="/search/result/all" element={<SearchResultAll />} />
         </Routes>
-      </ClassProvider>
+      </ProgramProvider>
     </AuthProvider>
   );
 }

@@ -17,6 +17,7 @@
     "react-helmet": "^6.1.0",
     "react-i18next": "^15.1.1",
     "react-kakao-login": "^2.1.1",
+    "react-kakao-maps-sdk": "^1.1.27",
     "react-router-dom": "^7.0.1",
     "swiper": "^11.1.15"
   },

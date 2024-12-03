@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next";
 const Login = () => {
   const { t, i18n } = useTranslation();
 
-  const Rest_API_Key = "c4466ede44fd01c7de0788a9d99cf576";
-  const redirect_uri = "http://localhost:5173/auth";
+  const rest_api_key = import.meta.env.VITE_REST_API_KEY;
+  const redirect_uri = import.meta.env.VITE_REDIRECT_URL;
 
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_API_Key}&redirect_uri=${redirect_uri}&response_type=code`;
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
   const handleLogin = () => {
     window.location.href = kakaoURL;
   };

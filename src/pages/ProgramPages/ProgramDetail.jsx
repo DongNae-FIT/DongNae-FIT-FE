@@ -34,7 +34,14 @@ const ProgramDetail = () => {
             주소입력 강남구 3049-29
           </div>
         </div>
-        <button className={styles["find-path-button"]}>
+        <button
+          className={styles["find-path-button"]}
+          onClick={() => {
+            window.open(
+              "https://map.kakao.com/link/to/${facilityAddr},${facilityLatitude},${facilityLongitude}"
+            );
+          }}
+        >
           {t("buttons.find_path")}
         </button>
       </div>

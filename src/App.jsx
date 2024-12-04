@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, matchPath } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
@@ -46,12 +46,11 @@ function App() {
   const { t } = useTranslation();
   const location = useLocation();
 
-  // 경로별 헤더 관리
   const headerConfig = {
     default: ["/", "/program", "/facility", "/community", "/mypage"],
     back: [
-      "/program/detail",
-      "/facility/detail",
+      "/program/:programId",
+      "/facility/:facilityId",
       "/login",
       "/community/post",
       "/mypage/program/save",
@@ -69,16 +68,20 @@ function App() {
     },
   };
 
-  const editorHeaderTitle = headerConfig.editor[location.pathname] || "";
+  const isPathMatched = (pathList, currentPath) =>
+    pathList.some((path) => matchPath(path, currentPath));
 
+  const editorHeaderTitle = headerConfig.editor[location.pathname] || "";
   return (
     <AuthProvider>
       <ProgramProvider>
         <Helmet>
           <title>{t("title")}</title>
         </Helmet>
-        {headerConfig.default.includes(location.pathname) && <DefaultHeader />}
-        {headerConfig.back.includes(location.pathname) && <BackHeader />}
+        {isPathMatched(headerConfig.default, location.pathname) && (
+          <DefaultHeader />
+        )}
+        {isPathMatched(headerConfig.back, location.pathname) && <BackHeader />}
         {editorHeaderTitle && <EditorHeader title={editorHeaderTitle} />}
 
         <Routes>
@@ -88,14 +91,14 @@ function App() {
           <Route path="/login/info" element={<AdditionalInfo />} />
 
           <Route path="/program" element={<ProgramMain />} />
-          <Route path="/program/detail" element={<ProgramDetail />} />
+          <Route path="/program/:programId" element={<ProgramDetail />} />
           <Route path="/program/review/new" element={<NewReview />} />
 
           <Route path="/facility" element={<FacilityMain />} />
-          <Route path="/facility/detail" element={<FacilityDetail />} />
+          <Route path="/facility/:facilityId" element={<FacilityDetail />} />
 
           <Route path="/community" element={<CommunityMain />} />
-          <Route path="/community/post" element={<CommunityPost />} />
+          <Route path="/community/post/:postId" element={<CommunityPost />} />
           <Route path="/community/post/new" element={<NewPost />} />
 
           <Route path="/mypage" element={<MyPageMain />} />

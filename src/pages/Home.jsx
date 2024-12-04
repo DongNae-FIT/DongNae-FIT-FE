@@ -28,6 +28,7 @@ const Home = () => {
           </div>
           <div className={styles["program-list"]}>
             <ProgramItemForHome
+              programId={1}
               name={"오전골프05"}
               facility={"강남구스포츠센터"}
               price={"80,000원"}

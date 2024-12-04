@@ -2,14 +2,14 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "@/components/Program/ProgramItem.module.css";
 
-const ProgramItem = ({ name, facility, price }) => {
+const ProgramItem = ({ programId, name, facility, price }) => {
   const navigate = useNavigate();
 
   return (
     <div
       className={styles["program-item"]}
       onClick={() => {
-        navigate("/program/detail");
+        navigate(`/program/${programId}`);
       }}
     >
       <img src={"/example.jpg"} className={styles["program-img"]} />

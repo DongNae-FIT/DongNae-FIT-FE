@@ -3,7 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "@/components/Facility/FacilityItem.module.css";
 
-const FacilityItem = ({ name, type, distance, isPublic = false }) => {
+const FacilityItem = ({
+  facilityId,
+  name,
+  type,
+  distance,
+  isPublic = false,
+}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -11,7 +17,7 @@ const FacilityItem = ({ name, type, distance, isPublic = false }) => {
     <div
       className={styles["facility-item"]}
       onClick={() => {
-        navigate("/facility/detail");
+        navigate(`/facility/${facilityId}`);
       }}
     >
       <img src={"/example.jpg"} className={styles["main-img"]} />

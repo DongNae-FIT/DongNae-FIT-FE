@@ -5,7 +5,7 @@
 }
 
 .map {
-  height: calc(var(--map-height) * 1.2);
+  height: calc(var(--map-height) * 1.5);
   background-color: azure;
 }
 

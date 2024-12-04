@@ -10,10 +10,7 @@ const FacilityDetail = () => {
 
   return (
     <div className={styles["facility-detail"]}>
-      <div className={styles["map"]}>
-        {" "}
-        <KakaoMap locations={locations} mapHeight={300 * 1.2} />
-      </div>
+      <KakaoMap locations={locations} mapHeight={300 * 1.5} />
 
       <div className={styles["contents"]}>
         <div className={styles["info-wrapper"]}>
@@ -41,11 +38,6 @@ const FacilityDetail = () => {
               ""
             )}
           </div>
-        </div>
-        <div className={styles["img-wrapper"]}>
-          <img src={"/example.jpg"} className={styles["facility-img"]} />
-          <img src={"/example.jpg"} className={styles["facility-img"]} />
-          <img src={"/example.jpg"} className={styles["facility-img"]} />
         </div>
       </div>
     </div>

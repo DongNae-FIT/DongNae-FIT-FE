@@ -20,7 +20,6 @@ const FacilityItem = ({
         navigate(`/facility/${facilityId}`);
       }}
     >
-      <img src={"/example.jpg"} className={styles["main-img"]} />
       <div className={styles["info-wrapper"]}>
         <div className={styles["text-wrapper"]}>
           <div className={styles["name"]}>{name}</div>

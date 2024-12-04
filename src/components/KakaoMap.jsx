@@ -1,6 +1,6 @@
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 
-const KakaoMap = ({ locations, mapHeight = 300 }) => {
+const KakaoMap = ({ locations, mapHeight }) => {
   const center =
     locations.length > 0
       ? { lat: locations[0].lat, lng: locations[0].lng }
@@ -10,7 +10,11 @@ const KakaoMap = ({ locations, mapHeight = 300 }) => {
     <div>
       <Map
         center={center}
-        style={{ width: "100%", height: `${mapHeight}px` }}
+        style={{
+          width: "100%",
+          height: `${mapHeight}px`,
+          minHeight: "40vh",
+        }}
         level={3}
       >
         {locations.map((location, index) => (

@@ -88,10 +88,7 @@ const ProgramMain = () => {
 
   return (
     <div className={styles["program-main"]}>
-      <div className={styles["map"]}>
-        {" "}
-        <KakaoMap locations={locations} />
-      </div>
+      <KakaoMap locations={locations} mapHeight={300 * 0.9} />
       <div className={styles["filter-wrapper"]}>
         <div
           className={styles["dropdown-type"]}

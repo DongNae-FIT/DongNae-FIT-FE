@@ -18,9 +18,8 @@ const ProgramDetail = () => {
 
   return (
     <div className={styles["program-detail"]}>
-      <div className={styles["map"]}>
-        <KakaoMap locations={locations} mapHeight={300 * 0.9} />
-      </div>
+      <KakaoMap locations={locations} mapHeight={300 * 0.9} />
+
       <div className={styles["location-wrapper"]}>
         <img
           src={"/default/default_location.png"}

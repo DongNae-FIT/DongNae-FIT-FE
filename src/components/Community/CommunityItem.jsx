@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "@/components/Community/CommunityItem.module.css";
 
-const CommunityItem = ({ title, content, imgSrc }) => {
+const CommunityItem = ({ postId, title, content, imgSrc }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -11,7 +11,7 @@ const CommunityItem = ({ title, content, imgSrc }) => {
     <div
       className={styles["community-item"]}
       onClick={() => {
-        navigate("/community/post");
+        navigate(`/community/post/${postId}`);
       }}
     >
       <div className={styles["text-wrapper"]}>

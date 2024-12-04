@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ProgramProvider } from "@/contexts/ProgramContext";
+import { CommunityProvider } from "@/contexts/CommunityContext";
 
 import DefaultHeader from "@/layouts/Header/DefaultHeader";
 import BackHeader from "@/layouts/Header/BackHeader";
@@ -52,7 +53,7 @@ function App() {
       "/program/:programId",
       "/facility/:facilityId",
       "/login",
-      "/community/post",
+      "/community/post/:postId",
       "/mypage/program/save",
       "/mypage/program/review",
       "/mypage/community/post",
@@ -75,48 +76,58 @@ function App() {
   return (
     <AuthProvider>
       <ProgramProvider>
-        <Helmet>
-          <title>{t("title")}</title>
-        </Helmet>
-        {isPathMatched(headerConfig.default, location.pathname) && (
-          <DefaultHeader />
-        )}
-        {isPathMatched(headerConfig.back, location.pathname) && <BackHeader />}
-        {editorHeaderTitle && <EditorHeader title={editorHeaderTitle} />}
+        <CommunityProvider>
+          <Helmet>
+            <title>{t("title")}</title>
+          </Helmet>
+          {isPathMatched(headerConfig.default, location.pathname) && (
+            <DefaultHeader />
+          )}
+          {isPathMatched(headerConfig.back, location.pathname) && (
+            <BackHeader />
+          )}
+          {editorHeaderTitle && <EditorHeader title={editorHeaderTitle} />}
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/auth" element={<KakaoRedirect />} />
-          <Route path="/login/info" element={<AdditionalInfo />} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/auth" element={<KakaoRedirect />} />
+            <Route path="/login/info" element={<AdditionalInfo />} />
 
-          <Route path="/program" element={<ProgramMain />} />
-          <Route path="/program/:programId" element={<ProgramDetail />} />
-          <Route path="/program/review/new" element={<NewReview />} />
+            <Route path="/program" element={<ProgramMain />} />
+            <Route path="/program/:programId" element={<ProgramDetail />} />
+            <Route path="/program/review/new" element={<NewReview />} />
 
-          <Route path="/facility" element={<FacilityMain />} />
-          <Route path="/facility/:facilityId" element={<FacilityDetail />} />
+            <Route path="/facility" element={<FacilityMain />} />
+            <Route path="/facility/:facilityId" element={<FacilityDetail />} />
 
-          <Route path="/community" element={<CommunityMain />} />
-          <Route path="/community/post/:postId" element={<CommunityPost />} />
-          <Route path="/community/post/new" element={<NewPost />} />
+            <Route path="/community" element={<CommunityMain />} />
+            <Route path="/community/post/:postId" element={<CommunityPost />} />
+            <Route path="/community/post/new" element={<NewPost />} />
 
-          <Route path="/mypage" element={<MyPageMain />} />
-          <Route path="/mypage/edit/profile" element={<EditProfile />} />
-          <Route path="/mypage/set/location" element={<SetLocation />} />
+            <Route path="/mypage" element={<MyPageMain />} />
+            <Route path="/mypage/edit/profile" element={<EditProfile />} />
+            <Route path="/mypage/set/location" element={<SetLocation />} />
 
-          <Route path="/mypage/program/save" element={<SavedProgram />} />
-          <Route path="/mypage/program/review" element={<ReviewedProgram />} />
+            <Route path="/mypage/program/save" element={<SavedProgram />} />
+            <Route
+              path="/mypage/program/review"
+              element={<ReviewedProgram />}
+            />
 
-          <Route path="/mypage/community/post" element={<MyPost />} />
-          <Route path="/mypage/community/comment" element={<CommentedPost />} />
-          <Route path="/mypage/community/save" element={<SavedPost />} />
+            <Route path="/mypage/community/post" element={<MyPost />} />
+            <Route
+              path="/mypage/community/comment"
+              element={<CommentedPost />}
+            />
+            <Route path="/mypage/community/save" element={<SavedPost />} />
 
-          <Route path="/delete/account" element={<DeletedAccount />} />
+            <Route path="/delete/account" element={<DeletedAccount />} />
 
-          <Route path="/search" element={<SearchMain />} />
-          <Route path="/search/result/all" element={<SearchResultAll />} />
-        </Routes>
+            <Route path="/search" element={<SearchMain />} />
+            <Route path="/search/result/all" element={<SearchResultAll />} />
+          </Routes>
+        </CommunityProvider>
       </ProgramProvider>
     </AuthProvider>
   );

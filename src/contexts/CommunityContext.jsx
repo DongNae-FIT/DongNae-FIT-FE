@@ -24,7 +24,7 @@ const CommunityProvider = ({ children }) => {
     setError(null);
     try {
       setRecommendedPostList([]);
-      const response = await axios.get("/api/community/recommend");
+      const response = await axios.get("/api/post/recommend");
       setRecommendedPostList(response.data);
     } catch (err) {
       setError(err || "Failed to load recommended community");
@@ -38,7 +38,7 @@ const CommunityProvider = ({ children }) => {
     setError(null);
     try {
       setEntirePostList([]);
-      const response = await axios.get("/api/communities");
+      const response = await axios.get("/api/posts");
       setEntirePostList(response.data);
     } catch (err) {
       setError(err || "Failed to load recommended community");
@@ -52,7 +52,7 @@ const CommunityProvider = ({ children }) => {
     setError(null);
     try {
       setPostDetail(null);
-      const response = await axios.get(`/api/communities/${postId}`);
+      const response = await axios.get(`/api/posts/${postId}`);
       setPostDetail(response.data);
     } catch (err) {
       setError(err || "Failed to load recommended community");
@@ -66,7 +66,7 @@ const CommunityProvider = ({ children }) => {
     setError(null);
 
     try {
-      const response = await axios.put("/api/community/like/toggle", {
+      const response = await axios.put(`/api/${postId}/like`, {
         postId,
       });
       const updatedData = { isLike: response.data.isLike };
@@ -78,19 +78,84 @@ const CommunityProvider = ({ children }) => {
     }
   };
 
-  const saveNewReview = async (postId, newPost, boolean) => {
+  const togglePostSave = async (postId) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await axios.put(
-        `/communities/${postId}?save=${boolean}`,
-        {
-          post: newPost,
-        }
-      );
+      const response = await axios.put(`/api/${postId}/save`, {
+        postId,
+      });
+      const updatedData = { isSave: response.data.isSave };
+      updateCommunityDetail(postId, updatedData);
     } catch (error) {
-      setError("Failed to save new review");
+      setError("Failed to toggle save");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const saveNewPost = async (newPost) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.post("api/posts", {
+        post: newPost,
+      });
+    } catch (error) {
+      setError("Failed to save new post");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const editPost = async (postId, updatedPost) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.patch(`api/posts/${postId}`, {
+        post: updatedPost,
+      });
+    } catch (error) {
+      setError("Failed to save updated post");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const deletePost = async (postId) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.delete(`api/posts/${postId}`);
+    } catch (error) {
+      setError("Failed to delete post");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const writeComment = async (postId, newComment) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.post(`api/posts/${postId}/comment`, {
+        comment: newComment,
+      });
+    } catch (error) {
+      setError("Failed to save new comment");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const deleteComment = async (postId, commentId) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.delete(`api/posts/${postId}/${commentId}`);
+    } catch (error) {
+      setError("Failed to delete post");
     } finally {
       setLoading(false);
     }
@@ -106,7 +171,12 @@ const CommunityProvider = ({ children }) => {
         getEntirePostList,
         getPostDetail,
         togglePostLike,
-        saveNewReview,
+        togglePostSave,
+        saveNewPost,
+        editPost,
+        deletePost,
+        writeComment,
+        deleteComment,
         loading,
         error,
       }}

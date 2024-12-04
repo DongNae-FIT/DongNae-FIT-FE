@@ -5,7 +5,8 @@
     "find_path": "길찾기",
     "reset": "초기화",
     "apply": "적용하기",
-    "duplication_check": "중복 확인"
+    "duplication_check": "중복 확인",
+    "find_address": "주소 찾기"
   },
   "warning": {
     "price": "최대 금액이 최소 금액보다 작아요."

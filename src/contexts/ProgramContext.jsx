@@ -12,14 +12,20 @@ const ProgramProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const updateProgramDetail = () => {};
+  const updateProgramDetail = (programId, updatedData) => {
+    setProgramDetail((prev) =>
+      prev.map((p) =>
+        p.programId === programId ? { ...p, ...updatedData } : p
+      )
+    );
+  };
 
   const getRecommendedProgramList = async () => {
     setLoading(true);
     setError(null);
     try {
       setRecommendedProgramList([]);
-      const response = await axios.get("/api/recommend");
+      const response = await axios.get("/api/programs/recommend");
       setRecommendedProgramList(response.data);
     } catch (err) {
       setError(err || "Failed to load recommended program");
@@ -28,12 +34,14 @@ const ProgramProvider = ({ children }) => {
     }
   };
 
-  const getEntireProgramList = async () => {
+  const getEntireProgramList = async (latitude, longitude) => {
     setLoading(true);
     setError(null);
     try {
       setEntireProgramList([]);
-      const response = await axios.get("/api/program");
+      const response = await axios.get(
+        `/api/programs?latitude=${latitude}&longitude=${longitude}`
+      );
       setEntireProgramList(response.data);
     } catch (err) {
       setError(err || "Failed to load recommended program");
@@ -54,7 +62,7 @@ const ProgramProvider = ({ children }) => {
       if (priceMax) params.priceMax = priceMax;
       if (filter && filter.length > 0) params.filter = filter.join(",");
 
-      const response = await axios.get("/api/program/filter", { params });
+      const response = await axios.get("/api/programs/filter", { params });
 
       setFilteredProgramList(response.data);
     } catch (err) {
@@ -69,7 +77,7 @@ const ProgramProvider = ({ children }) => {
     setError(null);
     try {
       setProgramDetail(null);
-      const response = await axios.get(`/api/program/${programId}`);
+      const response = await axios.get(`/api/programs/${programId}`);
       setProgramDetail(response.data);
     } catch (err) {
       setError(err || "Failed to load recommended program");
@@ -83,10 +91,11 @@ const ProgramProvider = ({ children }) => {
     setError(null);
 
     try {
-      const response = await axios.post("/api/program/like/toggle", {
+      const response = await axios.put("/api/program/like/toggle", {
         programId,
       });
-      updateProgramDetail();
+      const updatedData = { isLike: response.data.isLike };
+      updateProgramDetail(programId, updatedData);
     } catch (error) {
       setError("Failed to toggle like");
     } finally {
@@ -99,9 +108,8 @@ const ProgramProvider = ({ children }) => {
     setError(null);
 
     try {
-      const response = await axios.post("/api/program/like/toggle", {
-        programId,
-        newReview,
+      const response = await axios.post(`/programs/${programId}/review`, {
+        review: newReview,
       });
     } catch (error) {
       setError("Failed to save new review");

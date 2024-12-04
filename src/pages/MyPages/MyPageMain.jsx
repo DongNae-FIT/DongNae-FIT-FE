@@ -5,7 +5,7 @@ import styles from "@/pages/MyPages/MyPageMain.module.css";
 
 const MyPageMain = () => {
   const { t } = useTranslation();
-  const isAuthentication = true;
+  const isAuthentication = false;
   const navigate = useNavigate();
 
   return (

@@ -22,9 +22,10 @@ const Login = () => {
           className={styles["kakao-login__symbol"]}
           src={"/kakao_symbol.png"}
           alt="Kakao Login"
-          onClick={handleLogin}
         />
-        <div className={styles["kakao-login__text"]}>{t("login.kakao")}</div>
+        <div className={styles["kakao-login__text"]} onClick={handleLogin}>
+          {t("login.kakao")}
+        </div>
       </div>
     </div>
   );

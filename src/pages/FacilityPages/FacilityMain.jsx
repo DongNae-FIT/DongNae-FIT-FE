@@ -34,6 +34,7 @@ const FacilityMain = () => {
 
   const resetCategories = () => {
     setPendingCategory(null); // Reset pending category
+    setSelectedCategory(null);
   };
 
   const handleCategoryApply = () => {

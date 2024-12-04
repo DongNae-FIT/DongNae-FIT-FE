@@ -139,6 +139,11 @@
   color: var(--main-color);
 }
 
+.category-selected {
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+}
+
 .category-button-wrapper {
   display: flex;
   flex-direction: row;

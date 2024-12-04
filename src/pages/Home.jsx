@@ -70,6 +70,7 @@ const Home = () => {
             {Array.from({ length: 6 }, (_, index) => (
               <FacilityCategoryItem
                 key={index}
+                categoryId={index + 1}
                 name={t(`facility.category${index + 1}`)}
               />
             ))}

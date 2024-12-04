@@ -4,44 +4,21 @@ import axios from "axios";
 const CommunityContext = createContext();
 
 const CommunityProvider = ({ children }) => {
-  const [recommendedPostList, setRecommendedPostList] = useState([]);
   const [entirePostList, setEntirePostList] = useState([]);
   const [postDetail, setPostDetail] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const updateCommunityDetail = (communityId, updatedData) => {
-    setPostDetail((prev) =>
-      prev.map((p) =>
-        p.communityId === communityId ? { ...p, ...updatedData } : p
-      )
-    );
-  };
-
-  const getRecommendedPostList = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      setRecommendedPostList([]);
-      const response = await axios.get("/api/post/recommend");
-      setRecommendedPostList(response.data);
-    } catch (err) {
-      setError(err || "Failed to load recommended community");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getEntirePostList = async () => {
+  const getEntirePostList = async (searchInput = "") => {
     setLoading(true);
     setError(null);
     try {
       setEntirePostList([]);
-      const response = await axios.get("/api/posts");
+      const response = await axios.get(`/api/posts?search=${searchInput}`);
       setEntirePostList(response.data);
     } catch (err) {
-      setError(err || "Failed to load recommended community");
+      setError(err || "Failed to load post");
     } finally {
       setLoading(false);
     }
@@ -69,8 +46,6 @@ const CommunityProvider = ({ children }) => {
       const response = await axios.put(`/api/${postId}/like`, {
         postId,
       });
-      const updatedData = { isLike: response.data.isLike };
-      updateCommunityDetail(postId, updatedData);
     } catch (error) {
       setError("Failed to toggle like");
     } finally {
@@ -86,8 +61,6 @@ const CommunityProvider = ({ children }) => {
       const response = await axios.put(`/api/${postId}/save`, {
         postId,
       });
-      const updatedData = { isSave: response.data.isSave };
-      updateCommunityDetail(postId, updatedData);
     } catch (error) {
       setError("Failed to toggle save");
     } finally {
@@ -95,29 +68,17 @@ const CommunityProvider = ({ children }) => {
     }
   };
 
-  const saveNewPost = async (newPost) => {
+  const saveNewPost = async (postTitle, postDetail, postImage) => {
     setLoading(true);
     setError(null);
     try {
       const response = await axios.post("api/posts", {
-        post: newPost,
+        postTitle,
+        postDetail,
+        postImage,
       });
     } catch (error) {
       setError("Failed to save new post");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const editPost = async (postId, updatedPost) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await axios.patch(`api/posts/${postId}`, {
-        post: updatedPost,
-      });
-    } catch (error) {
-      setError("Failed to save updated post");
     } finally {
       setLoading(false);
     }
@@ -135,12 +96,12 @@ const CommunityProvider = ({ children }) => {
     }
   };
 
-  const writeComment = async (postId, newComment) => {
+  const writeComment = async (postId, commentDetail) => {
     setLoading(true);
     setError(null);
     try {
       const response = await axios.post(`api/posts/${postId}/comment`, {
-        comment: newComment,
+        commentDetail,
       });
     } catch (error) {
       setError("Failed to save new comment");
@@ -164,16 +125,13 @@ const CommunityProvider = ({ children }) => {
   return (
     <CommunityContext.Provider
       value={{
-        recommendedPostList,
         entirePostList,
         postDetail,
-        getRecommendedPostList,
         getEntirePostList,
         getPostDetail,
         togglePostLike,
         togglePostSave,
         saveNewPost,
-        editPost,
         deletePost,
         writeComment,
         deleteComment,

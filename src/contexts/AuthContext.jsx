@@ -20,8 +20,10 @@ const AuthProvider = ({ children }) => {
     return authAxios
       .get(`/api/member/kakao?code=${code}`)
       .then((response) => {
-        const token = response.data.token;
-        localStorage.setItem("token", token);
+        const accessToken = response.data.token.accessToken;
+        const refreshToken = response.data.token.refreshToken;
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
         setIsAuthenticated(true);
       })
       .catch((error) => {
@@ -88,7 +90,8 @@ const AuthProvider = ({ children }) => {
     return authAxios
       .post("주소", {})
       .then(() => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
         setUser();
         setIsAuthenticated(false);
       })

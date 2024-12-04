@@ -58,6 +58,14 @@
   padding-bottom: calc(var(--default-padding) * 1.2);
 }
 
+.service-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .post-button-wrapper {
   display: flex;
   flex-direction: row;
@@ -69,9 +77,9 @@
   background-color: white;
   border: 1px solid var(--sub-grey);
   color: var(--main-grey);
-  border-radius: 10px;
+  border-radius: 7px;
   padding: 0.3em 0.6em;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 
   display: flex;
   flex-direction: row;
@@ -89,8 +97,37 @@
   border-color: var(--main-color);
 }
 
+.count-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
 .button-icon {
-  width: 16px;
+  width: 14px;
+}
+
+.count-icon {
+  width: 18px;
+}
+
+.like-count {
+  color: var(--sub-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.9rem;
+}
+
+.save-count {
+  color: var(--main-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.9rem;
 }
 
 .comment-wrapper {

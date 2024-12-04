@@ -93,6 +93,9 @@ const Home = () => {
               content={
                 "내용이 일부 보입니다. 이런 식으로 보이고 긴 내용은 잘려서 보일 수 있습니다. 뭐라고 더 써야 할까요?????"
               }
+              date="2021-22-11 00:00:00"
+              likeCount={3}
+              saveCount={5}
             />
             <CommunityItemForHome
               nickname={"닉네임"}
@@ -100,6 +103,9 @@ const Home = () => {
               content={
                 "내용이 일부 보입니다. 이런 식으로 보이고 긴 내용은 잘려서 보일 수 있습니다. 뭐라고 더 써야 할까요?????"
               }
+              date="2021-22-11 00:00:00"
+              likeCount={3}
+              saveCount={5}
             />
           </div>
         </div>

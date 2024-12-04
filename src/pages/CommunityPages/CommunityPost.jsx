@@ -53,39 +53,57 @@ const CommunityPost = () => {
           구갈동에 있는 스포츠센터 다니시는 분 있으신가요? 수영 다니고 싶은데
           어떤지 궁금해서요!
         </div>
-        <div className={styles["post-button-wrapper"]}>
-          <button
-            className={`${styles["button"]} ${
-              like ? styles["like-active"] : ""
-            }`}
-            onClick={onLikeButtonClick}
-          >
-            <img
-              src={
-                like
-                  ? "/icon/icon_likes_colored.png"
-                  : "/icon/icon_likes_grey.png"
-              }
-              className={styles["button-icon"]}
-            />
-            {t("community.likes")}
-          </button>
-          <button
-            className={`${styles["button"]} ${
-              save ? styles["save--active"] : ""
-            }`}
-            onClick={onSaveButtonClick}
-          >
-            <img
-              src={
-                save
-                  ? "/icon/icon_save_colored.png"
-                  : "/icon/icon_save_grey.png"
-              }
-              className={styles["button-icon"]}
-            />
-            {t("community.save")}
-          </button>
+        <div className={styles["service-wrapper"]}>
+          <div className={styles["post-button-wrapper"]}>
+            <button
+              className={`${styles["button"]} ${
+                like ? styles["like-active"] : ""
+              }`}
+              onClick={onLikeButtonClick}
+            >
+              <img
+                src={
+                  like
+                    ? "/icon/icon_likes_colored.png"
+                    : "/icon/icon_likes_grey.png"
+                }
+                className={styles["button-icon"]}
+              />
+              {t("community.likes")}
+            </button>
+            <button
+              className={`${styles["button"]} ${
+                save ? styles["save-active"] : ""
+              }`}
+              onClick={onSaveButtonClick}
+            >
+              <img
+                src={
+                  save
+                    ? "/icon/icon_save_colored.png"
+                    : "/icon/icon_save_grey.png"
+                }
+                className={styles["button-icon"]}
+              />
+              {t("community.save")}
+            </button>
+          </div>
+          <div className={styles["count-wrapper"]}>
+            <div className={styles["like-count"]}>
+              <img
+                src={"/icon/icon_likes_colored.png"}
+                className={styles["count-icon"]}
+              />
+              {1}
+            </div>
+            <div className={styles["save-count"]}>
+              <img
+                src={"/icon/icon_save_colored.png"}
+                className={styles["count-icon"]}
+              />
+              {1}
+            </div>
+          </div>
         </div>
       </div>
       <div className={styles["comment-wrapper"]}>

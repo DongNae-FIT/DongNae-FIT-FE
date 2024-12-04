@@ -8,7 +8,7 @@
   border: 1px solid var(--sub-grey);
   background-color: white;
   border-radius: 10px;
-  padding: 12px;
+  padding: 15px;
 }
 
 .info-wrapper {
@@ -47,7 +47,6 @@
 }
 
 .content {
-  color: var(--main-grey);
   font-size: 0.9rem;
 
   overflow: hidden;
@@ -56,4 +55,45 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
+}
+
+.footer-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  padding: 0 2px;
+  padding-top: 5px;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--main-grey);
+}
+
+.count-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.count-icon {
+  width: 15px;
+}
+
+.like-count {
+  color: var(--sub-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.8rem;
+}
+
+.save-count {
+  color: var(--main-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.9rem;
 }

@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "@/pages/ProgramPages/ProgramDetail.module.css";
 import ProgramReviewItem from "@/components/Program/ProgramReviewItem";
+import KakaoMap from "@/components/KakaoMap";
 
 const ProgramDetail = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [Like, setLike] = useState(false);
+  const locations = [{ lat: 37.5665, lng: 126.978, name: "서울" }];
 
   const onClickLike = () => {
     setLike((prevLike) => !prevLike);
@@ -16,7 +18,9 @@ const ProgramDetail = () => {
 
   return (
     <div className={styles["program-detail"]}>
-      <div className={styles["map"]} />
+      <div className={styles["map"]}>
+        <KakaoMap locations={locations} mapHeight={300 * 0.9} />
+      </div>
       <div className={styles["location-wrapper"]}>
         <img
           src={"/default/default_location.png"}

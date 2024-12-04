@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/LoginPages/AdditionalInfo.module.css";
-import LocationInput from "@/pages/LoginPages/LocationInput";
+import LocationInput from "@/components/LocationInput";
 
 const AdditionalInfo = () => {
   const { t } = useTranslation();

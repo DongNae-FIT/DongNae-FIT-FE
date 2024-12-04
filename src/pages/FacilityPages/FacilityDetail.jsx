@@ -1,14 +1,19 @@
 import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/FacilityPages/FacilityDetail.module.css";
+import KakaoMap from "@/components/KakaoMap";
 
 const FacilityDetail = () => {
   const { t } = useTranslation();
   const isPublic = true;
+  const locations = [{ lat: 37.5665, lng: 126.978, name: "서울" }];
 
   return (
     <div className={styles["facility-detail"]}>
-      <div className={styles["map"]}>지도</div>
+      <div className={styles["map"]}>
+        {" "}
+        <KakaoMap locations={locations} mapHeight={300 * 1.2} />
+      </div>
 
       <div className={styles["contents"]}>
         <div className={styles["info-wrapper"]}>

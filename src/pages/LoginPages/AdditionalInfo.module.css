@@ -79,7 +79,7 @@
   width: 100vw;
   height: 100vh;
   max-width: 900px;
-  background: white;
+  background: red;
   display: flex;
   justify-content: center;
   align-items: center;

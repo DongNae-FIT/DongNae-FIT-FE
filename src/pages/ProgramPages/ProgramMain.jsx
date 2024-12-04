@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "@/pages/ProgramPages/ProgramMain.module.css";
 import ProgramItem from "@/components/Program/ProgramItem";
+import KakaoMap from "@/components/KakaoMap";
 
 const ProgramMain = () => {
   const { t, i18n } = useTranslation();
@@ -20,6 +21,12 @@ const ProgramMain = () => {
 
   const MAX_PRICE = 99999999999; // 99억 9999만 9999원
   const [warningMessage, setWarningMessage] = useState("");
+
+  const locations = [
+    { lat: 37.5665, lng: 126.978, name: "서울" },
+    { lat: 35.1796, lng: 129.0756, name: "부산" },
+    { lat: 37.4563, lng: 126.7052, name: "인천" },
+  ];
 
   const handlePriceMinChange = (e) => {
     let value = e.target.value.replace(/[^0-9]/g, ""); // 숫자만 남기기
@@ -81,7 +88,10 @@ const ProgramMain = () => {
 
   return (
     <div className={styles["program-main"]}>
-      <div className={styles["map"]}>지도</div>
+      <div className={styles["map"]}>
+        {" "}
+        <KakaoMap locations={locations} />
+      </div>
       <div className={styles["filter-wrapper"]}>
         <div
           className={styles["dropdown-type"]}

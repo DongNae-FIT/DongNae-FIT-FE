@@ -9,7 +9,7 @@
   flex-direction: row;
   align-items: center;
   gap: 5px;
-  padding: var(--default-padding) var(--body-padding);
+  padding: calc(var(--default-padding) * 1.5) var(--body-padding);
   width: 100%;
 }
 
@@ -17,17 +17,43 @@
   height: 26px;
 }
 
-.input {
+.info__input {
   background-color: white;
-  border: 1px solid var(--sub-grey);
-  border-radius: 5px;
   padding: 0.4em 0.8em;
   font-size: 0.9rem;
+  border: 1px solid var(--sub-grey);
+  border-radius: 5px;
   width: 100%;
+  flex: 3;
+}
+
+.input-button {
+  background-color: var(--sub-grey);
+  padding: 0.4em 0.1em;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  font-weight: 500;
   flex: 1;
 }
 
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  max-width: 900px;
+  background: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 30; /* 팝업 최상위 */
+}
+
 .map {
-  height: var(--map-height);
+  height: calc(var(--map-height) * 1.5);
   background-color: azure;
 }

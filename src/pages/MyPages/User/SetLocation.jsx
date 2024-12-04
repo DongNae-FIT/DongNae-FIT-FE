@@ -2,31 +2,53 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/MyPages/User/SetLocation.module.css";
+import LocationInput from "@/components/LocationInput";
+import KakaoMap from "@/components/KakaoMap";
 
 const SetLocation = () => {
   const { t } = useTranslation();
-  const [location, setLocation] = useState("기존 위치");
+  const locations = [{ lat: 37.5665, lng: 126.978, name: "서울" }];
+  const [location, setLocation] = useState("기존위치");
+  const [openPostcode, setOpenPostcode] = useState(false);
+
+  const handle = {
+    // 주소 찾기 버튼 클릭
+    clickButton: () => {
+      setOpenPostcode(true);
+    },
+    // 팝업 닫기
+    closePopup: () => {
+      setOpenPostcode(false);
+    },
+  };
+
+  const handleAddressSelect = (address) => {
+    setLocation(address);
+    setOpenPostcode(false);
+  };
 
   return (
     <div className={styles["set-location"]}>
+      {openPostcode && (
+        <div className={styles["popup-overlay"]}>
+          <LocationInput onSelectAddress={handleAddressSelect} />
+        </div>
+      )}
       <div className={styles["input-row"]}>
-        <img
-          src={"/icon/icon_location_black.png"}
-          alt="위치 아이콘"
-          className={styles["location-icon"]}
-        />
         <input
           type="text"
-          className={styles["input"]}
-          placeholder={t(
-            "additional_info.location_placeholder",
-            "위치를 입력하세요"
-          )}
+          className={styles["info__input"]}
+          placeholder={t("additional_info.location_placeholder")}
           value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          readOnly
         />
+        <button className={styles["input-button"]} onClick={handle.clickButton}>
+          {t("buttons.find_address")}
+        </button>
       </div>
-      <div className={styles["map"]}>지도</div>
+      <div className={styles["map"]}>
+        <KakaoMap locations={locations} mapHeight={300 * 1.5} />
+      </div>
     </div>
   );
 };

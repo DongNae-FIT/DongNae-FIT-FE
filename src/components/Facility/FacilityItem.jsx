@@ -29,7 +29,7 @@ const FacilityItem = ({
         <div className={styles["text-wrapper"]}>
           <div className={styles["distance"]}>{distance}</div>
           {isPublic ? (
-            <div className={styles["public"]}>• {t("facility.filter1")}</div>
+            <div className={styles["public"]}>• {t("facility.public")}</div>
           ) : (
             ""
           )}

@@ -101,21 +101,6 @@ const FacilityMain = () => {
           />
           {t("facility.category")}
         </div>
-
-        {[...Array(1)].map((_, index) => {
-          const filterName = `filter${index + 1}`;
-          return (
-            <div
-              key={index}
-              className={`${styles["toggle-type"]} ${
-                activeFilters[filterName] ? styles["filter-active"] : ""
-              }`}
-              onClick={() => toggleFilter(filterName)}
-            >
-              {t(`facility.${filterName}`)}
-            </div>
-          );
-        })}
       </div>
       <div className={styles["facility-list"]}>
         <FacilityItem
@@ -175,17 +160,22 @@ const FacilityMain = () => {
               {t("facility.category")}
             </div>
             <div className={styles["category-list"]}>
-              {["category1", "category2"].map((category, index) => (
-                <div
-                  key={index}
-                  className={`${styles["category-item"]} ${
-                    selectedCategory[category] ? styles["category-active"] : ""
-                  }`}
-                  onClick={() => toggleCategory(category)}
-                >
-                  {t(`facility.${category}`)}
-                </div>
-              ))}
+              {[...Array(6)].map((_, index) => {
+                const category = `category${index + 1}`;
+                return (
+                  <div
+                    key={index}
+                    className={`${styles["category-item"]} ${
+                      selectedCategory[category]
+                        ? styles["category-active"]
+                        : ""
+                    }`}
+                    onClick={() => toggleCategory(category)}
+                  >
+                    {t(`facility.${category}`)}
+                  </div>
+                );
+              })}
             </div>
             <div className={styles["category-button-wrapper"]}>
               <button

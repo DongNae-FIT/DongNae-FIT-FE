@@ -128,18 +128,6 @@ const ProgramMain = () => {
           />
           {t("program.filter1")}
         </div>
-
-        {["filter2", "filter3"].map((filter, index) => (
-          <div
-            key={index}
-            className={`${styles["toggle-type"]} ${
-              activeFilters[filter] ? styles["filter-active"] : ""
-            }`}
-            onClick={() => toggleFilter(filter)}
-          >
-            {t(`program.${filter}`)}
-          </div>
-        ))}
       </div>
       <div className={styles["program-list"]}>
         <ProgramItem name="강좌명" facility="시설이름" price="80,000원" />

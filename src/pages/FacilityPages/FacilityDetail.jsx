@@ -29,7 +29,7 @@ const FacilityDetail = () => {
           <div className={styles["text-wrapper"]}>
             <div className={styles["distance"]}>거리</div>
             {isPublic ? (
-              <div className={styles["public"]}>• {t("facility.filter1")}</div>
+              <div className={styles["public"]}>• {t("facility.public")}</div>
             ) : (
               ""
             )}

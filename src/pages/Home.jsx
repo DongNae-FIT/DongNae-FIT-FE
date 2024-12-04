@@ -67,7 +67,7 @@ const Home = () => {
             />
           </div>
           <div className={styles["category-list"]}>
-            {Array.from({ length: 13 }, (_, index) => (
+            {Array.from({ length: 6 }, (_, index) => (
               <FacilityCategoryItem
                 key={index}
                 name={t(`facility.category${index + 1}`)}

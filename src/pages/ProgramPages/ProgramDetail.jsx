@@ -6,14 +6,17 @@ import styles from "@/pages/ProgramPages/ProgramDetail.module.css";
 import ProgramReviewItem from "@/components/Program/ProgramReviewItem";
 import KakaoMap from "@/components/KakaoMap";
 import useProgram from "@/hooks/useProgram";
+import useAuth from "@/hooks/useAuth";
 
 const ProgramDetail = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [Like, setLike] = useState(false);
   const [locations, setLocations] = useState(null);
-  const { programDetail, getProgramDetail, loading, error } = useProgram();
+  const { programDetail, getProgramDetail, toggleProgramLike, loading, error } =
+    useProgram();
   const { programId } = useParams();
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const initialize = async () => {
@@ -35,11 +38,21 @@ const ProgramDetail = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onClickLike = () => {
-    setLike((prevLike) => !prevLike);
+  const onClickLike = async () => {
+    if (!isAuthenticated) {
+      window.alert("로그인이 필요합니다.");
+      navigate("/login");
+    }
+
+    try {
+      await toggleProgramLike(programId);
+      setLike((prevLike) => !prevLike);
+    } catch (err) {
+      console.error("Failed to fetch toggle like on program:", err);
+    }
   };
 
-  if (loading || !programDetail || !locations) {
+  if (loading || !locations) {
     return <p>Loading</p>;
   }
 
@@ -77,7 +90,7 @@ const ProgramDetail = () => {
       </div>
       <div className={styles["info-wrapper"]}>
         <div className={styles["title"]}>
-          {programDetail.programData.facilityName}
+          {programDetail.programData.programName}
           <img
             src={
               Like

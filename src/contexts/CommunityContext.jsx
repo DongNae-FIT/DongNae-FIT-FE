@@ -99,7 +99,7 @@ const CommunityProvider = ({ children }) => {
     setError(null);
     try {
       const response = await authAxios.post(
-        `api/auth/posts/${postId}/comment`,
+        `/api/auth/posts/${postId}/comment`,
         {
           commentDetail,
         }

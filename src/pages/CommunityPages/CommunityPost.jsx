@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/CommunityPages/CommunityPost.module.css";
 import CommunityComment from "@/components/Community/CommunityComment";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useCommunity from "@/hooks/useCommunity";
 import useAuth from "@/hooks/useAuth";
 
@@ -27,6 +27,7 @@ const CommunityPost = () => {
   const [like, setLike] = useState(false);
   const [save, setSave] = useState(false);
   const navigate = useNavigate();
+  const locatoin = useLocation();
 
   useEffect(() => {
     const initialize = async () => {
@@ -54,6 +55,7 @@ const CommunityPost = () => {
     const apiRequest = async () => {
       try {
         await writeComment(postId, commentValue);
+        location.reload();
       } catch (err) {
         console.error("Failed to fetch write comment:", err);
       }

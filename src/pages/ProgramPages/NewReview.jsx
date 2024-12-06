@@ -2,18 +2,26 @@ import styles from "@/pages/ProgramPages/NewReview.module.css";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import EditorHeader from "@/layouts/Header/EditorHeader";
+import useProgram from "@/hooks/useProgram";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NewReview = () => {
   const { t } = useTranslation();
-  const [reviewTitle, setReviewTitle] = useState("");
+  const [instructor, setInstructor] = useState("");
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [reviewDetails, setReviewDetails] = useState("");
+  const { saveNewReview, loading, error } = useProgram();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const programId = location.state.programId;
 
   const onDoneClick = async () => {
     try {
-      //   await saveNewPost(postTitle, postContent);
-      //  navigate(`/community/post/${postId}`);
+      const period = (dateFrom + "~" + dateTo).replaceAll("-", "");
+      await saveNewReview(programId, instructor, period, reviewDetails);
+      navigate(`/program/${programId}`);
     } catch (err) {
       console.log(err);
     }
@@ -38,7 +46,13 @@ const NewReview = () => {
       setDateFrom("");
     }
   };
+  if (loading) {
+    return <p>Loading</p>;
+  }
 
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
   return (
     <>
       <EditorHeader title={t("program.review_write")} onClick={onDoneClick} />
@@ -52,8 +66,8 @@ const NewReview = () => {
               type="text"
               className={styles["review__input"]}
               placeholder={t("program.question1_placeholder")}
-              value={reviewTitle}
-              onChange={(e) => setReviewTitle(e.target.value)}
+              value={instructor}
+              onChange={(e) => setInstructor(e.target.value)}
             />
           </div>
 

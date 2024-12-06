@@ -146,7 +146,7 @@ const ProgramDetail = () => {
       <button
         className={styles["review-button"]}
         onClick={() => {
-          navigate("/program/new/review");
+          navigate("/program/new/review", { state: { programId: programId } });
         }}
       >
         <img

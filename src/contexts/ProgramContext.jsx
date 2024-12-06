@@ -60,14 +60,24 @@ const ProgramProvider = ({ children }) => {
     }
   };
 
-  const saveNewReview = async (programId, newReview) => {
+  const saveNewReview = async (
+    programId,
+    reviewInstructor,
+    reviewDuration,
+    reviewPost
+  ) => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await authAxios.post(`/programs/${programId}/review`, {
-        review: newReview,
-      });
+      const response = await authAxios.post(
+        `/api/auth/programs/${programId}/review`,
+        {
+          reviewInstructor,
+          reviewDuration,
+          reviewPost,
+        }
+      );
     } catch (error) {
       setError("Failed to save new review");
     } finally {

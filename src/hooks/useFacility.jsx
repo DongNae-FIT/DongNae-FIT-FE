@@ -5,7 +5,7 @@ const useFacility = () => {
   const {
     entireFacilityList,
     facilityDetail,
-    getEntiretFacilityList,
+    getEntireFacilityList,
     getFacilityDetail,
     loading,
     error,
@@ -14,7 +14,7 @@ const useFacility = () => {
   return {
     entireFacilityList,
     facilityDetail,
-    getEntiretFacilityList,
+    getEntireFacilityList,
     getFacilityDetail,
     loading,
     error,

@@ -10,7 +10,7 @@ const FacilityProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const getEntiretFacilityList = async (type, searchInput = "") => {
+  const getEntireFacilityList = async (type, searchInput = "") => {
     setLoading(true);
     setError(null);
     try {
@@ -51,7 +51,7 @@ const FacilityProvider = ({ children }) => {
       value={{
         entireFacilityList,
         facilityDetail,
-        getEntiretFacilityList,
+        getEntireFacilityList,
         getFacilityDetail,
         loading,
         error,

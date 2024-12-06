@@ -19,7 +19,8 @@ const FacilityMain = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { entireFacilityList, getEntireFacilityList } = useFacility();
+  const { entireFacilityList, getEntireFacilityList, loading, error } =
+    useFacility();
 
   useEffect(() => {
     if (location.state && location.state.category) {
@@ -34,13 +35,33 @@ const FacilityMain = () => {
   useEffect(() => {
     const initialize = async () => {
       try {
-        await getEntireFacilityList();
+        await getEntireFacilityList(setType(selectedCategory));
       } catch (err) {
         console.error("Failed to fetch use Info:", err);
       }
     };
-    initialize(); // 초기화 함수 실행
-  }, []);
+    initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCategory]);
+
+  const setType = (category) => {
+    switch (category) {
+      case 1:
+        return "간이운동장";
+      case 2:
+        return "게이트볼장";
+      case 3:
+        return "축구장";
+      case 4:
+        return "수영장";
+      case 5:
+        return "생활체육관";
+      case 6:
+        return "기타";
+      default:
+        return ""; // 예외 처리
+    }
+  };
 
   const toggleCategory = (categoryNumber) => {
     setPendingCategory(categoryNumber); // Temporarily set the selected category
@@ -81,6 +102,14 @@ const FacilityMain = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isCategoryOpen]);
+
+  if (loading || !entireFacilityList) {
+    return <p>Loading</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div className={styles["facility-main"]}>

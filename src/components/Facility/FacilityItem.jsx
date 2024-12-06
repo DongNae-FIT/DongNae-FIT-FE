@@ -26,9 +26,12 @@ const FacilityItem = ({
           <div className={styles["type"]}>{type}</div>
         </div>
         <div className={styles["text-wrapper"]}>
-          <div className={styles["distance"]}>{distance}</div>
+          <div className={styles["distance"]}>{distance} km</div>
           {isPublic ? (
-            <div className={styles["public"]}>• {t("facility.public")}</div>
+            <div className={styles["public"]}>
+              {"• "}
+              {t("facility.public")}
+            </div>
           ) : (
             ""
           )}

@@ -4,7 +4,6 @@ import axios from "axios";
 const ProgramContext = createContext();
 
 const ProgramProvider = ({ children }) => {
-  const [recommendedProgramList, setRecommendedProgramList] = useState([]);
   const [entireProgramList, setEntireProgramList] = useState([]);
   const [filteredProgramList, setFilteredProgramList] = useState([]);
   const [programDetail, setProgramDetail] = useState(null);
@@ -18,20 +17,6 @@ const ProgramProvider = ({ children }) => {
         p.programId === programId ? { ...p, ...updatedData } : p
       )
     );
-  };
-
-  const getRecommendedProgramList = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      setRecommendedProgramList([]);
-      const response = await axios.get("/api/programs/recommend");
-      setRecommendedProgramList(response.data);
-    } catch (err) {
-      setError(err || "Failed to load recommended program");
-    } finally {
-      setLoading(false);
-    }
   };
 
   const getEntireProgramList = async (latitude, longitude) => {
@@ -121,11 +106,9 @@ const ProgramProvider = ({ children }) => {
   return (
     <ProgramContext.Provider
       value={{
-        recommendedProgramList,
         entireProgramList,
         filteredProgramList,
         programDetail,
-        getRecommendedProgramList,
         getEntireProgramList,
         getFilteredProgramList,
         getProgramDetail,

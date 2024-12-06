@@ -6,10 +6,25 @@ import BannerSwiper from "@/components/Home/BannerSwiper";
 import ProgramItemForHome from "@/components/Home/ProgramItemForHome";
 import FacilityCategoryItem from "@/components/Home/FacilityCategoryItem";
 import CommunityItemForHome from "@/components/Home/CommunityItemForHome";
+import useMain from "@/hooks/useMain";
+import { useEffect } from "react";
 
 const Home = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { getDataForHome, recommendedProgramList, trendingPostList } =
+    useMain();
+
+  useEffect(() => {
+    const initialize = async () => {
+      try {
+        await getDataForHome();
+      } catch (err) {
+        console.error("Failed to fetch entrie post:", err);
+      }
+    };
+    initialize();
+  }, []);
 
   return (
     <div className={styles["home"]}>
@@ -27,32 +42,15 @@ const Home = () => {
             />
           </div>
           <div className={styles["program-list"]}>
-            <ProgramItemForHome
-              programId={1}
-              name={"오전골프05"}
-              facility={"강남구스포츠센터"}
-              price={"80,000원"}
-            />
-            <ProgramItemForHome
-              name={"오전골프05"}
-              facility={"강남구스포츠센터"}
-              price={"80,000원"}
-            />
-            <ProgramItemForHome
-              name={"오전골프05"}
-              facility={"강남구스포츠센터"}
-              price={"80,000원"}
-            />
-            <ProgramItemForHome
-              name={"오전골프05"}
-              facility={"강남구스포츠센터"}
-              price={"80,000원"}
-            />
-            <ProgramItemForHome
-              name={"오전골프05"}
-              facility={"강남구스포츠센터"}
-              price={"80,000원"}
-            />
+            {recommendedProgramList.map((program) => (
+              <ProgramItemForHome
+                key={program.programId}
+                programId={program.programId}
+                name={program.programName}
+                facility={program.facilityName}
+                price={program.programPrice}
+              />
+            ))}
           </div>
         </div>
         <div className={styles["home__section"]}>
@@ -88,26 +86,21 @@ const Home = () => {
             />
           </div>
           <div className={styles["community-list"]}>
-            <CommunityItemForHome
-              nickname={"닉네임"}
-              title={"제목입니다."}
-              content={
-                "내용이 일부 보입니다. 이런 식으로 보이고 긴 내용은 잘려서 보일 수 있습니다. 뭐라고 더 써야 할까요?????"
-              }
-              date="2021-22-11 00:00:00"
-              likeCount={3}
-              saveCount={5}
-            />
-            <CommunityItemForHome
-              nickname={"닉네임"}
-              title={"제목입니다."}
-              content={
-                "내용이 일부 보입니다. 이런 식으로 보이고 긴 내용은 잘려서 보일 수 있습니다. 뭐라고 더 써야 할까요?????"
-              }
-              date="2021-22-11 00:00:00"
-              likeCount={3}
-              saveCount={5}
-            />
+            {trendingPostList.map((post) => (
+              <CommunityItemForHome
+                key={post.postId}
+                postId={post.postId}
+                nickname={"닉네임"}
+                title={post.postTitle}
+                content={post.postDetail}
+                imgSrc={post.postImage}
+                date="2024-10-11 11:11:11"
+                likeCount={post.postLikeCount}
+                saveCount={post.postSaveCount}
+                //  postId,  title,  content,  imgSrc,  date,  likeCount,  saveCount,
+                //postId, postTitle, postDetail, postImage, postLikeCount, postSaveCount
+              />
+            ))}
           </div>
         </div>
       </div>

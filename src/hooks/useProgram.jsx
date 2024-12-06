@@ -3,11 +3,9 @@ import { ProgramContext } from "@/contexts/ProgramContext";
 
 const useProgram = () => {
   const {
-    recommendedProgramList,
     entireProgramList,
     filteredProgramList,
     programDetail,
-    getRecommendedProgramList,
     getEntireProgramList,
     getFilteredProgramList,
     getProgramDetail,
@@ -18,11 +16,9 @@ const useProgram = () => {
   } = useContext(ProgramContext);
 
   return {
-    recommendedProgramList,
     entireProgramList,
     filteredProgramList,
     programDetail,
-    getRecommendedProgramList,
     getEntireProgramList,
     getFilteredProgramList,
     getProgramDetail,

@@ -33,9 +33,53 @@
 
 .post-img {
   width: 100px;
-  height: 68px;
+  height: 80px;
   object-fit: cover;
-  height: auto;
   border-radius: 3px;
   flex-shrink: 0;
+}
+
+.footer-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  padding: 0 2px;
+  padding-top: 5px;
+  font-size: 0.8rem;
+  color: var(--main-grey);
+}
+
+.divider {
+  color: var(--sub-grey);
+  font-size: 0.7rem;
+}
+
+.count-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.count-icon {
+  width: 13px;
+}
+
+.like-count {
+  color: var(--sub-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.8rem;
+}
+
+.save-count {
+  color: var(--main-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.9rem;
 }

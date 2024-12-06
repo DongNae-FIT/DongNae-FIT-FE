@@ -1,6 +1,7 @@
 import styles from "@/pages/ProgramPages/NewReview.module.css";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import EditorHeader from "@/layouts/Header/EditorHeader";
 
 const NewReview = () => {
   const { t } = useTranslation();
@@ -8,6 +9,15 @@ const NewReview = () => {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [reviewDetails, setReviewDetails] = useState("");
+
+  const onDoneClick = async () => {
+    try {
+      //   await saveNewPost(postTitle, postContent);
+      //  navigate(`/community/post/${postId}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleDateFromChange = (e) => {
     const newDateFrom = e.target.value;
@@ -30,57 +40,60 @@ const NewReview = () => {
   };
 
   return (
-    <div className={styles["new-review"]}>
-      <div className={styles["container"]}>
-        <div className={styles["input-section"]}>
-          <div className={styles["section-title"]}>
-            {t("program.review_question1")}
-          </div>
-          <input
-            type="text"
-            className={styles["review__input"]}
-            placeholder={t("program.question1_placeholder")}
-            value={reviewTitle}
-            onChange={(e) => setReviewTitle(e.target.value)}
-          />
-        </div>
-
-        <div className={styles["input-section"]}>
-          <div className={styles["section-title"]}>
-            {t("program.review_question2")}
-          </div>
-          <div className={styles["input-row"]}>
+    <>
+      <EditorHeader title={t("program.review_write")} onClick={onDoneClick} />
+      <div className={styles["new-review"]}>
+        <div className={styles["container"]}>
+          <div className={styles["input-section"]}>
+            <div className={styles["section-title"]}>
+              {t("program.review_question1")}
+            </div>
             <input
-              type="date"
+              type="text"
               className={styles["review__input"]}
-              value={dateFrom}
-              onChange={handleDateFromChange}
-              max={dateTo || undefined}
-            />
-            ~
-            <input
-              type="date"
-              className={styles["review__input"]}
-              value={dateTo}
-              onChange={handleDateToChange}
-              min={dateFrom || undefined}
+              placeholder={t("program.question1_placeholder")}
+              value={reviewTitle}
+              onChange={(e) => setReviewTitle(e.target.value)}
             />
           </div>
-        </div>
 
-        <div className={styles["input-section"]}>
-          <div className={styles["section-title"]}>
-            {t("program.review_question4")}
+          <div className={styles["input-section"]}>
+            <div className={styles["section-title"]}>
+              {t("program.review_question2")}
+            </div>
+            <div className={styles["input-row"]}>
+              <input
+                type="date"
+                className={styles["review__input"]}
+                value={dateFrom}
+                onChange={handleDateFromChange}
+                max={dateTo || undefined}
+              />
+              ~
+              <input
+                type="date"
+                className={styles["review__input"]}
+                value={dateTo}
+                onChange={handleDateToChange}
+                min={dateFrom || undefined}
+              />
+            </div>
           </div>
-          <textarea
-            className={styles["review-detail-input"]}
-            placeholder={t("program.question4_placeholder")}
-            value={reviewDetails}
-            onChange={(e) => setReviewDetails(e.target.value)}
-          />
+
+          <div className={styles["input-section"]}>
+            <div className={styles["section-title"]}>
+              {t("program.review_question4")}
+            </div>
+            <textarea
+              className={styles["review-detail-input"]}
+              placeholder={t("program.question4_placeholder")}
+              value={reviewDetails}
+              onChange={(e) => setReviewDetails(e.target.value)}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
@@ -8,12 +8,49 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem("token")
-  );
-  const [loading, setLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isOnBoard, setIsOnBoard] = useState(false);
+
+  const [isDuplicate, setIsDuplicate] = useState(null);
+  const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const initializeAuth = async () => {
+      const accessToken = localStorage.getItem("accessToken");
+      const refreshToken = localStorage.getItem("refreshToken");
+
+      if (!refreshToken) {
+        setIsAuthenticated(false);
+        setLoading(false);
+        return;
+      }
+
+      if (accessToken) {
+        setIsAuthenticated(true);
+        setLoading(false);
+        return;
+      }
+
+      // AccessToken이 없고 RefreshToken이 있을 경우 토큰 갱신 시도
+      try {
+        const response = await axios.post(
+          `/member/refresh?refreshToken=${refreshToken}`
+        );
+        const newAccessToken = response.data.accessToken;
+        localStorage.setItem("accessToken", newAccessToken);
+        setIsAuthenticated(true);
+      } catch (error) {
+        console.error("Token refresh failed:", error);
+        setIsAuthenticated(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeAuth();
+  }, []);
 
   const login = (code) => {
     setLoading(true);
@@ -25,6 +62,7 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
         setIsAuthenticated(true);
+        setIsOnBoard(response.data.onboard);
       })
       .catch((error) => {
         console.error("Failed to login:", error);
@@ -36,7 +74,31 @@ const AuthProvider = ({ children }) => {
       });
   };
 
-  const onBoard = async (name, region) => {
+  const checkNicknameDuplicate = async (nickname) => {
+    setLoading(true);
+    return authAxios
+      .get(`/api/member/check?name=${nickname}`)
+      .then((response) => {
+        if (response.status == 200) {
+          console.log("중복 닉네임 없음");
+          setIsDuplicate(false);
+        }
+        if (response.message == "중복됩니다. 다른 닉네임으로 수정해주세요.") {
+          console.log("이미 사용중인 닉네임");
+          setIsDuplicate(true);
+        }
+      })
+      .catch((error) => {
+        console.error("닉네임 중복 체크 중 오류 발생:", error);
+        setError(error);
+        return Promise.reject(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const onBoard = async (nickname, region) => {
     setLoading(true);
 
     // 1. region에서 province와 district 추출
@@ -57,17 +119,18 @@ const AuthProvider = ({ children }) => {
         throw new Error("유효한 주소를 찾을 수 없습니다.");
       }
 
-      const { y: Latitude, x: Longitude } = geocodeResponse.data.documents[0];
+      const { y: latitude, x: longitude } = geocodeResponse.data.documents[0];
 
       // 3. 온보딩 요청
       const response = await authAxios.post(`/api//member/onboard`, {
-        name,
+        nickname,
         region,
         province,
         district,
-        Latitude,
-        Longitude,
+        latitude,
+        longitude,
       });
+      setIsAuthenticated(true);
     } catch (error) {
       console.error("Failed to onboard:", error);
 
@@ -109,7 +172,11 @@ const AuthProvider = ({ children }) => {
       value={{
         user,
         isAuthenticated,
+        isOnBoard,
+        isDuplicate,
         login,
+        checkNicknameDuplicate,
+        onBoard,
         logout,
         loading,
         error,

@@ -1,15 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/CommunityPages/CommunityPost.module.css";
 import CommunityComment from "@/components/Community/CommunityComment";
+import { useParams } from "react-router-dom";
+import useCommunity from "@/hooks/useCommunity";
 
 const CommunityPost = () => {
   const { t } = useTranslation();
+  const { postId } = useParams();
+  const { getPostDetail, postDetail } = useCommunity();
 
   const [commentValue, setCommentValue] = useState("");
   const [like, setLike] = useState(false);
   const [save, setSave] = useState(false);
+
+  useEffect(() => {
+    const initialize = async () => {
+      try {
+        await getPostDetail(postId);
+        setLike(postDetail.postLikeStatus);
+        setSave(postDetail.postSaveStatus);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    initialize();
+  }, []);
 
   const handleEnterKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -39,8 +56,8 @@ const CommunityPost = () => {
             className={styles["info-img"]}
           />
           <div className={styles["info-text"]}>
-            <div className={styles["nickname"]}>사람은왜운동을해야하는가</div>
-            <div className={styles["date"]}>2024.11.09 20:02</div>
+            <div className={styles["nickname"]}>{postDetail.memberName}</div>
+            <div className={styles["date"]}>{postDetail.postDate}</div>
           </div>
           <img
             src={"/icon/icon_dots_grey.png"}
@@ -48,11 +65,8 @@ const CommunityPost = () => {
             onClick={() => {}}
           />
         </div>
-        <div className={styles["post-title"]}>구갈동 스포츠센터 어때요?</div>
-        <div className={styles["post-content"]}>
-          구갈동에 있는 스포츠센터 다니시는 분 있으신가요? 수영 다니고 싶은데
-          어떤지 궁금해서요!
-        </div>
+        <div className={styles["post-title"]}>{postDetail.postTitle}</div>
+        <div className={styles["post-content"]}>{postDetail.postDetail}</div>
         <div className={styles["service-wrapper"]}>
           <div className={styles["post-button-wrapper"]}>
             <button
@@ -94,14 +108,14 @@ const CommunityPost = () => {
                 src={"/icon/icon_likes_colored.png"}
                 className={styles["count-icon"]}
               />
-              {1}
+              {postDetail.postLikeCount}
             </div>
             <div className={styles["save-count"]}>
               <img
                 src={"/icon/icon_save_colored.png"}
                 className={styles["count-icon"]}
               />
-              {1}
+              {postDetail.postSaveCount}
             </div>
           </div>
         </div>
@@ -111,18 +125,14 @@ const CommunityPost = () => {
           {t("community.comment")}
         </span>
         <div className={styles["comment-list"]}>
-          <CommunityComment
-            nickname="홍길동"
-            content="운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!!"
-          />
-          <CommunityComment
-            nickname="홍길동"
-            content="운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!!"
-          />
-          <CommunityComment
-            nickname="홍길동"
-            content="운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!! 운동합시다. 건강해져요. 다들 운동하세요!!!!!!!!!"
-          />
+          {postDetail.commentData.map((comment) => (
+            <CommunityComment
+              key={comment.commentId}
+              nickname={comment.memberName}
+              profileImg={comment.memberProfile}
+              content={comment.commentDetail}
+            />
+          ))}
         </div>
       </div>
       <div className={styles["comment-input-wrapper"]}>

@@ -4,7 +4,7 @@ import useAuth from "@/hooks/useAuth";
 
 const KakaoRedirect = () => {
   const navigate = useNavigate();
-  const { login, loading, error, isAuthenticated } = useAuth();
+  const { login, loading, error, isAuthenticated, isOnBoard } = useAuth();
 
   const code = new URL(window.location.href).searchParams.get("code");
 
@@ -24,8 +24,10 @@ const KakaoRedirect = () => {
 
   useEffect(() => {
     if (!loading) {
-      if (isAuthenticated) {
+      if (isAuthenticated && isOnBoard) {
         navigate("/login/info");
+      } else if (isAuthenticated && !isOnBoard) {
+        navigate("/");
       } else if (error) {
         navigate("/login");
       }

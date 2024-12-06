@@ -61,18 +61,18 @@ function App() {
       "/mypage/community/save",
       "/delete/account",
     ],
-    editor: {
-      "/program/review/new": t("program.review_write"),
-      "/community/post/new": t("community.write"),
-      "/mypage/edit/profile": t("mypage.edit_profile"),
-      "/mypage/set/location": t("mypage.set_location"),
-    },
+    // editor: {
+    //   "/program/new/review": t("program.review_write"),
+    //   "/community/new/post": t("community.write"),
+    //   "/mypage/edit/profile": t("mypage.edit_profile"),
+    //   "/mypage/set/location": t("mypage.set_location"),
+    // },
   };
 
   const isPathMatched = (pathList, currentPath) =>
     pathList.some((path) => matchPath(path, currentPath));
 
-  const editorHeaderTitle = headerConfig.editor[location.pathname] || "";
+  // const editorHeaderTitle = headerConfig.editor[location.pathname] || "";
   return (
     <AuthProvider>
       <ProgramProvider>
@@ -86,7 +86,7 @@ function App() {
           {isPathMatched(headerConfig.back, location.pathname) && (
             <BackHeader />
           )}
-          {editorHeaderTitle && <EditorHeader title={editorHeaderTitle} />}
+          {/* {editorHeaderTitle && <EditorHeader title={editorHeaderTitle} />} */}
 
           <Routes>
             <Route path="/" element={<Home />} />
@@ -96,14 +96,14 @@ function App() {
 
             <Route path="/program" element={<ProgramMain />} />
             <Route path="/program/:programId" element={<ProgramDetail />} />
-            <Route path="/program/review/new" element={<NewReview />} />
+            <Route path="/program/new/review" element={<NewReview />} />
 
             <Route path="/facility" element={<FacilityMain />} />
             <Route path="/facility/:facilityId" element={<FacilityDetail />} />
 
             <Route path="/community" element={<CommunityMain />} />
             <Route path="/community/post/:postId" element={<CommunityPost />} />
-            <Route path="/community/post/new" element={<NewPost />} />
+            <Route path="/community/new/post" element={<NewPost />} />
 
             <Route path="/mypage" element={<MyPageMain />} />
             <Route path="/mypage/edit/profile" element={<EditProfile />} />
@@ -126,6 +126,8 @@ function App() {
 
             <Route path="/search" element={<SearchMain />} />
             <Route path="/search/result/all" element={<SearchResultAll />} />
+
+            <Route path="*" />
           </Routes>
         </CommunityProvider>
       </ProgramProvider>

@@ -5,6 +5,7 @@ const useCommunity = () => {
   const {
     entirePostList,
     postDetail,
+    postId,
     getEntirePostList,
     getPostDetail,
     togglePostLike,
@@ -20,6 +21,7 @@ const useCommunity = () => {
   return {
     entirePostList,
     postDetail,
+    postId,
     getEntirePostList,
     getPostDetail,
     togglePostLike,

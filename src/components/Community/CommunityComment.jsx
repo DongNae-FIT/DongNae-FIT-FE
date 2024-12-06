@@ -12,10 +12,7 @@ const CommunityComment = ({
   return (
     <div className={styles["community-comment"]}>
       <div className={styles["info-wrapper"]}>
-        <img
-          src={"/default/default_profile.png"}
-          className={styles["profile-img"]}
-        />
+        <img src={profileImg} className={styles["profile-img"]} />
 
         <div className={styles["nickname"]}>{nickname}</div>
         <img

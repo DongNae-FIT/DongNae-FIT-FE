@@ -85,3 +85,27 @@
   align-items: center;
   z-index: 1000; /* 팝업 최상위 */
 }
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  text-align: left;
+  padding-top: 3px;
+  padding-left: 3px;
+}
+
+.default-message {
+  color: var(--main-grey);
+  font-size: 0.8rem;
+  text-align: left;
+  padding-top: 3px;
+  padding-left: 3px;
+}
+
+.check-message {
+  color: var(--sub-color);
+  font-size: 0.8rem;
+  text-align: left;
+  padding-top: 3px;
+  padding-left: 3px;
+}

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styles from "@/layouts/Header/EditorHeader.module.css";
 
-const EditorHeader = ({ title }) => {
+const EditorHeader = ({ title, onClick }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -15,7 +15,9 @@ const EditorHeader = ({ title }) => {
         alt="Back"
       />
       <div className={styles["header__title"]}>{title}</div>
-      <button className={styles["done-button"]}>{t("buttons.done")}</button>
+      <button className={styles["done-button"]} onClick={onClick}>
+        {t("buttons.done")}
+      </button>
     </div>
   );
 };

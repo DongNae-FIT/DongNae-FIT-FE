@@ -2,10 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/MyPages/MyPageMain.module.css";
+import useAuth from "@/hooks/useAuth";
 
 const MyPageMain = () => {
   const { t } = useTranslation();
-  const isAuthentication = false;
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -17,7 +18,7 @@ const MyPageMain = () => {
             className={styles["user-info-img"]}
           />
           <div className={styles["user-info-text"]}>
-            {isAuthentication ? (
+            {isAuthenticated ? (
               <>
                 <div className={styles["nickname"]}>닉네임</div>
                 <div className={styles["id"]}>@아이디d4f5g4d8</div>

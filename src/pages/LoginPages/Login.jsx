@@ -17,15 +17,13 @@ const Login = () => {
     <div className={styles["login"]}>
       <div className={styles["login__title"]}>{t("login.title")}</div>
       <div className={styles["login__img"]}></div>
-      <div className={styles["kakao-login"]}>
+      <div className={styles["kakao-login"]} onClick={handleLogin}>
         <img
           className={styles["kakao-login__symbol"]}
           src={"/kakao_symbol.png"}
           alt="Kakao Login"
         />
-        <div className={styles["kakao-login__text"]} onClick={handleLogin}>
-          {t("login.kakao")}
-        </div>
+        <div className={styles["kakao-login__text"]}>{t("login.kakao")}</div>
       </div>
     </div>
   );

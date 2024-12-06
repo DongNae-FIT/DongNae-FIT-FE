@@ -90,8 +90,7 @@ const FacilityMain = () => {
         isCategoryOpen &&
         !event.target.closest(`.${styles["category-filter"]}`)
       ) {
-        setCategoryOpen(false); // Close category menu when clicking outside
-        // Reset only pendingCategory, not selectedCategory
+        setCategoryOpen(false);
         setPendingCategory(null);
       }
     };

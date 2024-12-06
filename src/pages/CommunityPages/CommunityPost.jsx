@@ -39,6 +39,7 @@ const CommunityPost = () => {
       }
     };
     initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleEnterKeyDown = (e) => {

@@ -69,10 +69,11 @@ const CommunityProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await authAxios.post("api/auth/posts", {
+      const response = await authAxios.post("/api/auth/posts", {
         postTitle,
         postDetail,
       });
+      console.log(response.data.data);
       setPostId(response.data.data.postId);
     } catch (error) {
       setError("Failed to save new post");
@@ -85,7 +86,7 @@ const CommunityProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await authAxios.delete(`api/auth/posts/${postId}`);
+      const response = await authAxios.delete(`/api/auth/posts/${postId}`);
     } catch (error) {
       setError("Failed to delete post");
     } finally {

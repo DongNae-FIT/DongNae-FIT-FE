@@ -15,9 +15,10 @@ const NewPost = () => {
 
   const onDoneClick = async () => {
     try {
-      console.log("페이지에서 요청");
       await saveNewPost(postTitle, postContent);
-      navigate(`/community/post/${postId}`);
+      if (postId) {
+        navigate(`/community/post/${postId}`);
+      }
     } catch (err) {
       console.log(err);
     }

@@ -44,7 +44,7 @@ const CommunityProvider = ({ children }) => {
     setError(null);
 
     try {
-      const response = await authAxios.put(`/api/auth/${postId}/like`);
+      const response = await authAxios.put(`/api/auth/posts/${postId}/like`);
     } catch (error) {
       setError("Failed to toggle like");
     } finally {
@@ -57,7 +57,7 @@ const CommunityProvider = ({ children }) => {
     setError(null);
 
     try {
-      const response = await authAxios.put(`/api/auth/${postId}/save`);
+      const response = await authAxios.put(`/api/auth/posts/${postId}/save`);
     } catch (error) {
       setError("Failed to toggle save");
     } finally {

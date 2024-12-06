@@ -32,8 +32,10 @@ const CommunityPost = () => {
     const initialize = async () => {
       try {
         await getPostDetail(postId);
-        setLike(postDetail.postLikeStatus);
-        setSave(postDetail.postSaveStatus);
+        if (postDetail) {
+          setLike(postDetail.postLikeStatus);
+          setSave(postDetail.postSaveStatus);
+        }
       } catch (err) {
         console.log(err);
       }

@@ -5,7 +5,6 @@ const ProgramContext = createContext();
 
 const ProgramProvider = ({ children }) => {
   const [entireProgramList, setEntireProgramList] = useState([]);
-  const [filteredProgramList, setFilteredProgramList] = useState([]);
   const [programDetail, setProgramDetail] = useState(null);
 
   const [loading, setLoading] = useState(false);
@@ -19,37 +18,19 @@ const ProgramProvider = ({ children }) => {
     );
   };
 
-  const getEntireProgramList = async (latitude, longitude) => {
+  const getEntireProgramList = async (
+    min = 0,
+    max = 99999999999,
+    searchInput = ""
+  ) => {
     setLoading(true);
     setError(null);
     try {
       setEntireProgramList([]);
       const response = await axios.get(
-        `/api/programs?latitude=${latitude}&longitude=${longitude}`
+        `/api//programs?min=${min}&max=${max}&search=${searchInput}`
       );
-      setEntireProgramList(response.data);
-    } catch (err) {
-      setError(err || "Failed to load recommended program");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getFilteredProgramList = async (align, priceMin, priceMax, filter) => {
-    setLoading(true);
-    setError(null);
-    try {
-      setFilteredProgramList([]);
-
-      const params = {};
-      if (align) params.align = align;
-      if (priceMin) params.priceMin = priceMin;
-      if (priceMax) params.priceMax = priceMax;
-      if (filter && filter.length > 0) params.filter = filter.join(",");
-
-      const response = await axios.get("/api/programs/filter", { params });
-
-      setFilteredProgramList(response.data);
+      setEntireProgramList(response.data.data);
     } catch (err) {
       setError(err || "Failed to load recommended program");
     } finally {
@@ -107,10 +88,8 @@ const ProgramProvider = ({ children }) => {
     <ProgramContext.Provider
       value={{
         entireProgramList,
-        filteredProgramList,
         programDetail,
         getEntireProgramList,
-        getFilteredProgramList,
         getProgramDetail,
         toggleProgramLike,
         saveNewReview,

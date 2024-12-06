@@ -44,9 +44,9 @@
   border: 1px solid var(--sub-grey);
   border-radius: 10px;
   z-index: 10;
-  padding: 0.6em 1.3em;
+  padding: 0.6em 1.5em;
   font-size: 0.9rem;
-  top: calc(60px + var(--map-height) + 50px);
+  top: calc(60px + var(--map-height) + 20px);
   left: var(--default-padding);
 }
 

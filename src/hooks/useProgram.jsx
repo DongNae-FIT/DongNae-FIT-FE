@@ -4,10 +4,8 @@ import { ProgramContext } from "@/contexts/ProgramContext";
 const useProgram = () => {
   const {
     entireProgramList,
-    filteredProgramList,
     programDetail,
     getEntireProgramList,
-    getFilteredProgramList,
     getProgramDetail,
     toggleProgramLike,
     saveNewReview,
@@ -17,10 +15,8 @@ const useProgram = () => {
 
   return {
     entireProgramList,
-    filteredProgramList,
     programDetail,
     getEntireProgramList,
-    getFilteredProgramList,
     getProgramDetail,
     toggleProgramLike,
     saveNewReview,

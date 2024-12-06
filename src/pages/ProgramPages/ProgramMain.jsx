@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "@/pages/ProgramPages/ProgramMain.module.css";
 import ProgramItem from "@/components/Program/ProgramItem";
 import KakaoMap from "@/components/KakaoMap";
+import useProgram from "@/hooks/useProgram";
 
 const ProgramMain = () => {
   const { t, i18n } = useTranslation();
@@ -13,52 +14,94 @@ const ProgramMain = () => {
   const [isAlignOpen, setAlignOpen] = useState(false);
   const [selectedAlign, setSelectedAlign] = useState(t("program.align1"));
   const [isPriceOpen, setPriceOpen] = useState(false);
-  const [activeFilters, setActiveFilters] = useState({});
   const dropdownRef = useRef(null);
-
+  const { entireProgramList, getEntireProgramList, loading, error } =
+    useProgram();
+  const MAX_PRICE = 99999999999; // 99억 9999만 9999원
   const [priceMin, setPriceMin] = useState(0);
   const [priceMax, setPriceMax] = useState(0);
 
-  const MAX_PRICE = 99999999999; // 99억 9999만 9999원
   const [warningMessage, setWarningMessage] = useState("");
 
-  const locations = [
-    { lat: 37.5665, lng: 126.978, name: "서울" },
-    { lat: 35.1796, lng: 129.0756, name: "부산" },
-    { lat: 37.4563, lng: 126.7052, name: "인천" },
-  ];
+  const [locations, setLocations] = useState(null);
 
-  const handlePriceMinChange = (e) => {
-    let value = e.target.value.replace(/[^0-9]/g, ""); // 숫자만 남기기
-    value = value ? Number(value) : null; // 빈값은 null로 처리
-    if (value > MAX_PRICE) value = MAX_PRICE; // 최대값 제한
+  useEffect(() => {
+    const initialize = async () => {
+      try {
+        await getEntireProgramList();
 
-    setPriceMin(value);
-    checkPriceValidity(value, priceMax);
-  };
+        if (entireProgramList) {
+          setLocations(extractLocations(entireProgramList));
+        }
+      } catch (err) {
+        console.error("Failed to fetch entrie programs:", err);
+      }
+    };
+    initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const handlePriceMaxChange = (e) => {
-    let value = e.target.value.replace(/[^0-9]/g, ""); // 숫자만 남기기
-    value = value ? Number(value) : null; // 빈값은 null로 처리
-    if (value > MAX_PRICE) value = MAX_PRICE; // 최대값 제한
+  const applyPriceFilter = async () => {
+    if (warningMessage) {
+      window.alert("최소 금액보다 최대 금액이 작습니다.");
+      return;
+    }
 
-    setPriceMax(value);
-    checkPriceValidity(priceMin, value);
-  };
+    try {
+      setPriceOpen(false);
 
-  const checkPriceValidity = (min, max) => {
-    if (min && max && min > max) {
-      setWarningMessage(`${t("warning.price")}`);
-    } else {
-      setWarningMessage(""); // 유효한 경우 경고 메시지 제거
+      const min = priceMin;
+      const max = priceMax;
+
+      await getEntireProgramList(min, max);
+    } catch (error) {
+      console.error("Failed to apply price filter:", error);
     }
   };
 
-  const toggleFilter = (filterName) => {
-    setActiveFilters((prev) => ({
-      ...prev,
-      [filterName]: !prev[filterName],
+  const resetPriceFilter = async () => {
+    try {
+      setPriceOpen(false);
+
+      await getEntireProgramList();
+    } catch (error) {
+      console.error("Failed to reset price filter:", error);
+    }
+  };
+
+  const extractLocations = (programList) => {
+    const locations = programList.map((program) => ({
+      lat: parseFloat(program.facilityLatitude),
+      lng: parseFloat(program.facilityLongitude),
+      name: `${program.programId}`,
     }));
+    return locations;
+  };
+
+  const handlePriceMinChange = (e) => {
+    let value = e.target.value.replace(/[^0-9]/g, ""); // 숫자만 남기기
+    value = value ? Number(value) : 0;
+    checkPriceValidity(value, priceMax);
+    setPriceMin(value);
+  };
+
+  const handlePriceMaxChange = (e) => {
+    let value = e.target.value.replace(/[^0-9]/g, "");
+    value = value ? Number(value) : 0;
+    checkPriceValidity(priceMin, value);
+    setPriceMax(value);
+  };
+
+  const checkPriceValidity = (min, max) => {
+    if ((min > MAX_PRICE) | (max > MAX_PRICE)) {
+      setWarningMessage(
+        `${t("가격은 99억 9999만 9999원을 넘을 수 없습니다.")}`
+      );
+    } else if (min && max && min > max) {
+      setWarningMessage(`${t("warning.price")}`);
+    } else {
+      setWarningMessage("");
+    }
   };
 
   const handleAlignSelect = (align) => {
@@ -69,14 +112,9 @@ const ProgramMain = () => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setAlignOpen(false);
-        setPriceMax(0);
-        setPriceMin(0);
-        setWarningMessage("");
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -85,6 +123,14 @@ const ProgramMain = () => {
   useEffect(() => {
     setSelectedAlign(t("program.align1"));
   }, [i18n.language, t]);
+
+  if (loading || !entireProgramList || !locations) {
+    return <p>Loading</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div className={styles["program-main"]}>
@@ -127,9 +173,14 @@ const ProgramMain = () => {
         </div>
       </div>
       <div className={styles["program-list"]}>
-        <ProgramItem name="강좌명" facility="시설이름" price="80,000원" />
-        <ProgramItem name="강좌명" facility="시설이름" price="80,000원" />
-        <ProgramItem name="강좌명" facility="시설이름" price="80,000원" />
+        {entireProgramList.map((program) => (
+          <ProgramItem
+            key={program.programId}
+            name={program.programName}
+            facility={program.facilityName}
+            price={`${program.programPrice.toLocaleString()}원`}
+          />
+        ))}
       </div>
 
       {isPriceOpen && (
@@ -162,19 +213,13 @@ const ProgramMain = () => {
             <div className={styles["price-button-wrapper"]}>
               <button
                 className={styles["reset-button"]}
-                onClick={() => {
-                  setPriceMin(0);
-                  setPriceMax(0);
-                }}
+                onClick={resetPriceFilter}
               >
                 {t("buttons.reset")}
               </button>
               <button
                 className={styles["apply-button"]}
-                onClick={() => {
-                  if (warningMessage)
-                    window.alert("최소 금액보다 최대 금액이 작습니다.");
-                }}
+                onClick={applyPriceFilter}
               >
                 {t("buttons.apply")}
               </button>

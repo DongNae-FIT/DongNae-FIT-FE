@@ -16,12 +16,13 @@ const CommunityMain = () => {
   useEffect(() => {
     const initialize = async () => {
       try {
-        await getEntirePostList(); // 태그 가져오기
+        await getEntirePostList();
       } catch (err) {
-        console.error("Failed to fetch entrie post:", err); // 태그 가져오기 실패 시 에러 로그
+        console.error("Failed to fetch entrie post:", err);
       }
     };
-    initialize(); // 초기화 함수 실행
+    initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onWriteClicked = () => {

@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import styles from "@/pages/FacilityPages/FacilityMain.module.css";
 import FacilityItem from "@/components/Facility/FacilityItem";
+import useFacility from "@/hooks/useFacility";
 
 const FacilityMain = () => {
   const { t, i18n } = useTranslation();
@@ -18,6 +19,8 @@ const FacilityMain = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const { entireFacilityList, getEntireFacilityList } = useFacility();
+
   useEffect(() => {
     if (location.state && location.state.category) {
       setSelectedCategory(location.state.category);
@@ -27,6 +30,17 @@ const FacilityMain = () => {
   useEffect(() => {
     setSelectedAlign(t("program.align1"));
   }, [i18n.language, t]);
+
+  useEffect(() => {
+    const initialize = async () => {
+      try {
+        await getEntireFacilityList();
+      } catch (err) {
+        console.error("Failed to fetch use Info:", err);
+      }
+    };
+    initialize(); // 초기화 함수 실행
+  }, []);
 
   const toggleCategory = (categoryNumber) => {
     setPendingCategory(categoryNumber); // Temporarily set the selected category
@@ -116,18 +130,15 @@ const FacilityMain = () => {
         </div>
       </div>
       <div className={styles["facility-list"]}>
-        <FacilityItem
-          name={"홍익대학교운동장"}
-          type={"공공운동장"}
-          distance={"12.6km"}
-          isPublic={true}
-        />
-        <FacilityItem
-          name={"홍익대학교운동장"}
-          type={"공공운동장"}
-          distance={"12.6km"}
-        />
-        {/* 추가된 FacilityItem들 */}
+        {entireFacilityList.map((facility) => (
+          <FacilityItem
+            key={facility.facilityId}
+            name={facility.facilityName}
+            type={facility.facilityType}
+            distance={facility.km}
+            isPublic={true}
+          />
+        ))}
       </div>
 
       {isCategoryOpen && (

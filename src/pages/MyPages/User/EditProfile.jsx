@@ -27,6 +27,7 @@ const EditProfile = () => {
     };
     initialize(); // 초기화 함수 실행
     setNickname(user.name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading || !user) {

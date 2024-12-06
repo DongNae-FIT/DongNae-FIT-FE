@@ -28,6 +28,7 @@ const SetLocation = () => {
     };
     initialize(); // 초기화 함수 실행
     setLocation(user.region);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onDoneClick = async () => {

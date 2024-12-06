@@ -19,16 +19,18 @@ const KakaoRedirect = () => {
       }
     };
     initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (isOnBoard == null) return;
     console.log("리다이렉트:", isOnBoard);
     if (isOnBoard) {
-      navigate("/login/info");
+      navigate("/login/info", { state: { isLogin: true } });
     } else {
       navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOnBoard]);
 
   if (loading || isOnBoard == null) {

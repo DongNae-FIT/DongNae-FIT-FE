@@ -1,22 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/LoginPages/AdditionalInfo.module.css";
 import LocationInput from "@/components/LocationInput";
 import useAuth from "@/hooks/useAuth";
 import { validateNickname } from "@/utils/Validator";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AdditionalInfo = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const [nickname, setNickname] = useState("");
-  const [location, setLocation] = useState("");
+  const [region, setRegion] = useState("");
   const [openPostcode, setOpenPostcode] = useState(false);
 
   const [nicknameErrors, setNicknameErrors] = useState(null);
   const [nicknameCheck, setNicknameCheck] = useState(false);
   const { isDuplicate, checkNicknameDuplicate, onBoard } = useAuth();
+
+  useEffect(() => {
+    if (!location.state?.isLogin) {
+      window.alert("잘못된 접근입니다. 홈으로 이동합니다.");
+      navigate("/"); // 홈으로 이동
+    }
+  }, [location.state, navigate]);
 
   const handle = {
     clickButton: () => setOpenPostcode(true),
@@ -24,7 +32,7 @@ const AdditionalInfo = () => {
   };
 
   const handleAddressSelect = (address) => {
-    setLocation(address);
+    setRegion(address);
     setOpenPostcode(false);
   };
 
@@ -61,7 +69,7 @@ const AdditionalInfo = () => {
   const handleDoneButtonClicked = async () => {
     const nicknameError = validateNickname(nickname);
 
-    if (nicknameError || !location) {
+    if (nicknameError || !region) {
       setNicknameErrors(nicknameError);
       window.alert("모든 필드를 입력해주세요.");
       return;
@@ -73,7 +81,7 @@ const AdditionalInfo = () => {
     }
 
     try {
-      await onBoard(nickname, location);
+      await onBoard(nickname, region);
       if (window.confirm("정상적으로 로그인 되었습니다. 홈으로 이동합니다.")) {
         navigate("/");
       }
@@ -129,7 +137,7 @@ const AdditionalInfo = () => {
               type="text"
               className={styles["info__input"]}
               placeholder={t("additional_info.location_placeholder")}
-              value={location}
+              value={region}
               readOnly
             />
             <button

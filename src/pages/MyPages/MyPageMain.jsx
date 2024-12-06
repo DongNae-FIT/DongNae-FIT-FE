@@ -21,8 +21,9 @@ const MyPageMain = () => {
           console.error("Failed to fetch use Info:", err);
         }
       };
-      initialize(); // 초기화 함수 실행
+      initialize();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading || !user) {

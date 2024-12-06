@@ -75,7 +75,7 @@
 .content {
   display: flex;
   flex-direction: row;
-  gap: 28%;
+  gap: 70px;
   font-size: 0.9rem;
 }
 

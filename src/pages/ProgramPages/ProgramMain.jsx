@@ -176,6 +176,7 @@ const ProgramMain = () => {
         {entireProgramList.map((program) => (
           <ProgramItem
             key={program.programId}
+            programId={program.programId}
             name={program.programName}
             facility={program.facilityName}
             price={`${program.programPrice.toLocaleString()}원`}

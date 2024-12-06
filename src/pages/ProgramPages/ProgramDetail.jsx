@@ -1,20 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import styles from "@/pages/ProgramPages/ProgramDetail.module.css";
 import ProgramReviewItem from "@/components/Program/ProgramReviewItem";
 import KakaoMap from "@/components/KakaoMap";
+import useProgram from "@/hooks/useProgram";
 
 const ProgramDetail = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [Like, setLike] = useState(false);
-  const locations = [{ lat: 37.5665, lng: 126.978, name: "서울" }];
+  const [locations, setLocations] = useState(null);
+  const { programDetail, getProgramDetail, loading, error } = useProgram();
+  const { programId } = useParams();
+
+  useEffect(() => {
+    const initialize = async () => {
+      try {
+        await getProgramDetail(programId);
+        if (programDetail) {
+          const coordinate = {
+            lat: programDetail.facilityLatitude,
+            lng: programDetail.facilityLongitude,
+            name: programDetail.facilityId,
+          };
+          setLocations([coordinate]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch entrie programs:", err);
+      }
+    };
+    initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onClickLike = () => {
     setLike((prevLike) => !prevLike);
   };
+
+  if (loading || !programDetail || !locations) {
+    return <p>Loading</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div className={styles["program-detail"]}>
@@ -27,17 +58,17 @@ const ProgramDetail = () => {
         />
         <div className={styles["location-text-wrapper"]}>
           <div className={styles["facility-name"]}>
-            시설이름 강남구스포츠센터
+            {programDetail.facilityName}
           </div>
           <div className={styles["facility-address"]}>
-            주소입력 강남구 3049-29
+            {programDetail.facilityName}
           </div>
         </div>
         <button
           className={styles["find-path-button"]}
           onClick={() => {
             window.open(
-              "https://map.kakao.com/link/to/${facilityAddr},${facilityLatitude},${facilityLongitude}"
+              `https://map.kakao.com/link/to/${programDetail.facilityName},${programDetail.facilityLatitude},${programDetail.facilityLongitude}`
             );
           }}
         >
@@ -46,7 +77,7 @@ const ProgramDetail = () => {
       </div>
       <div className={styles["info-wrapper"]}>
         <div className={styles["title"]}>
-          강좌명 오전골프05
+          {programDetail.programData.facilityName}
           <img
             src={
               Like
@@ -66,11 +97,21 @@ const ProgramDetail = () => {
             <div>{t("program.url")}</div>
           </div>
           <div className={styles["content-right"]}>
-            <div>성인</div>
-            <div>월수금</div>
-            <div>성인</div>
-            <div>월수금</div>
-            <div>요일</div>
+            <div>{programDetail.programData.programTarget}</div>
+            <div>
+              {programDetail.programData.programStart} ~
+              {programDetail.programData.programEnd}
+            </div>
+            <div>
+              {programDetail.programData.programWeek}{" "}
+              {programDetail.programData.programTime}
+            </div>
+            <div>
+              {programDetail.programData.programPrice.toLocaleString()}원
+            </div>
+            <a href={programDetail.programData.programUrl} target="_blank">
+              {programDetail.programData.programUrl}
+            </a>
           </div>
         </div>
       </div>
@@ -78,16 +119,14 @@ const ProgramDetail = () => {
       <div className={styles["review-wrapper"]}>
         <div className={styles["title"]}>{t("program.review_title")}</div>
         <div className={styles["review-list"]}>
-          <ProgramReviewItem
-            instructor="홍길동"
-            period="20241101 ~ 20212445"
-            content="한 달 간 배우면서 실력 많이 늘었어요! 이번 달에도 신청하려고 합니다. 꼭 신청 성공하면 좋겠네요."
-          />
-          <ProgramReviewItem
-            instructor="홍길동"
-            period="20241101 ~ 20212445"
-            content="한 달 간 배우면서 실력 많이 늘었어요! 이번 달에도 신청하려고 합니다. 꼭 신청 성공하면 좋겠네요."
-          />
+          {programDetail.reviewData.map((review) => (
+            <ProgramReviewItem
+              key={review.reviewId}
+              instructor={review.reviewInstructor}
+              period={review.reviewDuration}
+              content={review.reviewPost}
+            />
+          ))}
         </div>
       </div>
 

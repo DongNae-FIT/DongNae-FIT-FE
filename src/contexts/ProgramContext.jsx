@@ -44,7 +44,8 @@ const ProgramProvider = ({ children }) => {
     try {
       setProgramDetail(null);
       const response = await axios.get(`/api/programs/${programId}`);
-      setProgramDetail(response.data);
+      setProgramDetail(response.data.data);
+      console.log("응답", response.data.data);
     } catch (err) {
       setError(err || "Failed to load recommended program");
     } finally {

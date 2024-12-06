@@ -46,6 +46,8 @@ import SavedPost from "@/pages/MyPages/Community/SavedPost";
 import SearchMain from "@/pages/SearchPages/SearchIMain";
 import SearchResultAll from "@/pages/SearchPages/SearchResultAll";
 
+import ProtectedRoute from "@/routes/ProtectedRoute.jsx";
+
 function App() {
   const { t } = useTranslation();
   const location = useLocation();
@@ -98,14 +100,20 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/auth" element={<KakaoRedirect />} />
-                  <Route path="/login/info" element={<AdditionalInfo />} />
+                  <Route
+                    path="/login/info"
+                    element={<ProtectedRoute element={<AdditionalInfo />} />}
+                  />
 
                   <Route path="/program" element={<ProgramMain />} />
                   <Route
                     path="/program/:programId"
                     element={<ProgramDetail />}
                   />
-                  <Route path="/program/new/review" element={<NewReview />} />
+                  <Route
+                    path="/program/new/review"
+                    element={<ProtectedRoute element={<NewReview />} />}
+                  />
 
                   <Route path="/facility" element={<FacilityMain />} />
                   <Route
@@ -118,38 +126,47 @@ function App() {
                     path="/community/post/:postId"
                     element={<CommunityPost />}
                   />
-                  <Route path="/community/new/post" element={<NewPost />} />
+                  <Route
+                    path="/community/new/post"
+                    element={<ProtectedRoute element={<NewPost />} />}
+                  />
 
                   <Route path="/mypage" element={<MyPageMain />} />
                   <Route
                     path="/mypage/edit/profile"
-                    element={<EditProfile />}
+                    element={<ProtectedRoute element={<EditProfile />} />}
                   />
                   <Route
                     path="/mypage/set/location"
-                    element={<SetLocation />}
+                    element={<ProtectedRoute element={<SetLocation />} />}
                   />
 
                   <Route
                     path="/mypage/program/save"
-                    element={<SavedProgram />}
+                    element={<ProtectedRoute element={<SavedProgram />} />}
                   />
                   <Route
                     path="/mypage/program/review"
-                    element={<ReviewedProgram />}
+                    element={<ProtectedRoute element={<ReviewedProgram />} />}
                   />
 
-                  <Route path="/mypage/community/post" element={<MyPost />} />
+                  <Route
+                    path="/mypage/community/post"
+                    element={<ProtectedRoute element={<MyPost />} />}
+                  />
                   <Route
                     path="/mypage/community/comment"
-                    element={<CommentedPost />}
+                    element={<ProtectedRoute element={<CommentedPost />} />}
                   />
                   <Route
                     path="/mypage/community/save"
-                    element={<SavedPost />}
+                    element={<ProtectedRoute element={<SavedPost />} />}
                   />
 
-                  <Route path="/delete/account" element={<DeletedAccount />} />
+                  <Route
+                    path="/delete/account"
+                    element={<ProtectedRoute element={<DeletedAccount />} />}
+                  />
 
                   <Route path="/search" element={<SearchMain />} />
                   <Route

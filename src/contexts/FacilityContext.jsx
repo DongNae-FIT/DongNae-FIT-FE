@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-import axios from "axios";
 import authAxios from "@/contexts/authAxios";
 
 const FacilityContext = createContext();

@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-import axios from "axios";
 import authAxios from "@/contexts/authAxios";
 
 const CommunityContext = createContext();
@@ -31,10 +30,8 @@ const CommunityProvider = ({ children }) => {
     setError(null);
     try {
       setPostDetail(null);
-      console.log("!!!!!!!!detail 실행");
       const response = await authAxios.get(`/api/posts/${postId}`);
       setPostDetail(response.data.data);
-      console.log(response.data);
     } catch (err) {
       setError(err || "Failed to load recommended community");
     } finally {
@@ -47,9 +44,7 @@ const CommunityProvider = ({ children }) => {
     setError(null);
 
     try {
-      const response = await axios.put(`/api/auth/${postId}/like`, {
-        postId,
-      });
+      const response = await authAxios.put(`/api/auth/${postId}/like`);
     } catch (error) {
       setError("Failed to toggle like");
     } finally {
@@ -62,9 +57,7 @@ const CommunityProvider = ({ children }) => {
     setError(null);
 
     try {
-      const response = await axios.put(`/api/auth/${postId}/save`, {
-        postId,
-      });
+      const response = await authAxios.put(`/api/auth/${postId}/save`);
     } catch (error) {
       setError("Failed to toggle save");
     } finally {
@@ -72,11 +65,11 @@ const CommunityProvider = ({ children }) => {
     }
   };
 
-  const saveNewPost = async (postTitle, postDetail, postImage) => {
+  const saveNewPost = async (postTitle, postDetail) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post("api/auth/posts", {
+      const response = await authAxios.post("api/auth/posts", {
         postTitle,
         postDetail,
       });
@@ -92,7 +85,7 @@ const CommunityProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.delete(`api/auth/posts/${postId}`);
+      const response = await authAxios.delete(`api/auth/posts/${postId}`);
     } catch (error) {
       setError("Failed to delete post");
     } finally {
@@ -104,9 +97,12 @@ const CommunityProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post(`api/auth/posts/${postId}/comment`, {
-        commentDetail,
-      });
+      const response = await authAxios.post(
+        `api/auth/posts/${postId}/comment`,
+        {
+          commentDetail,
+        }
+      );
     } catch (error) {
       setError("Failed to save new comment");
     } finally {
@@ -118,7 +114,7 @@ const CommunityProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.delete(
+      const response = await authAxios.delete(
         `api/auth/posts/${postId}/${commentId}`
       );
     } catch (error) {

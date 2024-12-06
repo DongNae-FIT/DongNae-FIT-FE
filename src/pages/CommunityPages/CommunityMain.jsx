@@ -5,11 +5,13 @@ import styles from "@/pages/CommunityPages/CommunityMain.module.css";
 import CommunityItem from "@/components/Community/CommunityItem";
 import { useEffect } from "react";
 import useCommunity from "@/hooks/useCommunity";
+import useAuth from "@/hooks/useAuth";
 
 const CommunityMain = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { entirePostList, getEntirePostList, loading, error } = useCommunity();
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const initialize = async () => {
@@ -21,6 +23,10 @@ const CommunityMain = () => {
     };
     initialize(); // 초기화 함수 실행
   }, []);
+
+  const onWriteClicked = () => {
+    navigate("/community/new/post");
+  };
 
   return (
     <div className={styles["community-main"]}>
@@ -40,12 +46,7 @@ const CommunityMain = () => {
           />
         ))}
       </div>
-      <button
-        className={styles["write-button"]}
-        onClick={() => {
-          navigate("/community/new/post");
-        }}
-      >
+      <button className={styles["write-button"]} onClick={onWriteClicked}>
         <img
           src={"/icon/icon_write_colored.png"}
           className={styles["write-icon"]}

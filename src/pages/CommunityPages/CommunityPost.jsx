@@ -3,17 +3,30 @@ import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/CommunityPages/CommunityPost.module.css";
 import CommunityComment from "@/components/Community/CommunityComment";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useCommunity from "@/hooks/useCommunity";
+import useAuth from "@/hooks/useAuth";
 
 const CommunityPost = () => {
   const { t } = useTranslation();
   const { postId } = useParams();
-  const { getPostDetail, postDetail } = useCommunity();
+  const {
+    getPostDetail,
+    postDetail,
+    togglePostLike,
+    togglePostSave,
+    deletePost,
+    writeComment,
+    deleteComment,
+    loading,
+    error,
+  } = useCommunity();
+  const { isAuthenticated } = useAuth();
 
   const [commentValue, setCommentValue] = useState("");
   const [like, setLike] = useState(false);
   const [save, setSave] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const initialize = async () => {
@@ -35,17 +48,49 @@ const CommunityPost = () => {
   };
 
   const handleSubmitComment = () => {
-    console.log(`${commentValue}`);
-    console.log("submit");
+    const apiRequest = async () => {
+      try {
+        await writeComment(postId, commentValue);
+      } catch (err) {
+        console.error("Failed to fetch write comment:", err);
+      }
+    };
+    apiRequest();
   };
 
-  const onLikeButtonClick = () => {
-    setLike((prevLike) => !prevLike);
+  const onLikeButtonClick = async () => {
+    if (!isAuthenticated) {
+      window.alert("로그인이 필요합니다.");
+      navigate("/login");
+    }
+    try {
+      await togglePostLike(postId);
+      setLike((prevLike) => !prevLike);
+    } catch (err) {
+      console.error("Failed to toggle like :", err);
+    }
   };
 
-  const onSaveButtonClick = () => {
-    setSave((prevSave) => !prevSave);
+  const onSaveButtonClick = async () => {
+    if (!isAuthenticated) {
+      window.alert("로그인이 필요합니다.");
+      navigate("/login");
+    }
+    try {
+      await togglePostSave(postId);
+      setSave((prevSave) => !prevSave);
+    } catch (err) {
+      console.error("Failed to fetch toggle save:", err);
+    }
   };
+
+  if (loading || !postDetail) {
+    return <p>Loading</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div className={styles["community-post"]}>
@@ -125,7 +170,7 @@ const CommunityPost = () => {
           {t("community.comment")}
         </span>
         <div className={styles["comment-list"]}>
-          {postDetail.commentData.map((comment) => (
+          {postDetail.comments.map((comment) => (
             <CommunityComment
               key={comment.commentId}
               nickname={comment.memberName}

@@ -56,9 +56,14 @@ const MyPageProvider = ({ children }) => {
     try {
       const locationInfo = await setLocationInfo(region);
 
-      const response = await authAxios.put(`api/auth/mypage/region`, {
+      const { province, district, latitude, longitude } = locationInfo;
+
+      const response = await authAxios.put(`/api/auth/mypage/region`, {
         region,
-        locationInfo,
+        province,
+        district,
+        latitude,
+        longitude,
       });
     } catch (error) {
       console.error("Failed to change region :", error);

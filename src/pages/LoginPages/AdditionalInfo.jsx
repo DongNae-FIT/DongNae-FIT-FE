@@ -54,7 +54,7 @@ const AdditionalInfo = () => {
         setNicknameCheck(true);
       }
     } catch (error) {
-      setNicknameErrors("아이디 중복 확인에 실패했습니다.");
+      setNicknameErrors("닉네임 중복 확인에 실패했습니다.");
     }
   };
 
@@ -115,7 +115,7 @@ const AdditionalInfo = () => {
           )}
           {nicknameCheck && (
             <div className={styles["check-message"]}>
-              {"사용 가능한 아이디입니다."}
+              {"사용 가능한 닉네임입니다."}
             </div>
           )}
         </div>

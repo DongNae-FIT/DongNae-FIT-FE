@@ -10,18 +10,28 @@ const MyPageMain = () => {
   const { t } = useTranslation();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const { user, getUserInfo } = useMyPage();
+  const { user, getUserInfo, loading, error } = useMyPage();
 
   useEffect(() => {
-    const initialize = async () => {
-      try {
-        await getUserInfo();
-      } catch (err) {
-        console.error("Failed to fetch use Info:", err);
-      }
-    };
-    initialize(); // 초기화 함수 실행
+    if (isAuthenticated) {
+      const initialize = async () => {
+        try {
+          await getUserInfo();
+        } catch (err) {
+          console.error("Failed to fetch use Info:", err);
+        }
+      };
+      initialize(); // 초기화 함수 실행
+    }
   }, []);
+
+  if (loading || !user) {
+    return <p>Loading</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div className={styles["my-page-main"]}>

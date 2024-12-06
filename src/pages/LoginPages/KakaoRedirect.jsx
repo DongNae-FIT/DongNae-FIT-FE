@@ -18,23 +18,20 @@ const KakaoRedirect = () => {
         }
       }
     };
-
     initialize();
   }, []);
 
   useEffect(() => {
-    if (!loading) {
-      if (isAuthenticated && isOnBoard) {
-        navigate("/login/info");
-      } else if (isAuthenticated && !isOnBoard) {
-        navigate("/");
-      } else if (error) {
-        navigate("/login");
-      }
+    if (isOnBoard == null) return;
+    console.log("리다이렉트:", isOnBoard);
+    if (isOnBoard) {
+      navigate("/login/info");
+    } else {
+      navigate("/");
     }
-  }, [loading, isAuthenticated, error, navigate]);
+  }, [isOnBoard]);
 
-  if (loading) {
+  if (loading || isOnBoard == null) {
     return <h1>로그인 중입니다.</h1>;
   }
 

@@ -5,11 +5,13 @@ const useAuth = () => {
   const {
     user,
     isAuthenticated,
+    isOnBoard,
     isDuplicate,
     login,
     checkNicknameDuplicate,
     onBoard,
     logout,
+    setLocationInfo,
     loading,
     error,
   } = useContext(AuthContext);
@@ -17,11 +19,13 @@ const useAuth = () => {
   return {
     user,
     isAuthenticated,
+    isOnBoard,
     isDuplicate,
     login,
     checkNicknameDuplicate,
     onBoard,
     logout,
+    setLocationInfo,
     loading,
     error,
   };

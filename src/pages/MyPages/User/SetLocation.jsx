@@ -1,21 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/MyPages/User/SetLocation.module.css";
 import LocationInput from "@/components/LocationInput";
 import KakaoMap from "@/components/KakaoMap";
 import EditorHeader from "@/layouts/Header/EditorHeader";
+import useMyPage from "@/hooks/useMyPage";
+import { useNavigate } from "react-router-dom";
+import useAuth from "@/hooks/useAuth";
 
 const SetLocation = () => {
   const { t } = useTranslation();
   const locations = [{ lat: 37.5665, lng: 126.978, name: "서울" }];
   const [location, setLocation] = useState("기존위치");
   const [openPostcode, setOpenPostcode] = useState(false);
+  const { setLocationInfo } = useAuth();
+  const { user, getUserInfo, changeRegion, loading, error } = useMyPage();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const initialize = async () => {
+      try {
+        await getUserInfo();
+      } catch (err) {
+        console.error("Failed to fetch use Info:", err);
+      }
+    };
+    initialize(); // 초기화 함수 실행
+    setLocation(user.region);
+  }, []);
 
   const onDoneClick = async () => {
     try {
-      //   await saveNewPost(postTitle, postContent);
-      //  navigate(`/community/post/${postId}`);
+      await changeRegion(location);
+      navigate(`/mypage`);
     } catch (err) {
       console.log(err);
     }
@@ -32,10 +50,20 @@ const SetLocation = () => {
     },
   };
 
-  const handleAddressSelect = (address) => {
+  const handleAddressSelect = async (address) => {
     setLocation(address);
     setOpenPostcode(false);
+    const l = await setLocationInfo(address);
+    console.log("위치정보:", l);
   };
+
+  if (loading || !user) {
+    return <p>Loading</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <>

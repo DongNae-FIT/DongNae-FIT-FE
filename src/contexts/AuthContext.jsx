@@ -9,7 +9,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isOnBoard, setIsOnBoard] = useState(false);
+  const [isOnBoard, setIsOnBoard] = useState(null);
 
   const [isDuplicate, setIsDuplicate] = useState(null);
   const [loading, setLoading] = useState(null);
@@ -63,6 +63,8 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem("refreshToken", refreshToken);
         setIsAuthenticated(true);
         setIsOnBoard(response.data.onboard);
+
+        console.log("로그인:", response.data);
       })
       .catch((error) => {
         console.error("Failed to login:", error);
@@ -77,7 +79,7 @@ const AuthProvider = ({ children }) => {
   const checkNicknameDuplicate = async (nickname) => {
     setLoading(true);
     return authAxios
-      .get(`/api/member/check?name=${nickname}`)
+      .get(`/api/auth/member/check?name=${nickname}`)
       .then((response) => {
         if (response.status == 200) {
           console.log("중복 닉네임 없음");
@@ -98,38 +100,23 @@ const AuthProvider = ({ children }) => {
       });
   };
 
-  const onBoard = async (nickname, region) => {
+  const onBoard = async (name, region) => {
     setLoading(true);
 
-    // 1. region에서 province와 district 추출
-    const [province, district, ...rest] = region.split(" ");
-
     try {
-      // 2. 카카오맵 Geocoding API 호출하여 Latitude와 Longitude 가져오기
-      const rest_api_key = import.meta.env.VITE_REST_API_KEY;
-      const url = `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(
-        region
-      )}`;
+      const locationInfo = await setLocationInfo(region);
+      const { province, district, latitude, longitude } = locationInfo;
 
-      const geocodeResponse = await axios.get(url, {
-        headers: { Authorization: `KakaoAK ${rest_api_key}` },
-      });
-
-      if (geocodeResponse.data.documents.length === 0) {
-        throw new Error("유효한 주소를 찾을 수 없습니다.");
-      }
-
-      const { y: latitude, x: longitude } = geocodeResponse.data.documents[0];
-
-      // 3. 온보딩 요청
-      const response = await authAxios.post(`/api//member/onboard`, {
-        nickname,
+      console.log(name, region, province, district, latitude, longitude);
+      const response = await authAxios.post(`/api/auth/member/onboard`, {
+        name,
         region,
         province,
         district,
         latitude,
         longitude,
       });
+
       setIsAuthenticated(true);
     } catch (error) {
       console.error("Failed to onboard:", error);
@@ -167,6 +154,46 @@ const AuthProvider = ({ children }) => {
       });
   };
 
+  const setLocationInfo = async (region) => {
+    setLoading(true);
+
+    try {
+      // 1. region에서 province와 district 추출
+      const [province, district, ...rest] = region.split(" ");
+
+      // 2. 카카오맵 Geocoding API 호출하여 Latitude와 Longitude 가져오기
+      const rest_api_key = import.meta.env.VITE_REST_API_KEY;
+      const url = `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(
+        region
+      )}`;
+
+      const geocodeResponse = await axios.get(url, {
+        headers: { Authorization: `KakaoAK ${rest_api_key}` },
+      });
+
+      if (geocodeResponse.data.documents.length === 0) {
+        throw new Error("유효한 주소를 찾을 수 없습니다.");
+      }
+
+      const { y: latitude, x: longitude } = geocodeResponse.data.documents[0];
+
+      const locationInfo = {
+        region,
+        province,
+        district,
+        latitude,
+        longitude,
+      };
+
+      return locationInfo;
+    } catch (error) {
+      console.error("Failed to onboard:", error);
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -178,6 +205,7 @@ const AuthProvider = ({ children }) => {
         checkNicknameDuplicate,
         onBoard,
         logout,
+        setLocationInfo,
         loading,
         error,
       }}

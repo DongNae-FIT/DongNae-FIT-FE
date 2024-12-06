@@ -47,6 +47,7 @@ import SearchMain from "@/pages/SearchPages/SearchIMain";
 import SearchResultAll from "@/pages/SearchPages/SearchResultAll";
 
 import ProtectedRoute from "@/routes/ProtectedRoute.jsx";
+import PublicRoute from "@/routes/PublicRoute.jsx";
 
 function App() {
   const { t } = useTranslation();
@@ -100,10 +101,7 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/auth" element={<KakaoRedirect />} />
-                  <Route
-                    path="/login/info"
-                    element={<ProtectedRoute element={<AdditionalInfo />} />}
-                  />
+                  <Route path="/login/info" element={<AdditionalInfo />} />
 
                   <Route path="/program" element={<ProgramMain />} />
                   <Route

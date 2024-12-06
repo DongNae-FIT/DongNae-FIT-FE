@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
 import authAxios from "@/contexts/authAxios";
+import useAuth from "@/hooks/useAuth";
 
 const initialUserState = {
   name: "",
@@ -14,15 +15,16 @@ const MyPageProvider = ({ children }) => {
   const [user, setUser] = useState(initialUserState);
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
+  const { setLocationInfo } = useAuth();
 
   const getUserInfo = () => {
     setLoading(true);
     return authAxios
       .get("/api/auth/mypage")
       .then((response) => {
-        const { name, region, profile } = response.data;
+        const { name, region, profile } = response.data.data;
         setUser({ name, region, profile });
-        console.log(response.data);
+        console.log("응답:", response.data);
       })
       .catch((error) => {
         console.error("Failed to get User Info:", error);
@@ -33,36 +35,30 @@ const MyPageProvider = ({ children }) => {
       });
   };
 
+  const changeNickname = async (name) => {
+    setLoading(true);
+
+    try {
+      const response = await authAxios.put(`/api/auth/mypage/name`, {
+        name,
+      });
+    } catch (error) {
+      console.error("Failed to change nickname:", error);
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const changeRegion = async (region) => {
     setLoading(true);
 
-    // 1. region에서 province와 district 추출
-    const [province, district, ...rest] = region.split(" ");
-
     try {
-      // 2. 카카오맵 Geocoding API 호출하여 Latitude와 Longitude 가져오기
-      const rest_api_key = import.meta.env.VITE_REST_API_KEY;
-      const url = `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURIComponent(
-        region
-      )}`;
+      const locationInfo = await setLocationInfo(region);
 
-      const geocodeResponse = await axios.get(url, {
-        headers: { Authorization: `KakaoAK ${rest_api_key}` },
-      });
-
-      if (geocodeResponse.data.documents.length === 0) {
-        throw new Error("유효한 주소를 찾을 수 없습니다.");
-      }
-
-      const { y: latitude, x: longitude } = geocodeResponse.data.documents[0];
-
-      // 3. 온보딩 요청
       const response = await authAxios.put(`api/auth/mypage/region`, {
         region,
-        province,
-        district,
-        latitude,
-        longitude,
+        locationInfo,
       });
     } catch (error) {
       console.error("Failed to change region :", error);
@@ -77,6 +73,8 @@ const MyPageProvider = ({ children }) => {
       value={{
         user,
         getUserInfo,
+        changeNickname,
+        changeRegion,
         loading,
         error,
       }}

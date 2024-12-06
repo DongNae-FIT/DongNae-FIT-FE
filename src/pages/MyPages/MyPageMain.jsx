@@ -3,11 +3,25 @@ import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/MyPages/MyPageMain.module.css";
 import useAuth from "@/hooks/useAuth";
+import { useEffect } from "react";
+import useMyPage from "@/hooks/useMyPage";
 
 const MyPageMain = () => {
   const { t } = useTranslation();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const { user, getUserInfo } = useMyPage();
+
+  useEffect(() => {
+    const initialize = async () => {
+      try {
+        await getUserInfo();
+      } catch (err) {
+        console.error("Failed to fetch use Info:", err);
+      }
+    };
+    initialize(); // 초기화 함수 실행
+  }, []);
 
   return (
     <div className={styles["my-page-main"]}>
@@ -20,8 +34,7 @@ const MyPageMain = () => {
           <div className={styles["user-info-text"]}>
             {isAuthenticated ? (
               <>
-                <div className={styles["nickname"]}>닉네임</div>
-                <div className={styles["id"]}>@아이디d4f5g4d8</div>
+                <div className={styles["nickname"]}>{user.name}</div>
               </>
             ) : (
               <div

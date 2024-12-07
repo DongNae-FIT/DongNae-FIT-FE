@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: calc(100vh - 60px);
-  padding: 0 calc(2.5 * var(--default-padding));
+  height: calc(100vh - var(--body-padding) * 4 - 60px);
+  padding: 0 calc(2.5 * var(--body-padding));
+  padding-top: calc(var(--body-padding) * 4 - 60px);
 }
 
 .login__title {
@@ -13,7 +13,7 @@
 }
 
 .login__img {
-  height: 400px;
+  height: 100%;
   width: 100%;
   margin: 25px 0;
   background-color: grey;

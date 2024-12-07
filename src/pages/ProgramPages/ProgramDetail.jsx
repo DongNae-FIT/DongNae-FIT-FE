@@ -41,7 +41,7 @@ const ProgramDetail = () => {
   const onClickLike = async () => {
     if (!isAuthenticated) {
       window.alert("로그인이 필요합니다.");
-      navigate("/login");
+      navigate("/login", { state: { from: location.pathname } });
     }
 
     try {
@@ -51,8 +51,6 @@ const ProgramDetail = () => {
       console.error("Failed to fetch toggle like on program:", err);
     }
   };
-
-  console.log(programDetail);
 
   if (loading || !locations) {
     return <p>Loading</p>;

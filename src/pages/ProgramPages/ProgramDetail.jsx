@@ -33,14 +33,11 @@ const ProgramDetail = () => {
 
   useEffect(() => {
     if (programDetail) {
-      console.log("if내부:", programDetail);
-
       const coordinate = {
         lat: programDetail.facilityLatitude,
         lng: programDetail.facilityLongitude,
         name: programDetail.facilityName,
       };
-      console.log("coordinate", coordinate);
       setLocations([coordinate]);
     } else {
       setLocations([]);
@@ -60,15 +57,10 @@ const ProgramDetail = () => {
       console.error("Failed to fetch toggle like on program:", err);
     }
   };
-  console.log("정보:", programDetail);
-
-  console.log("위치정보:", locations);
 
   if (loading || !programDetail || !locations) {
     return <Loading />;
   }
-
-  console.log("위치정보:", locations);
 
   if (error) {
     return <p>Error: {error}</p>;

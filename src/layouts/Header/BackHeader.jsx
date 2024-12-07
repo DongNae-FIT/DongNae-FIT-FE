@@ -9,6 +9,8 @@ const BackHeader = () => {
     // 이전 경로가 로그인 리다이렉트로 인해 보호된 페이지라면 홈으로 이동
     if (location.state?.from) {
       navigate("/"); // 안전한 기본 경로 (홈)
+    } else if (location.state?.fromNew) {
+      navigate(-2); // 안전한 기본 경로 (홈)
     } else {
       navigate(-1); // 일반적인 뒤로가기
     }

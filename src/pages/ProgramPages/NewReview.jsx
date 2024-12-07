@@ -22,7 +22,7 @@ const NewReview = () => {
     try {
       const period = (dateFrom + "~" + dateTo).replaceAll("-", "");
       await saveNewReview(programId, instructor, period, reviewDetails);
-      navigate(`/program/${programId}`);
+      navigate(`/program/${programId}`, { state: { fromNew: true } });
     } catch (err) {
       console.log(err);
     }

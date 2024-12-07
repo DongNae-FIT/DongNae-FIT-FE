@@ -36,6 +36,7 @@ const SavedProgram = () => {
           <ProgramItem
             key={program.programId}
             programId={program.programId}
+            imgSrc={program.facilityImage}
             name={program.programName}
             facility={program.facilityName}
             price={`₩ ${program.programPrice.toLocaleString()}`}

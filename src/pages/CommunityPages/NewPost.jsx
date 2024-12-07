@@ -17,7 +17,7 @@ const NewPost = () => {
     try {
       await saveNewPost(postTitle, postContent);
       if (postId) {
-        navigate(`/community/post/${postId}`);
+        navigate(`/community/post/${postId}`, { state: { fromNew: true } });
       }
     } catch (err) {
       console.log(err);

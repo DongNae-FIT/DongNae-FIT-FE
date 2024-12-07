@@ -11,6 +11,7 @@ const AuthProvider = ({ children }) => {
     !!localStorage.getItem("accessToken")
   );
   const [isOnBoard, setIsOnBoard] = useState(null);
+  const [coordinate, setCoordinate] = useState(null);
 
   const [isDuplicate, setIsDuplicate] = useState(null);
   const [loading, setLoading] = useState(null);
@@ -67,7 +68,6 @@ const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         console.error("Failed to login:", error);
-        window.alert("로그인 실패");
         setError(error.message);
       })
       .finally(() => {
@@ -128,8 +128,8 @@ const AuthProvider = ({ children }) => {
     try {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-      setUser();
       setIsAuthenticated(false);
+      setUser(null);
       navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
@@ -183,7 +183,7 @@ const AuthProvider = ({ children }) => {
 
   const setLocationInfo = async (region) => {
     setLoading(true);
-
+    setCoordinate(null);
     try {
       // 1. region에서 province와 district 추출
       const [province, district, ...rest] = region.split(" ");
@@ -212,6 +212,7 @@ const AuthProvider = ({ children }) => {
         longitude,
       };
 
+      setCoordinate(locationInfo);
       return locationInfo;
     } catch (error) {
       console.error("Failed to onboard:", error);
@@ -228,6 +229,7 @@ const AuthProvider = ({ children }) => {
         isAuthenticated,
         isOnBoard,
         isDuplicate,
+        coordinate,
         login,
         checkNicknameDuplicate,
         onBoard,

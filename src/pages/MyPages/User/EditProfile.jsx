@@ -26,19 +26,22 @@ const EditProfile = () => {
     const initialize = async () => {
       try {
         await getUserInfo();
-        setPreviewImg(
-          user.profile ? user.profile : "/default/default_profile.png"
-        );
-        setNickname(user.name);
       } catch (err) {
-        console.error("Failed to fetch use Info:", err);
+        console.error("Failed to fetch user info:", err);
       }
     };
-    initialize(); // 초기화 함수 실행
+    initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loading || !user) {
+  useEffect(() => {
+    if (user) {
+      setPreviewImg(user.profile || "/default/default_profile.png");
+      setNickname(user.name || "");
+    }
+  }, [user]);
+
+  if (loading || !user || !user.name) {
     return <Loading />;
   }
 

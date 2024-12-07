@@ -53,7 +53,13 @@ const MyPageMain = () => {
       <div className={styles["profile-container"]}>
         <div className={styles["user-info-wrapper"]}>
           <img
-            src={user.profile ? user.profile : "/default/default_profile.png"}
+            src={
+              isAuthenticated
+                ? user.profile
+                  ? user.profile
+                  : "/default/default_profile.png"
+                : "/default/default_profile.png"
+            }
             className={styles["user-info-img"]}
           />
           <div className={styles["user-info-text"]}>

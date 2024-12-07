@@ -12,8 +12,8 @@ import Loading from "@/utils/Loading";
 
 const SetLocation = () => {
   const { t } = useTranslation();
-  const locations = [{ lat: 37.5665, lng: 126.978, name: "서울" }];
-  const [location, setLocation] = useState("기존위치");
+  const [locationList, setLocationList] = useState([]);
+  const [location, setLocation] = useState("");
   const [openPostcode, setOpenPostcode] = useState(false);
   const { setLocationInfo } = useAuth();
   const { user, getUserInfo, changeRegion, loading, error } = useMyPage();
@@ -24,13 +24,19 @@ const SetLocation = () => {
       try {
         await getUserInfo();
       } catch (err) {
-        console.error("Failed to fetch use Info:", err);
+        console.error("Failed to fetch user info:", err);
       }
     };
-    initialize(); // 초기화 함수 실행
-    setLocation(user.region);
+    initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (user && user.region) {
+      handleAddressSelect(user.region);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const onDoneClick = async () => {
     try {
@@ -55,10 +61,21 @@ const SetLocation = () => {
   const handleAddressSelect = async (address) => {
     setLocation(address);
     setOpenPostcode(false);
-    const response = await setLocationInfo(address);
+    try {
+      const result = await setLocationInfo(address);
+      console.log(result);
+      const coordinate = {
+        lat: result.latitude,
+        lng: result.longitude,
+        name: result.region,
+      };
+      setLocationList([coordinate]);
+    } catch (err) {
+      console.error("Failed to fetch entrie programs:", err);
+    }
   };
 
-  if (loading || !user) {
+  if (loading || !user || !user.name || !locationList) {
     return <Loading />;
   }
 
@@ -92,7 +109,7 @@ const SetLocation = () => {
           </button>
         </div>
         <div className={styles["map"]}>
-          <KakaoMap locations={locations} mapHeight={300 * 1.5} />
+          <KakaoMap locations={locationList} mapHeight={300 * 1.5} />
         </div>
       </div>
     </>

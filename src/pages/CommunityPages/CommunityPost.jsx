@@ -94,7 +94,7 @@ const CommunityPost = () => {
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return <p>Error: {error.message || 'An unknown error occurred'}</p>;
   }
 
   return (

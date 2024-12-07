@@ -35,6 +35,21 @@ const MyPageProvider = ({ children }) => {
       });
   };
 
+  const changeprofile = async (profile) => {
+    setLoading(true);
+
+    try {
+      const response = await authAxios.put(`/api/auth/mypage/profile`, {
+        profile,
+      });
+    } catch (error) {
+      console.error("Failed to change profile:", error);
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const changeNickname = async (name) => {
     setLoading(true);
 
@@ -164,6 +179,7 @@ const MyPageProvider = ({ children }) => {
         user,
         authInfo,
         getUserInfo,
+        changeprofile,
         changeNickname,
         changeRegion,
         getProgramSaved,

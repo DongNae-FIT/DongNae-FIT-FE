@@ -11,9 +11,17 @@
   padding-bottom: calc(var(--default-padding) * 2);
 }
 
+.profile-input {
+  width: var(--profile-edit-img);
+  border: 1px solid red;
+  display: none;
+}
+
 .profile-img {
   width: var(--profile-edit-img);
   border-radius: 50%;
+  border: 1px solid var(--sub-grey);
+  aspect-ratio: 1;
 }
 
 .section {

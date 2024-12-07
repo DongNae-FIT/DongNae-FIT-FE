@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/MyPages/User/EditProfile.module.css";
@@ -13,21 +13,28 @@ const EditProfile = () => {
   const { t } = useTranslation();
   const [nickname, setNickname] = useState("기존 닉네임");
   const navigate = useNavigate();
-  const { user, getUserInfo, changeNickname, loading, error } = useMyPage();
+  const { user, getUserInfo, changeprofile, changeNickname, loading, error } =
+    useMyPage();
   const { isDuplicate, checkNicknameDuplicate } = useAuth();
   const [nicknameErrors, setNicknameErrors] = useState(null);
   const [nicknameCheck, setNicknameCheck] = useState(false);
+
+  const profileImg = useRef(null); // useRef로 변경
+  const [previewImg, setPreviewImg] = useState([]);
 
   useEffect(() => {
     const initialize = async () => {
       try {
         await getUserInfo();
+        setPreviewImg(
+          user.progile ? user.profile : "/default/default_profile.png"
+        );
+        setNickname(user.name);
       } catch (err) {
         console.error("Failed to fetch use Info:", err);
       }
     };
     initialize(); // 초기화 함수 실행
-    setNickname(user.name);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -70,25 +77,90 @@ const EditProfile = () => {
   };
 
   const onDoneClick = async () => {
-    const nicknameError = validateNickname(nickname, t);
-
-    if (nicknameError || !location) {
-      setNicknameErrors(nicknameError);
-      window.alert(t("nickname_message.empty"));
-      return;
-    }
-
-    if (!nicknameCheck) {
-      window.alert(t("nickname_message.check_first"));
-      return;
-    }
+    const isNicknameChanged = nickname !== user.name;
+    const isProfileChanged = profileImg.current?.files[0] !== undefined;
 
     try {
-      await changeNickname(nickname);
-      navigate(`/mypage`);
+      // 닉네임만 변경된 경우
+      if (isNicknameChanged && !isProfileChanged) {
+        const nicknameError = validateNickname(nickname, t);
+
+        if (nicknameError) {
+          setNicknameErrors(nicknameError);
+          window.alert(t("nickname_message.invalid"));
+          return;
+        }
+
+        if (!nicknameCheck) {
+          window.alert(t("nickname_message.check_first"));
+          return;
+        }
+
+        try {
+          await changeNickname({ nickname });
+          navigate("/mypage");
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      // 이미지만 변경된 경우
+      if (!isNicknameChanged && isProfileChanged) {
+        const formData = new FormData();
+        formData.append("file", profileImg.current.files[0]);
+        try {
+          await changeprofile(formData);
+          navigate("/mypage");
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      // 둘 다 변경된 경우
+      if (isNicknameChanged && isProfileChanged) {
+        const nicknameError = validateNickname(nickname, t);
+
+        if (nicknameError) {
+          setNicknameErrors(nicknameError);
+          window.alert(t("nickname_message.invalid"));
+          return;
+        }
+
+        if (!nicknameCheck) {
+          window.alert(t("nickname_message.check_first"));
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append("file", profileImg.current.files[0]);
+        formData.append("nickname", nickname);
+
+        // 닉네임 중복 검사 통과 후 요청
+        try {
+          await changeNickname({ nickname });
+          await changeprofile(formData);
+          navigate("/mypage");
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      if (!isNicknameChanged && !isProfileChanged) {
+        alert(t("profile_message.no_changes"));
+      }
     } catch (error) {
-      console.error("Nickname check failed", error);
+      console.error("프로필 업데이트 중 에러 발생:", error);
+      alert(t("profile_message.error"));
     }
+  };
+
+  const handleProfileUpload = () => {
+    profileImg.current?.click();
+  };
+
+  const handlePreview = () => {
+    if (profileImg.current?.files != null)
+      setPreviewImg(URL.createObjectURL(profileImg.current?.files[0]));
   };
 
   return (
@@ -97,9 +169,17 @@ const EditProfile = () => {
 
       <div className={styles["edit-profile"]}>
         <div className={styles["profile-image-container"]}>
+          <input
+            accept="image/*"
+            onChange={handlePreview}
+            ref={profileImg}
+            type="file"
+            className={styles["profile-input"]}
+          ></input>
           <img
-            src={user.progile ? user.profile : "/default/default_profile.png"}
+            src={previewImg}
             className={styles["profile-img"]}
+            onClick={handleProfileUpload}
           />
         </div>
         <div className={styles["section"]}>

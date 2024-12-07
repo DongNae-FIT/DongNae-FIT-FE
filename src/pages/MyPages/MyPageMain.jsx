@@ -18,7 +18,6 @@ const MyPageMain = () => {
       const initialize = async () => {
         try {
           await getUserInfo();
-          console.log(user);
         } catch (err) {
           console.error("Failed to fetch use Info:", err);
         }
@@ -42,7 +41,11 @@ const MyPageMain = () => {
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    const errorMessage =
+      error?.response?.data?.message ||
+      error?.message ||
+      "An unknown error occurred";
+    return <p>Error: {errorMessage}</p>;
   }
 
   return (

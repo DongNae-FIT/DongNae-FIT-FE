@@ -75,6 +75,7 @@ const MyPageProvider = ({ children }) => {
 
   const getProgramSaved = () => {
     setLoading(true);
+    setAuthInfo([]);
     return authAxios
       .get("/api/auth/mypage/programs/save")
       .then((response) => {
@@ -89,6 +90,75 @@ const MyPageProvider = ({ children }) => {
       });
   };
 
+  const getProgramReviewed = () => {
+    setLoading(true);
+    setAuthInfo([]);
+    return authAxios
+      .get("/api/auth/mypage/programs/review")
+      .then((response) => {
+        setAuthInfo(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Failed to get User Info:", error);
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const getMyPost = () => {
+    setLoading(true);
+    setAuthInfo([]);
+    return authAxios
+      .get("/api/auth/mypage/posts/post")
+      .then((response) => {
+        setAuthInfo(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Failed to get User Info:", error);
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const getPostCommented = () => {
+    setLoading(true);
+    setAuthInfo([]);
+    return authAxios
+      .get("/api/auth/mypage/posts/comment")
+      .then((response) => {
+        setAuthInfo(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Failed to get User Info:", error);
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const getPostSaved = () => {
+    setLoading(true);
+    setAuthInfo([]);
+    return authAxios
+      .get("/api/auth/mypage/posts/save")
+      .then((response) => {
+        setAuthInfo(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Failed to get User Info:", error);
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+
   return (
     <MyPageContext.Provider
       value={{
@@ -98,6 +168,10 @@ const MyPageProvider = ({ children }) => {
         changeNickname,
         changeRegion,
         getProgramSaved,
+        getProgramReviewed,
+        getMyPost,
+        getPostCommented,
+        getPostSaved,
         loading,
         error,
       }}

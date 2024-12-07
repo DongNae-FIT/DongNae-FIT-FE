@@ -1,0 +1,25 @@
+.community {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+}
+
+.post-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--body-padding);
+  gap: 15px;
+}
+
+.post-list > *:not(:last-child) {
+  border-bottom: 1px solid var(--sub-grey);
+  padding-bottom: 15px;
+}
+
+.empty-message {
+  text-align: center;
+  padding-top: 40%;
+  color: var(--main-grey);
+}

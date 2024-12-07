@@ -27,8 +27,7 @@ const SavedProgram = () => {
   }
 
   return (
-    <div className={styles["saved-program"]}>
-      {" "}
+    <div className={styles["program"]}>
       <div className={styles["program-list"]}>
         {authInfo.map((program) => (
           <ProgramItem
@@ -40,10 +39,8 @@ const SavedProgram = () => {
           />
         ))}
 
-        {authInfo.length === 0 ? (
+        {authInfo.length === 0 && (
           <div className={styles["empty-message"]}>강좌가 없습니다.</div>
-        ) : (
-          <></>
         )}
       </div>
     </div>

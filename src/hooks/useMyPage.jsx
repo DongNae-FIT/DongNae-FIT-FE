@@ -9,6 +9,10 @@ const useMyPage = () => {
     changeNickname,
     changeRegion,
     getProgramSaved,
+    getProgramReviewed,
+    getMyPost,
+    getPostCommented,
+    getPostSaved,
     loading,
     error,
   } = useContext(MyPageContext);
@@ -20,6 +24,10 @@ const useMyPage = () => {
     changeNickname,
     changeRegion,
     getProgramSaved,
+    getProgramReviewed,
+    getMyPost,
+    getPostCommented,
+    getPostSaved,
     loading,
     error,
   };

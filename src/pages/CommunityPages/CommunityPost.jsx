@@ -6,7 +6,7 @@ import CommunityComment from "@/components/Community/CommunityComment";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useCommunity from "@/hooks/useCommunity";
 import useAuth from "@/hooks/useAuth";
-
+import Loading from "@/utils/Loading";
 const CommunityPost = () => {
   const { t } = useTranslation();
   const { postId } = useParams();
@@ -90,7 +90,7 @@ const CommunityPost = () => {
   };
 
   if (loading || !postDetail) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

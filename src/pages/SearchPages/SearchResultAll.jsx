@@ -57,8 +57,8 @@ const SearchResultAll = () => {
                 programId={program.programId}
                 name={program.programName}
                 facility={program.facilityName}
-                price={`${program.programPrice.toLocaleString()}원`}
-              />
+                price={`₩ ${program.programPrice.toLocaleString()}`}
+                />
             ))}
 
             {searchResultAll.programData.length === 0 ? (

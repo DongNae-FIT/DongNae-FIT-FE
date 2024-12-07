@@ -2,6 +2,7 @@ import styles from "@/pages/MyPages/Program/SavedProgram.module.css";
 import { useEffect } from "react";
 import ProgramItem from "@/components/Program/ProgramItem";
 import useMyPage from "@/hooks/useMyPage";
+import Loading from "@/utils/Loading";
 
 const SavedProgram = () => {
   const { authInfo, getProgramSaved, loading, error } = useMyPage();
@@ -19,7 +20,7 @@ const SavedProgram = () => {
   }, []);
 
   if (loading || !authInfo) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {
@@ -35,7 +36,7 @@ const SavedProgram = () => {
             programId={program.programId}
             name={program.programName}
             facility={program.facilityName}
-            price={`${program.programPrice.toLocaleString()}원`}
+            price={`₩ ${program.programPrice.toLocaleString()}`}
           />
         ))}
 

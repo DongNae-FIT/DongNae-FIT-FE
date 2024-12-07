@@ -7,6 +7,7 @@ import ProgramReviewItem from "@/components/Program/ProgramReviewItem";
 import KakaoMap from "@/components/KakaoMap";
 import useProgram from "@/hooks/useProgram";
 import useAuth from "@/hooks/useAuth";
+import Loading from "@/utils/Loading";
 
 const ProgramDetail = () => {
   const { t } = useTranslation();
@@ -53,7 +54,7 @@ const ProgramDetail = () => {
   };
 
   if (loading || !locations) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {
@@ -120,7 +121,7 @@ const ProgramDetail = () => {
               {programDetail.programData.programTime}
             </div>
             <div>
-              {programDetail.programData.programPrice.toLocaleString()}원
+              ₩ {programDetail.programData.programPrice.toLocaleString()}
             </div>
             <a href={programDetail.programData.programUrl} target="_blank">
               {programDetail.programData.programUrl}

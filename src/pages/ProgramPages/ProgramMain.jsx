@@ -6,6 +6,7 @@ import styles from "@/pages/ProgramPages/ProgramMain.module.css";
 import ProgramItem from "@/components/Program/ProgramItem";
 import KakaoMap from "@/components/KakaoMap";
 import useProgram from "@/hooks/useProgram";
+import Loading from "@/utils/Loading";
 
 const ProgramMain = () => {
   const { t, i18n } = useTranslation();
@@ -125,7 +126,7 @@ const ProgramMain = () => {
   }, [i18n.language, t]);
 
   if (loading || !entireProgramList || !locations) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {
@@ -179,7 +180,7 @@ const ProgramMain = () => {
             programId={program.programId}
             name={program.programName}
             facility={program.facilityName}
-            price={`${program.programPrice.toLocaleString()}원`}
+            price={`₩ ${program.programPrice.toLocaleString()}`}
           />
         ))}
 

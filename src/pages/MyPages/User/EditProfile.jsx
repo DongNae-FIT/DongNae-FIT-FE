@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import useMyPage from "@/hooks/useMyPage";
 import { validateNickname } from "@/utils/Validator";
 import useAuth from "@/hooks/useAuth";
+import Loading from "@/utils/Loading";
 
 const EditProfile = () => {
   const { t } = useTranslation();
@@ -31,7 +32,7 @@ const EditProfile = () => {
   }, []);
 
   if (loading || !user) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

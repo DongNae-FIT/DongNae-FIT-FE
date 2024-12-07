@@ -7,6 +7,7 @@ import SearchInputHeader from "@/components/Search/SearchInputHeader";
 import Resultclassification from "@/components/Search/Resultclassification";
 import FacilityItem from "@/components/Facility/FacilityItem";
 import useFacility from "@/hooks/useFacility";
+import Loading from "@/utils/Loading";
 
 const SearchResultFacility = () => {
   const { t } = useTranslation();
@@ -30,7 +31,7 @@ const SearchResultFacility = () => {
   }, []);
 
   if (loading || !entireFacilityList) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

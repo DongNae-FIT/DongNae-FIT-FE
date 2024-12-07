@@ -2,6 +2,7 @@ import styles from "@/pages/MyPages/Community/SavedPost.module.css";
 import { useEffect } from "react";
 import useMyPage from "@/hooks/useMyPage";
 import CommunityItem from "@/components/Community/CommunityItem";
+import Loading from "@/utils/Loading";
 
 const SavedPost = () => {
   const { authInfo, getPostSaved, loading, error } = useMyPage();
@@ -19,7 +20,7 @@ const SavedPost = () => {
   }, []);
 
   if (loading || !authInfo) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

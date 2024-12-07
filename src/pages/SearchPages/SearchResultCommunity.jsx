@@ -7,6 +7,7 @@ import SearchInputHeader from "@/components/Search/SearchInputHeader";
 import Resultclassification from "@/components/Search/Resultclassification";
 import CommunityItem from "@/components/Community/CommunityItem";
 import useCommunity from "@/hooks/useCommunity";
+import Loading from "@/utils/Loading";
 
 const SearchResultCommunity = () => {
   const { t } = useTranslation();
@@ -29,7 +30,7 @@ const SearchResultCommunity = () => {
   }, []);
 
   if (loading || !entirePostList) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

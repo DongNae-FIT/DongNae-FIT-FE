@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import EditorHeader from "@/layouts/Header/EditorHeader";
 import useProgram from "@/hooks/useProgram";
 import { useLocation, useNavigate } from "react-router-dom";
+import Loading from "@/utils/Loading";
 
 const NewReview = () => {
   const { t } = useTranslation();
@@ -47,7 +48,7 @@ const NewReview = () => {
     }
   };
   if (loading) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

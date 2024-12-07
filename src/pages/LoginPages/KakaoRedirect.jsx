@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import useAuth from "@/hooks/useAuth";
+import Loading from "@/utils/Loading";
 
 const KakaoRedirect = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const KakaoRedirect = () => {
   }, [isOnBoard]);
 
   if (loading || isOnBoard == null) {
-    return <h1>로그인 중입니다.</h1>;
+    return <Loading />;
   }
 
   return null;

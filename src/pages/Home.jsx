@@ -54,7 +54,7 @@ const Home = () => {
                   programId={program.programId}
                   name={program.programName}
                   facility={program.facilityName}
-                  price={program.programPrice}
+                  price={`₩ ${program.programPrice.toLocaleString()}`}
                 />
               ))
             )}

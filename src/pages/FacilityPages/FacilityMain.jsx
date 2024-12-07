@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import styles from "@/pages/FacilityPages/FacilityMain.module.css";
 import FacilityItem from "@/components/Facility/FacilityItem";
 import useFacility from "@/hooks/useFacility";
+import Loading from "@/utils/Loading";
 
 const FacilityMain = () => {
   const { t, i18n } = useTranslation();
@@ -118,7 +119,7 @@ const FacilityMain = () => {
   }, [isCategoryOpen]);
 
   if (loading || !entireFacilityList) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (error) {

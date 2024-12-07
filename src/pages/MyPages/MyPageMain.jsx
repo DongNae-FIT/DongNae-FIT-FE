@@ -5,6 +5,7 @@ import styles from "@/pages/MyPages/MyPageMain.module.css";
 import useAuth from "@/hooks/useAuth";
 import { useEffect } from "react";
 import useMyPage from "@/hooks/useMyPage";
+import Loading from "@/utils/Loading";
 
 const MyPageMain = () => {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ const MyPageMain = () => {
   }, []);
 
   if (loading || !user) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

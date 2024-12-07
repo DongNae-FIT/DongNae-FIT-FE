@@ -5,6 +5,7 @@ import KakaoMap from "@/components/KakaoMap";
 import useFacility from "@/hooks/useFacility";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "@/utils/Loading";
 
 const FacilityDetail = () => {
   const { t } = useTranslation();
@@ -44,7 +45,7 @@ const FacilityDetail = () => {
   }, []);
 
   if (loading || !facilityDetail || !locations) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

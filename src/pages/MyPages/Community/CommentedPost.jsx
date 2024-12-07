@@ -2,6 +2,7 @@ import styles from "@/pages/MyPages/Community/CommentedPost.module.css";
 import { useEffect } from "react";
 import useMyPage from "@/hooks/useMyPage";
 import CommunityItem from "@/components/Community/CommunityItem";
+import Loading from "@/utils/Loading";
 
 const CommentedPost = () => {
   const { authInfo, getPostCommented, loading, error } = useMyPage();
@@ -19,7 +20,7 @@ const CommentedPost = () => {
   }, []);
 
   if (loading || !authInfo) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

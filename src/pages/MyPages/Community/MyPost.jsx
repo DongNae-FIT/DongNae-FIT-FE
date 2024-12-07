@@ -3,6 +3,7 @@ import styles from "@/pages/MyPages/Community/MyPost.module.css";
 import { useEffect } from "react";
 import useMyPage from "@/hooks/useMyPage";
 import CommunityItem from "@/components/Community/CommunityItem";
+import Loading from "@/utils/Loading";
 
 const MyPost = () => {
   const { authInfo, getMyPost, loading, error } = useMyPage();
@@ -20,7 +21,7 @@ const MyPost = () => {
   }, []);
 
   if (loading || !authInfo) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

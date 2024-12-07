@@ -6,9 +6,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import SearchInputHeader from "@/components/Search/SearchInputHeader";
 import Resultclassification from "@/components/Search/Resultclassification";
 import ProgramItem from "@/components/Program/ProgramItem";
-import FacilityItem from "@/components/Facility/FacilityItem";
-import CommunityItem from "@/components/Community/CommunityItem";
+
 import useProgram from "@/hooks/useProgram";
+import Loading from "@/utils/Loading";
 
 const SearchResultProgram = () => {
   const { t } = useTranslation();
@@ -36,7 +36,7 @@ const SearchResultProgram = () => {
   }, []);
 
   if (loading || !entireProgramList) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {
@@ -57,7 +57,7 @@ const SearchResultProgram = () => {
                 programId={program.programId}
                 name={program.programName}
                 facility={program.facilityName}
-                price={`${program.programPrice.toLocaleString()}원`}
+                price={`₩ ${program.programPrice.toLocaleString()}`}
               />
             ))}
 

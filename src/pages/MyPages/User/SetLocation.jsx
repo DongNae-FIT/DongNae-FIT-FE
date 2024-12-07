@@ -8,6 +8,7 @@ import EditorHeader from "@/layouts/Header/EditorHeader";
 import useMyPage from "@/hooks/useMyPage";
 import { useNavigate } from "react-router-dom";
 import useAuth from "@/hooks/useAuth";
+import Loading from "@/utils/Loading";
 
 const SetLocation = () => {
   const { t } = useTranslation();
@@ -59,7 +60,7 @@ const SetLocation = () => {
   };
 
   if (loading || !user) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

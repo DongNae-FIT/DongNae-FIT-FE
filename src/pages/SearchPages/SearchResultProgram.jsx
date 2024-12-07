@@ -5,23 +5,28 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import SearchInputHeader from "@/components/Search/SearchInputHeader";
 import Resultclassification from "@/components/Search/Resultclassification";
-import useMain from "@/hooks/useMain";
 import ProgramItem from "@/components/Program/ProgramItem";
 import FacilityItem from "@/components/Facility/FacilityItem";
 import CommunityItem from "@/components/Community/CommunityItem";
+import useProgram from "@/hooks/useProgram";
 
-const SearchResultAll = () => {
+const SearchResultProgram = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { SearchAll, searchResultAll, loading, error } = useMain();
+  const { getEntireProgramList, entireProgramList, loading, error } =
+    useProgram();
 
   useEffect(() => {
     const initialize = async () => {
       try {
-        await SearchAll(location.state.searchInput);
-        console.log(searchResultAll);
+        await getEntireProgramList(
+          undefined,
+          undefined,
+          location.state.searchInput
+        );
+        console.log(entireProgramList);
       } catch (err) {
         console.error("Failed to fetch entrie post:", err);
       }
@@ -30,12 +35,7 @@ const SearchResultAll = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (
-    loading ||
-    !searchResultAll.programData ||
-    !searchResultAll.facilityData ||
-    !searchResultAll.postData
-  ) {
+  if (loading || !entireProgramList) {
     return <p>Loading</p>;
   }
 
@@ -43,15 +43,15 @@ const SearchResultAll = () => {
     return <p>Error: {error}</p>;
   }
   return (
-    <div className={styles["search-main"]}>
+    <div className={styles["search"]}>
       <SearchInputHeader searchInput={location.state.searchInput} />
-      <Resultclassification searchInput={location.state.searchInput} />
+      <Resultclassification type={2} searchInput={location.state.searchInput} />
 
       <div className={styles["section-list"]}>
         <div className={styles["section"]}>
           <div className={styles["title"]}>{t("menus.program")}</div>
           <div className={styles["item-list"]}>
-            {searchResultAll.programData.map((program) => (
+            {entireProgramList.map((program) => (
               <ProgramItem
                 key={program.programId}
                 programId={program.programId}
@@ -61,14 +61,14 @@ const SearchResultAll = () => {
               />
             ))}
 
-            {searchResultAll.programData.length === 0 ? (
+            {entireProgramList.length === 0 ? (
               <div className={styles["empty-message"]}>강좌가 없습니다.</div>
             ) : (
               <></>
             )}
           </div>
         </div>
-        <div className={styles["section"]}>
+        {/* <div className={styles["section"]}>
           <div className={styles["title"]}>{t("menus.facility")}</div>
           <div className={styles["item-list"]}>
             {searchResultAll.facilityData.map((facility) => (
@@ -109,10 +109,10 @@ const SearchResultAll = () => {
               ))
             )}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
 };
 
-export default SearchResultAll;
+export default SearchResultProgram;

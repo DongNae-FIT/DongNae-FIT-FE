@@ -26,6 +26,11 @@ const Resultclassification = ({ type = 1, searchInput }) => {
         className={`${styles["classification"]} ${
           type === 2 ? styles["selected"] : ""
         }`}
+        onClick={() => {
+          navigate("/search/result/program", {
+            state: { searchInput: searchInput },
+          });
+        }}
       >
         {t("menus.program")}
       </div>
@@ -33,6 +38,11 @@ const Resultclassification = ({ type = 1, searchInput }) => {
         className={`${styles["classification"]} ${
           type === 3 ? styles["selected"] : ""
         }`}
+        onClick={() => {
+          navigate("/search/result/facility", {
+            state: { searchInput: searchInput },
+          });
+        }}
       >
         {t("menus.facility")}
       </div>
@@ -40,6 +50,11 @@ const Resultclassification = ({ type = 1, searchInput }) => {
         className={`${styles["classification"]} ${
           type === 4 ? styles["selected"] : ""
         }`}
+        onClick={() => {
+          navigate("/search/result/community", {
+            state: { searchInput: searchInput },
+          });
+        }}
       >
         {t("menus.community")}
       </div>

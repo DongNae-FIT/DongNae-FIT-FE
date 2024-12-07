@@ -45,6 +45,9 @@ import SavedPost from "@/pages/MyPages/Community/SavedPost";
 
 import SearchMain from "@/pages/SearchPages/SearchIMain";
 import SearchResultAll from "@/pages/SearchPages/SearchResultAll";
+import SearchResultProgram from "@/pages/SearchPages/SearchResultProgram";
+import SearchResultFacility from "@/pages/SearchPages/SearchResultFacility";
+import SearchResultCommunity from "@/pages/SearchPages/SearchResultCommunity";
 
 import ProtectedRoute from "@/routes/ProtectedRoute.jsx";
 import PublicRoute from "@/routes/PublicRoute.jsx";
@@ -170,6 +173,18 @@ function App() {
                   <Route
                     path="/search/result/all"
                     element={<SearchResultAll />}
+                  />
+                  <Route
+                    path="/search/result/program"
+                    element={<SearchResultProgram />}
+                  />
+                  <Route
+                    path="/search/result/facility"
+                    element={<SearchResultFacility />}
+                  />
+                  <Route
+                    path="/search/result/community"
+                    element={<SearchResultCommunity />}
                   />
 
                   <Route path="*" />

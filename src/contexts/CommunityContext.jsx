@@ -116,7 +116,7 @@ const CommunityProvider = ({ children }) => {
     setError(null);
     try {
       const response = await authAxios.delete(
-        `api/auth/posts/${postId}/${commentId}`
+        `/api/auth/posts/${postId}/${commentId}`
       );
     } catch (error) {
       setError("Failed to delete post");

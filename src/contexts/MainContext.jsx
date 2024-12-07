@@ -17,7 +17,7 @@ const MainProvider = ({ children }) => {
     try {
       setRecommendedProgramList([]);
       setTrendingPostList([]);
-      const response = await authAxios.get(`/api/main`);
+      const response = await authAxios.get(`/api/main/home`);
       setRecommendedProgramList(response.data.data.programData);
       setTrendingPostList(response.data.data.postData);
     } catch (err) {

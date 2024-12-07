@@ -62,6 +62,8 @@ const ProgramDetail = () => {
     return <Loading />;
   }
 
+  console.log(programDetail);
+
   if (error) {
     return <p>Error: {error}</p>;
   }
@@ -152,11 +154,8 @@ const ProgramDetail = () => {
               content={review.reviewPost}
             />
           ))}
-
-          {programDetail.reviewData.length === 0 ? (
+          {programDetail.reviewData.length === 0 && (
             <div className={styles["empty-message"]}>{t("empty_message")}</div>
-          ) : (
-            <></>
           )}
         </div>
       </div>

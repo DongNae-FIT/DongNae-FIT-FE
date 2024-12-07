@@ -5,6 +5,7 @@
   justify-content: center;
   z-index: 30;
   flex-direction: column;
+  padding-bottom: calc(var(--body-padding) * 4);
 }
 
 .search__header {

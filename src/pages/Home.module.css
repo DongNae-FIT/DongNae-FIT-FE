@@ -24,6 +24,7 @@
   flex-direction: column;
   gap: 10px;
   padding-top: 10px;
+  padding-bottom: calc(var(--body-padding) * 4);
 }
 
 .home__subtitle {

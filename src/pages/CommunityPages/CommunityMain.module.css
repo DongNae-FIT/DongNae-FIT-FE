@@ -1,6 +1,7 @@
 .community-main {
   width: 100%;
   padding: var(--default-padding) var(--body-padding);
+  padding-bottom: calc(var(--body-padding) * 5);
 }
 
 .post-list {

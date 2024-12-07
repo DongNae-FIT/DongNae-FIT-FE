@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
     padding-top: 15px;
+    padding-bottom: calc(var(--body-padding) * 4);
+
   }
   
   .post-list {

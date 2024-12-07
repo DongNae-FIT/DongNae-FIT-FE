@@ -11,7 +11,6 @@ const SearchInputHeader = ({ searchInput = "" }) => {
 
   const handleEnterKeyDown = (e) => {
     if (e.key === "Enter") {
-      console.log(`엔터 : ${e.target.value}`);
       navigate("/search/result/all", { state: { searchInput: searchValue } });
     }
   };

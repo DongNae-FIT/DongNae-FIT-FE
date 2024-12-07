@@ -21,7 +21,6 @@ const SearchResultAll = () => {
     const initialize = async () => {
       try {
         await SearchAll(location.state.searchInput);
-        console.log(searchResultAll);
       } catch (err) {
         console.error("Failed to fetch entrie post:", err);
       }
@@ -58,7 +57,7 @@ const SearchResultAll = () => {
                 name={program.programName}
                 facility={program.facilityName}
                 price={`₩ ${program.programPrice.toLocaleString()}`}
-                />
+              />
             ))}
 
             {searchResultAll.programData.length === 0 ? (

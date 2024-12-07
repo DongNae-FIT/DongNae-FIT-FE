@@ -1,5 +1,5 @@
-import React, { createContext, useState } from "react";
-import authAxios from "@/contexts/authAxios";
+import React, { createContext, useState, useContext } from "react";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const MainContext = createContext();
 
@@ -10,6 +10,8 @@ const MainProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { authAxios } = useContext(AuthContext);
+
 
   const getDataForHome = async () => {
     setLoading(true);

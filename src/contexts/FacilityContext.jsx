@@ -1,5 +1,5 @@
-import React, { createContext, useState } from "react";
-import authAxios from "@/contexts/authAxios";
+import React, { createContext, useState, useContext } from "react";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const FacilityContext = createContext();
 
@@ -8,6 +8,7 @@ const FacilityProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { authAxios } = useContext(AuthContext);
 
   const getEntireFacilityList = async (type, searchInput = "") => {
     setLoading(true);

@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import authAxios from "@/contexts/authAxios";
 
 const AuthContext = createContext();
 
@@ -63,8 +62,6 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem("refreshToken", refreshToken);
         setIsAuthenticated(true);
         setIsOnBoard(response.data.onboard);
-
-        console.log("로그인:", response.data);
       })
       .catch((error) => {
         console.error("Failed to login:", error);
@@ -82,11 +79,9 @@ const AuthProvider = ({ children }) => {
       .get(`/api/auth/member/check?name=${nickname}`)
       .then((response) => {
         if (response.status == 200) {
-          console.log("중복 닉네임 없음");
           setIsDuplicate(false);
         }
         if (response.message == "중복됩니다. 다른 닉네임으로 수정해주세요.") {
-          console.log("이미 사용중인 닉네임");
           setIsDuplicate(true);
         }
       })
@@ -107,7 +102,6 @@ const AuthProvider = ({ children }) => {
       const locationInfo = await setLocationInfo(region);
       const { province, district, latitude, longitude } = locationInfo;
 
-      console.log(name, region, province, district, latitude, longitude);
       const response = await authAxios.post(`/api/auth/member/onboard`, {
         name,
         region,
@@ -137,22 +131,62 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setLoading(true);
-    return authAxios
-      .post("주소", {})
-      .then(() => {
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-        setUser();
-        setIsAuthenticated(false);
-      })
-      .catch((error) => {
-        console.error("Logout failed:", error);
-        setError(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+
+    try {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      setUser();
+      setIsAuthenticated(false);
+      navigate("/");
+    } catch (error) {
+      console.error("Logout failed:", error);
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  // authAxios 생성 및 인터셉터 설정
+  const authAxios = axios.create({ withCredentials: true });
+
+  authAxios.interceptors.request.use((config) => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return config;
+  });
+
+  authAxios.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+      const originalRequest = error.config;
+      if (
+        error.response &&
+        error.response.status === 401 &&
+        !originalRequest._retry
+      ) {
+        originalRequest._retry = true;
+        const refreshToken = localStorage.getItem("refreshToken");
+        if (refreshToken) {
+          try {
+            const response = await axios.post(
+              `/member/refresh?refreshToken=${refreshToken}`
+            );
+            const newAccessToken = response.data.accessToken;
+            localStorage.setItem("accessToken", newAccessToken);
+
+            originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+            return authAxios(originalRequest);
+          } catch (refreshError) {
+            console.error("Token refresh failed:", refreshError);
+            logout();
+          }
+        }
+      }
+      return Promise.reject(error);
+    }
+  );
 
   const setLocationInfo = async (region) => {
     setLoading(true);
@@ -208,6 +242,7 @@ const AuthProvider = ({ children }) => {
         setLocationInfo,
         loading,
         error,
+        authAxios,
       }}
     >
       {children}

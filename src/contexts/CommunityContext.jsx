@@ -1,5 +1,5 @@
-import React, { createContext, useState } from "react";
-import authAxios from "@/contexts/authAxios";
+import React, { createContext, useState, useContext } from "react";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const CommunityContext = createContext();
 
@@ -10,6 +10,7 @@ const CommunityProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { authAxios } = useContext(AuthContext);
 
   const getEntirePostList = async (searchInput = "") => {
     setLoading(true);
@@ -73,7 +74,6 @@ const CommunityProvider = ({ children }) => {
         postTitle,
         postDetail,
       });
-      console.log(response.data.data);
       setPostId(response.data.data.postId);
     } catch (error) {
       setError("Failed to save new post");

@@ -1,6 +1,5 @@
-import React, { createContext, useState } from "react";
-import axios from "axios";
-import authAxios from "@/contexts/authAxios";
+import React, { createContext, useState, useContext } from "react";
+import { AuthContext } from "@/contexts/AuthContext";
 import useAuth from "@/hooks/useAuth";
 
 const initialUserState = {
@@ -17,6 +16,7 @@ const MyPageProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const { setLocationInfo } = useAuth();
   const [authInfo, setAuthInfo] = useState([]);
+  const { authAxios } = useContext(AuthContext);
 
   const getUserInfo = () => {
     setLoading(true);
@@ -157,7 +157,6 @@ const MyPageProvider = ({ children }) => {
         setLoading(false);
       });
   };
-
 
   return (
     <MyPageContext.Provider

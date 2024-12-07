@@ -25,7 +25,6 @@ const KakaoRedirect = () => {
 
   useEffect(() => {
     if (isOnBoard == null) return;
-    console.log("리다이렉트:", isOnBoard);
     if (isOnBoard) {
       navigate("/login/info", { state: { isLogin: true } });
     } else {

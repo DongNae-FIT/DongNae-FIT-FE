@@ -64,14 +64,14 @@ input::-webkit-inner-spin-button {
   --font-size-logo: 27px;
   --font-size-logo-en: 25px;
 
-  background-color: blue;
+  background-color: white;
 }
 
 body {
   width: 100%;
   min-width: 300px;
   min-height: 100vh;
-  background-color: beige;
+  background-color: white;
   line-height: 1.5;
   margin: auto;
   padding-bottom: calc(var(--body-padding) * 4);

@@ -21,7 +21,6 @@ const SearchResultFacility = () => {
     const initialize = async () => {
       try {
         await getEntireFacilityList(undefined, location.state.searchInput);
-        console.log(entireFacilityList);
       } catch (err) {
         console.error("Failed to fetch entrie post:", err);
       }

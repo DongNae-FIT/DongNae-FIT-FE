@@ -26,7 +26,6 @@ const SearchResultProgram = () => {
           undefined,
           location.state.searchInput
         );
-        console.log(entireProgramList);
       } catch (err) {
         console.error("Failed to fetch entrie post:", err);
       }

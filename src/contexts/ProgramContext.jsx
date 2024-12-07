@@ -1,6 +1,6 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
-import authAxios from "@/contexts/authAxios";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const ProgramContext = createContext();
 
@@ -10,6 +10,8 @@ const ProgramProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { authAxios } = useContext(AuthContext);
+
 
   const getEntireProgramList = async (
     min = 0,

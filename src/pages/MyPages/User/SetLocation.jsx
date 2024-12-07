@@ -55,8 +55,7 @@ const SetLocation = () => {
   const handleAddressSelect = async (address) => {
     setLocation(address);
     setOpenPostcode(false);
-    const l = await setLocationInfo(address);
-    console.log("위치정보:", l);
+    const response = await setLocationInfo(address);
   };
 
   if (loading || !user) {

@@ -1,10 +1,9 @@
 import React from "react";
-import styles from "@/utils/Loading.module.css";
-
+import "./Loading.css";
 const Loading = () => {
   return (
     <div className="loading">
-      <img className={styles["spinner"]} src={"/spinner.gif"} alt="로딩" />
+      <img className="spinner" src={"/spinner.gif"} alt="로딩" />
     </div>
   );
 };

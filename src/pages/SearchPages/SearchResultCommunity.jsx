@@ -20,7 +20,6 @@ const SearchResultCommunity = () => {
     const initialize = async () => {
       try {
         await getEntirePostList(location.state.searchInput);
-        console.log(entirePostList);
       } catch (err) {
         console.error("Failed to fetch entrie post:", err);
       }

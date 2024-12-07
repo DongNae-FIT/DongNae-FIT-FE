@@ -14,6 +14,7 @@ const useAuth = () => {
     setLocationInfo,
     loading,
     error,
+    authAxios,
   } = useContext(AuthContext);
 
   return {
@@ -28,6 +29,7 @@ const useAuth = () => {
     setLocationInfo,
     loading,
     error,
+    authAxios,
   };
 };
 

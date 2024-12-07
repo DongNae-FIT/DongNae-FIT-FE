@@ -54,7 +54,6 @@ const EditProfile = () => {
   };
 
   const handleDuplicateCheckButtonClicked = async () => {
-    console.log(nickname);
     if (nicknameErrors) return;
 
     try {

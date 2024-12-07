@@ -79,7 +79,7 @@ const FacilityDetail = () => {
             </button>
           </div>
           <div className={styles["text-wrapper"]}>
-            <div className={styles["distance"]}> {facilityDetail.km}</div>
+            <div className={styles["distance"]}> {facilityDetail.km} km</div>
             {isPublic ? (
               <div className={styles["public"]}>• {t("facility.public")}</div>
             ) : (

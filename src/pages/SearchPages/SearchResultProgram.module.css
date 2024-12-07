@@ -72,6 +72,8 @@
   flex-direction: column;
   padding: 0 var(--body-padding);
   gap: 15px;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .item-list > *:not(:last-child) {
@@ -80,8 +82,7 @@
 }
 
 .section-list > *:not(:last-child) {
-  border-bottom: 6px solid var(--sub-grey);
-  padding-bottom: var(--default-padding);
+  padding-bottom: calc(var(--body-padding) * 4);
 }
 
 .title {

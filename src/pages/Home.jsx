@@ -105,14 +105,14 @@ const Home = () => {
                   postId={post.postId}
                   profileImg={
                     post.postImage
-                      ? post.postImage
+                      ? post.memberProfile
                       : "/default/default_profile.png"
                   }
-                  nickname={"닉네임"}
+                  nickname={post.memberName}
                   title={post.postTitle}
                   content={post.postDetail}
                   imgSrc={post.postImage}
-                  date="2024-10-11 11:11:11"
+                  date={post.postDate}
                   likeCount={post.postLikeCount}
                   saveCount={post.postSaveCount}
                   //  postId,  title,  content,  imgSrc,  date,  likeCount,  saveCount,

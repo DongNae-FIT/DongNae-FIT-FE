@@ -185,7 +185,7 @@ const ProgramMain = () => {
         ))}
 
         {entireProgramList.length === 0 ? (
-          <div className={styles["empty-message"]}>강좌가 없습니다.</div>
+          <div className={styles["empty-message"]}>{t("empty_message")}</div>
         ) : (
           <></>
         )}

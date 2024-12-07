@@ -143,7 +143,7 @@ const ProgramDetail = () => {
           ))}
 
           {programDetail.reviewData.length === 0 ? (
-            <div className={styles["empty-message"]}>리뷰가 없습니다.</div>
+            <div className={styles["empty-message"]}>{t("empty_message")}</div>
           ) : (
             <></>
           )}

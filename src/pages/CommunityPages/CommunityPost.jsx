@@ -176,7 +176,7 @@ const CommunityPost = () => {
         </span>
         <div className={styles["comment-list"]}>
           {postDetail.comments.length === 0 ? (
-            <div className={styles["empty-message"]}>댓글이 없습니다.</div>
+            <div className={styles["empty-message"]}>{t("empty_message")}</div>
           ) : (
             postDetail.comments.map((comment) => (
               <CommunityComment

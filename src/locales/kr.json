@@ -1,5 +1,6 @@
 {
   "title": "동네-핏",
+  "empty_message": "결과가 없습니다.",
   "buttons": {
     "done": "완료",
     "find_path": "길찾기",

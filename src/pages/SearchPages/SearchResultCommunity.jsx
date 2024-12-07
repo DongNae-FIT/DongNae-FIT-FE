@@ -57,7 +57,7 @@ const SearchResultCommunity = () => {
               />
             ))}
             {entirePostList.length === 0 && (
-              <div className={styles["empty-message"]}>게시글이 없습니다.</div>
+              <div className={styles["empty-message"]}>{t("empty_message")}</div>
             )}
           </div>
         </div>

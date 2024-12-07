@@ -61,54 +61,14 @@ const SearchResultProgram = () => {
             ))}
 
             {entireProgramList.length === 0 ? (
-              <div className={styles["empty-message"]}>강좌가 없습니다.</div>
+              <div className={styles["empty-message"]}>
+                {t("empty_message")}
+              </div>
             ) : (
               <></>
             )}
           </div>
         </div>
-        {/* <div className={styles["section"]}>
-          <div className={styles["title"]}>{t("menus.facility")}</div>
-          <div className={styles["item-list"]}>
-            {searchResultAll.facilityData.map((facility) => (
-              <FacilityItem
-                key={facility.facilityId}
-                facilityId={facility.facilityId}
-                name={facility.facilityName}
-                type={facility.facilityType}
-                distance={facility.km}
-                isPublic={true}
-              />
-            ))}
-
-            {searchResultAll.facilityData.length === 0 && (
-              <div className={styles["empty-message"]}>
-                주변 체육 시설이 없습니다.
-              </div>
-            )}
-          </div>
-        </div>
-        <div className={styles["section"]}>
-          <div className={styles["title"]}>{t("menus.community")}</div>
-          <div className={styles["item-list"]}>
-            {searchResultAll.postData.length === 0 ? (
-              <div className={styles["empty-message"]}>게시글이 없습니다.</div>
-            ) : (
-              searchResultAll.postData.map((post) => (
-                <CommunityItem
-                  key={post.postId}
-                  postId={post.postId}
-                  title={post.postTitle}
-                  content={post.postDetail}
-                  imgSrc={post.postImage}
-                  date="2024-10-11 11:11:11"
-                  likeCount={post.postLikeCount}
-                  saveCount={post.postSaveCount}
-                />
-              ))
-            )}
-          </div>
-        </div> */}
       </div>
     </div>
   );

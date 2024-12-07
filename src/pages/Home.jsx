@@ -45,7 +45,7 @@ const Home = () => {
           <div className={styles["program-list"]}>
             {recommendedProgramList.length === 0 ? (
               <div className={styles["empty-message"]}>
-                추천 스포츠 강좌가 없습니다.
+                {t("empty_message")}
               </div>
             ) : (
               recommendedProgramList.map((program) => (
@@ -95,7 +95,7 @@ const Home = () => {
           <div className={styles["community-list"]}>
             {trendingPostList.length === 0 ? (
               <div className={styles["empty-message"]}>
-                실시간 인기글 게시글이 없습니다.
+                {t("empty_message")}
               </div>
             ) : (
               trendingPostList.map((post) => (

@@ -33,7 +33,7 @@ const CommunityMain = () => {
     <div className={styles["community-main"]}>
       <div className={styles["post-list"]}>
         {entirePostList.length === 0 ? (
-          <div className={styles["empty-message"]}>게시글이 없습니다.</div>
+          <div className={styles["empty-message"]}>{t("empty_message")}</div>
         ) : (
           entirePostList.map((post) => (
             <CommunityItem

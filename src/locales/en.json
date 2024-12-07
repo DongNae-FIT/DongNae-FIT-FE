@@ -1,5 +1,7 @@
 {
   "title": "DongNae-FIT",
+  "empty_message": "Empty",
+
   "buttons": {
     "done": "Done",
     "find_path": "Find Path",

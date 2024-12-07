@@ -61,7 +61,9 @@ const SearchResultAll = () => {
             ))}
 
             {searchResultAll.programData.length === 0 ? (
-              <div className={styles["empty-message"]}>강좌가 없습니다.</div>
+              <div className={styles["empty-message"]}>
+                {t("empty_message")}
+              </div>
             ) : (
               <></>
             )}
@@ -83,7 +85,7 @@ const SearchResultAll = () => {
 
             {searchResultAll.facilityData.length === 0 && (
               <div className={styles["empty-message"]}>
-                주변 체육 시설이 없습니다.
+                {t("empty_message")}
               </div>
             )}
           </div>
@@ -92,7 +94,9 @@ const SearchResultAll = () => {
           <div className={styles["title"]}>{t("menus.community")}</div>
           <div className={styles["item-list"]}>
             {searchResultAll.postData.length === 0 ? (
-              <div className={styles["empty-message"]}>게시글이 없습니다.</div>
+              <div className={styles["empty-message"]}>
+                {t("empty_message")}
+              </div>
             ) : (
               searchResultAll.postData.map((post) => (
                 <CommunityItem

@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import ProgramItem from "@/components/Program/ProgramItem";
 import useMyPage from "@/hooks/useMyPage";
 import Loading from "@/utils/Loading";
+import { useTranslation } from "react-i18next";
 
 const ReviewedProgram = () => {
   const { authInfo, getProgramReviewed, loading, error } = useMyPage();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const initialize = async () => {
@@ -41,7 +43,7 @@ const ReviewedProgram = () => {
         ))}
 
         {authInfo.length === 0 && (
-          <div className={styles["empty-message"]}>강좌가 없습니다.</div>
+          <div className={styles["empty-message"]}>{t("empty_message")}</div>
         )}
       </div>
     </div>

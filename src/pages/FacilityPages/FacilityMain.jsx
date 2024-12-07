@@ -187,7 +187,7 @@ const FacilityMain = () => {
 
         {entireFacilityList.length === 0 && (
           <div className={styles["empty-message"]}>
-            주변 체육 시설이 없습니다.
+            {t("empty_message")}
           </div>
         )}
       </div>

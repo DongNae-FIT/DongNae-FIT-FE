@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import useMyPage from "@/hooks/useMyPage";
 import CommunityItem from "@/components/Community/CommunityItem";
 import Loading from "@/utils/Loading";
+import { useTranslation } from "react-i18next";
 
 const SavedPost = () => {
   const { authInfo, getPostSaved, loading, error } = useMyPage();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const initialize = async () => {
@@ -43,7 +45,7 @@ const SavedPost = () => {
           />
         ))}
         {authInfo.length === 0 && (
-          <div className={styles["empty-message"]}>게시글이 없습니다.</div>
+          <div className={styles["empty-message"]}>{t("empty_message")}</div>
         )}
       </div>
     </div>

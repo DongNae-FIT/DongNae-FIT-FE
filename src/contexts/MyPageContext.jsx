@@ -16,6 +16,7 @@ const MyPageProvider = ({ children }) => {
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
   const { setLocationInfo } = useAuth();
+  const [authInfo, setAuthInfo] = useState([]);
 
   const getUserInfo = () => {
     setLoading(true);
@@ -24,7 +25,6 @@ const MyPageProvider = ({ children }) => {
       .then((response) => {
         const { name, region, profile } = response.data.data;
         setUser({ name, region, profile });
-        console.log("응답:", response.data);
       })
       .catch((error) => {
         console.error("Failed to get User Info:", error);
@@ -73,13 +73,31 @@ const MyPageProvider = ({ children }) => {
     }
   };
 
+  const getProgramSaved = () => {
+    setLoading(true);
+    return authAxios
+      .get("/api/auth/mypage/programs/save")
+      .then((response) => {
+        setAuthInfo(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Failed to get User Info:", error);
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
     <MyPageContext.Provider
       value={{
         user,
+        authInfo,
         getUserInfo,
         changeNickname,
         changeRegion,
+        getProgramSaved,
         loading,
         error,
       }}

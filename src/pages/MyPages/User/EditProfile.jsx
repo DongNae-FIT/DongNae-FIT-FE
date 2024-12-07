@@ -175,7 +175,7 @@ const EditProfile = () => {
             ref={profileImg}
             type="file"
             className={styles["profile-input"]}
-          ></input>
+          />
           <img
             src={previewImg}
             className={styles["profile-img"]}

@@ -33,6 +33,7 @@ const CommunityPost = () => {
     const initialize = async () => {
       try {
         await getPostDetail(postId);
+        console.log(postDetail);
         if (postDetail) {
           setLike(postDetail.postLikeStatus);
           setSave(postDetail.postSaveStatus);
@@ -94,7 +95,7 @@ const CommunityPost = () => {
   }
 
   if (error) {
-    return <p>Error: {error.message || 'An unknown error occurred'}</p>;
+    return <p>Error: {error.message || "An unknown error occurred"}</p>;
   }
 
   return (
@@ -121,6 +122,9 @@ const CommunityPost = () => {
         </div>
         <div className={styles["post-title"]}>{postDetail.postTitle}</div>
         <div className={styles["post-content"]}>{postDetail.postDetail}</div>
+        {postDetail.postImage && (
+          <img src={postDetail.postImage} className={styles["post-img"]} />
+        )}
         <div className={styles["service-wrapper"]}>
           <div className={styles["post-button-wrapper"]}>
             <button

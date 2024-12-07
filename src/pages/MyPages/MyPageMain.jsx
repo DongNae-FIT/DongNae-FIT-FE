@@ -36,7 +36,7 @@ const MyPageMain = () => {
     }
   };
 
-  if (loading || !user || !user.name) {
+  if (loading) {
     return <Loading />;
   }
 

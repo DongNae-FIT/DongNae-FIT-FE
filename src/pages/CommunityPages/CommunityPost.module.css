@@ -25,6 +25,7 @@
 
 .info-img {
   width: 40px;
+  aspect-ratio: 1;
   border-radius: 50px;
 }
 
@@ -56,6 +57,15 @@
 .post-content {
   font-size: 1rem;
   padding-bottom: calc(var(--default-padding) * 1.2);
+}
+
+.post-img {
+  width: calc(var(--body-padding) * 13);
+  border: 1px solid var(--sub-grey);
+  aspect-ratio: 1.5;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: calc(var(--default-padding) * 1.2);
 }
 
 .service-wrapper {

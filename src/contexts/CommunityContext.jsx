@@ -82,6 +82,23 @@ const CommunityProvider = ({ children }) => {
     }
   };
 
+  const saveNewPostImg = async (postId, formData) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await authAxios.post(
+        `/api/auth/posts/${postId}/image`,
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+    } catch (error) {
+      console.error("Failed to save postImg", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const deletePost = async (postId) => {
     setLoading(true);
     setError(null);
@@ -136,6 +153,7 @@ const CommunityProvider = ({ children }) => {
         togglePostLike,
         togglePostSave,
         saveNewPost,
+        saveNewPostImg,
         deletePost,
         writeComment,
         deleteComment,

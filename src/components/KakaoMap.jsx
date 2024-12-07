@@ -17,9 +17,9 @@ const KakaoMap = ({ locations, mapHeight }) => {
         }}
         level={3}
       >
-        {locations.map((location, index) => (
+        {locations.map((location) => (
           <MapMarker
-            key={index}
+            key={location.name}
             position={{ lat: location.lat, lng: location.lng }}
           ></MapMarker>
         ))}

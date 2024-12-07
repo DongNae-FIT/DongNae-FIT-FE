@@ -23,14 +23,6 @@ const ProgramDetail = () => {
     const initialize = async () => {
       try {
         await getProgramDetail(programId);
-        if (programDetail) {
-          const coordinate = {
-            lat: programDetail.facilityLatitude,
-            lng: programDetail.facilityLongitude,
-            name: programDetail.facilityName,
-          };
-          setLocations([coordinate]);
-        }
       } catch (err) {
         console.error("Failed to fetch entrie programs:", err);
       }
@@ -38,6 +30,22 @@ const ProgramDetail = () => {
     initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (programDetail) {
+      console.log("if내부:", programDetail);
+
+      const coordinate = {
+        lat: programDetail.facilityLatitude,
+        lng: programDetail.facilityLongitude,
+        name: programDetail.facilityName,
+      };
+      console.log("coordinate", coordinate);
+      setLocations([coordinate]);
+    } else {
+      setLocations([]);
+    }
+  }, [programDetail]);
 
   const onClickLike = async () => {
     if (!isAuthenticated) {
@@ -52,10 +60,15 @@ const ProgramDetail = () => {
       console.error("Failed to fetch toggle like on program:", err);
     }
   };
+  console.log("정보:", programDetail);
 
-  if (loading || !locations) {
+  console.log("위치정보:", locations);
+
+  if (loading || !programDetail || !locations) {
     return <Loading />;
   }
+
+  console.log("위치정보:", locations);
 
   if (error) {
     return <p>Error: {error}</p>;
@@ -63,7 +76,9 @@ const ProgramDetail = () => {
 
   return (
     <div className={styles["program-detail"]}>
-      <KakaoMap locations={locations} mapHeight={300 * 0.9} />
+      {locations.length > 0 && (
+        <KakaoMap locations={locations} mapHeight={300 * 0.9} />
+      )}
 
       <div className={styles["location-wrapper"]}>
         <img
@@ -79,7 +94,7 @@ const ProgramDetail = () => {
             {programDetail.facilityName}
           </div>
           <div className={styles["facility-address"]}>
-            {programDetail.facilityName}
+            {programDetail.facilityAddr}
           </div>
         </div>
         <button
@@ -117,7 +132,8 @@ const ProgramDetail = () => {
           <div className={styles["content-right"]}>
             <div>{programDetail.programData.programTarget}</div>
             <div>
-              {programDetail.programData.programStart} ~
+              {programDetail.programData.programStart}
+              {" ~ "}
               {programDetail.programData.programEnd}
             </div>
             <div>
@@ -133,7 +149,6 @@ const ProgramDetail = () => {
           </div>
         </div>
       </div>
-
       <div className={styles["review-wrapper"]}>
         <div className={styles["title"]}>{t("program.review_title")}</div>
         <div className={styles["review-list"]}>
@@ -153,7 +168,6 @@ const ProgramDetail = () => {
           )}
         </div>
       </div>
-
       <button
         className={styles["review-button"]}
         onClick={() => {

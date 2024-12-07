@@ -6,12 +6,11 @@ const ProgramContext = createContext();
 
 const ProgramProvider = ({ children }) => {
   const [entireProgramList, setEntireProgramList] = useState([]);
-  const [programDetail, setProgramDetail] = useState([]);
+  const [programDetail, setProgramDetail] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { authAxios } = useContext(AuthContext);
-
 
   const getEntireProgramList = async (
     min = 0,
@@ -37,7 +36,7 @@ const ProgramProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      setProgramDetail([]);
+      setProgramDetail(null);
       const response = await authAxios.get(`/api/programs/${programId}`);
       setProgramDetail(response.data.data);
     } catch (err) {

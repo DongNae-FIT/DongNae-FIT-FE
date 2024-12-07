@@ -30,10 +30,6 @@ const ProgramMain = () => {
     const initialize = async () => {
       try {
         await getEntireProgramList();
-
-        if (entireProgramList) {
-          setLocations(extractLocations(entireProgramList));
-        }
       } catch (err) {
         console.error("Failed to fetch entrie programs:", err);
       }
@@ -41,6 +37,14 @@ const ProgramMain = () => {
     initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (entireProgramList?.length > 0) {
+      setLocations(extractLocations(entireProgramList));
+    } else {
+      setLocations([]);
+    }
+  }, [entireProgramList]);
 
   const applyPriceFilter = async () => {
     if (warningMessage) {
@@ -123,17 +127,18 @@ const ProgramMain = () => {
     setSelectedAlign(t("program.align1"));
   }, [i18n.language, t]);
 
-  if (loading || !entireProgramList || !locations) {
+  if (loading || !entireProgramList || !locations || locations.length === 0) {
     return <Loading />;
   }
 
   if (error) {
     return <p>Error: {error}</p>;
   }
-
   return (
     <div className={styles["program-main"]}>
-      <KakaoMap locations={locations} mapHeight={300 * 0.9} />
+      {locations.length > 0 && (
+        <KakaoMap locations={locations} mapHeight={300 * 0.9} />
+      )}
 
       <div className={styles["filter-wrapper"]}>
         <div

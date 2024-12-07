@@ -66,7 +66,7 @@ const AuthProvider = ({ children }) => {
       .catch((error) => {
         console.error("Failed to login:", error);
         window.alert("로그인 실패");
-        setError(error);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);
@@ -87,7 +87,7 @@ const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         console.error("닉네임 중복 체크 중 오류 발생:", error);
-        setError(error);
+        setError(error.message);
         return Promise.reject(error);
       })
       .finally(() => {
@@ -114,7 +114,7 @@ const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
     } catch (error) {
       console.error("Failed to onboard:", error);
-      setError(error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -131,7 +131,7 @@ const AuthProvider = ({ children }) => {
       navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
-      setError(error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -213,7 +213,7 @@ const AuthProvider = ({ children }) => {
       return locationInfo;
     } catch (error) {
       console.error("Failed to onboard:", error);
-      setError(error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }

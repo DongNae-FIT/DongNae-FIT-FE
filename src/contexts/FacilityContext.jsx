@@ -20,7 +20,7 @@ const FacilityProvider = ({ children }) => {
       );
       setEntireFacilityList(response.data.data);
     } catch (err) {
-      setError(err || "Failed to load post");
+      setError(error.message);
     } finally {
       setLoading(false);
     }

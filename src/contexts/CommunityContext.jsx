@@ -20,7 +20,7 @@ const CommunityProvider = ({ children }) => {
       const response = await authAxios.get(`/api/posts?search=${searchInput}`);
       setEntirePostList(response.data.data);
     } catch (err) {
-      setError(err || "Failed to load post");
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -34,7 +34,7 @@ const CommunityProvider = ({ children }) => {
       const response = await authAxios.get(`/api/posts/${postId}`);
       setPostDetail(response.data.data);
     } catch (err) {
-      setError(err || "Failed to load recommended community");
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -47,7 +47,7 @@ const CommunityProvider = ({ children }) => {
     try {
       const response = await authAxios.put(`/api/auth/posts/${postId}/like`);
     } catch (error) {
-      setError("Failed to toggle like");
+      setError(error.message);
     } finally {
       setLoading(false);
     }

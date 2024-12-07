@@ -23,7 +23,7 @@ const MainProvider = ({ children }) => {
       setRecommendedProgramList(response.data.data.programData);
       setTrendingPostList(response.data.data.postData);
     } catch (err) {
-      setError(err || "Failed to load post");
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -37,7 +37,7 @@ const MainProvider = ({ children }) => {
       const response = await authAxios.get(`/api/main?search=${searchInput}`);
       setSearchResultAll(response.data.data);
     } catch (err) {
-      setError(err || "Failed to load post");
+      setError(error.message);
     } finally {
       setLoading(false);
     }

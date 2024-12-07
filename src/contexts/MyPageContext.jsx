@@ -28,7 +28,7 @@ const MyPageProvider = ({ children }) => {
       })
       .catch((error) => {
         console.error("Failed to get User Info:", error);
-        setError(error);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);
@@ -44,7 +44,7 @@ const MyPageProvider = ({ children }) => {
       });
     } catch (error) {
       console.error("Failed to change profile:", error);
-      setError(error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -59,7 +59,7 @@ const MyPageProvider = ({ children }) => {
       });
     } catch (error) {
       console.error("Failed to change nickname:", error);
-      setError(error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -82,7 +82,7 @@ const MyPageProvider = ({ children }) => {
       });
     } catch (error) {
       console.error("Failed to change region :", error);
-      setError(error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -98,7 +98,7 @@ const MyPageProvider = ({ children }) => {
       })
       .catch((error) => {
         console.error("Failed to get User Info:", error);
-        setError(error);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);
@@ -115,7 +115,7 @@ const MyPageProvider = ({ children }) => {
       })
       .catch((error) => {
         console.error("Failed to get User Info:", error);
-        setError(error);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);
@@ -132,7 +132,7 @@ const MyPageProvider = ({ children }) => {
       })
       .catch((error) => {
         console.error("Failed to get User Info:", error);
-        setError(error);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);
@@ -149,7 +149,7 @@ const MyPageProvider = ({ children }) => {
       })
       .catch((error) => {
         console.error("Failed to get User Info:", error);
-        setError(error);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);
@@ -166,7 +166,7 @@ const MyPageProvider = ({ children }) => {
       })
       .catch((error) => {
         console.error("Failed to get User Info:", error);
-        setError(error);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false);

@@ -26,7 +26,7 @@ const ProgramProvider = ({ children }) => {
       );
       setEntireProgramList(response.data.data);
     } catch (err) {
-      setError(err || "Failed to load recommended program");
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -40,7 +40,7 @@ const ProgramProvider = ({ children }) => {
       const response = await authAxios.get(`/api/programs/${programId}`);
       setProgramDetail(response.data.data);
     } catch (err) {
-      setError(err || "Failed to load recommended program");
+      setError(error.message);
     } finally {
       setLoading(false);
     }

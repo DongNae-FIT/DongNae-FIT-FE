@@ -35,13 +35,15 @@ const MyPageProvider = ({ children }) => {
       });
   };
 
-  const changeprofile = async (profile) => {
+  const changeprofile = async (formData) => {
     setLoading(true);
 
     try {
-      const response = await authAxios.put(`/api/auth/mypage/profile`, {
-        profile,
-      });
+      const response = await authAxios.put(
+        `/api/auth/mypage/profile`,
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
     } catch (error) {
       console.error("Failed to change profile:", error);
       setError(error.message);

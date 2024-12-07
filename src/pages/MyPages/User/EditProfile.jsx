@@ -11,7 +11,7 @@ import Loading from "@/utils/Loading";
 
 const EditProfile = () => {
   const { t } = useTranslation();
-  const [nickname, setNickname] = useState("기존 닉네임");
+  const [nickname, setNickname] = useState();
   const navigate = useNavigate();
   const { user, getUserInfo, changeprofile, changeNickname, loading, error } =
     useMyPage();
@@ -27,7 +27,7 @@ const EditProfile = () => {
       try {
         await getUserInfo();
         setPreviewImg(
-          user.progile ? user.profile : "/default/default_profile.png"
+          user.profile ? user.profile : "/default/default_profile.png"
         );
         setNickname(user.name);
       } catch (err) {
@@ -97,7 +97,7 @@ const EditProfile = () => {
         }
 
         try {
-          await changeNickname({ nickname });
+          await changeNickname(nickname);
           navigate("/mypage");
         } catch (err) {
           console.log(err);
@@ -107,7 +107,7 @@ const EditProfile = () => {
       // 이미지만 변경된 경우
       if (!isNicknameChanged && isProfileChanged) {
         const formData = new FormData();
-        formData.append("file", profileImg.current.files[0]);
+        formData.append("profile", profileImg.current.files[0]);
         try {
           await changeprofile(formData);
           navigate("/mypage");

@@ -36,7 +36,7 @@ const MyPageMain = () => {
     }
   };
 
-  if (loading || !user) {
+  if (loading || !user || !user.name) {
     return <Loading />;
   }
 
@@ -53,7 +53,7 @@ const MyPageMain = () => {
       <div className={styles["profile-container"]}>
         <div className={styles["user-info-wrapper"]}>
           <img
-            src={user.progile ? user.profile : "/default/default_profile.png"}
+            src={user.profile ? user.profile : "/default/default_profile.png"}
             className={styles["user-info-img"]}
           />
           <div className={styles["user-info-text"]}>

@@ -20,7 +20,11 @@
 }
 
 .user-info-img {
-  width: 55px;
+  width: 60px;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  border: 1px solid var(--sub-grey);
+  object-fit: cover;
 }
 
 .user-info-text {

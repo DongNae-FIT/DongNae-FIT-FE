@@ -9,7 +9,7 @@ import Loading from "@/utils/Loading";
 
 const MyPageMain = () => {
   const { t } = useTranslation();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
   const { user, getUserInfo, loading, error } = useMyPage();
 
@@ -26,6 +26,15 @@ const MyPageMain = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate(`/`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   if (loading || !user) {
     return <Loading />;
@@ -134,14 +143,8 @@ const MyPageMain = () => {
         </div>
         <div className={styles["menu-section"]}>
           <div className={styles["section-title"]}>{t("mypage.etc")}</div>
-          <div className={styles["menu"]}>{t("mypage.logout")}</div>
-          <div
-            className={styles["menu"]}
-            onClick={() => {
-              navigate("/delete/account");
-            }}
-          >
-            {t("mypage.delete")}
+          <div className={styles["menu"]} onClick={handleLogout}>
+            {t("mypage.logout")}
           </div>
         </div>
       </div>

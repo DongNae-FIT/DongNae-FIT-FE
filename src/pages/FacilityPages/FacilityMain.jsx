@@ -12,7 +12,7 @@ const FacilityMain = () => {
   const [selectedAlign, setSelectedAlign] = useState(t("program.align1"));
 
   const [isCategoryOpen, setCategoryOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(null); // Store the selected category number
+  const [selectedCategory, setSelectedCategory] = useState(0); // Store the selected category number
   const [pendingCategory, setPendingCategory] = useState(null); // Store category selection before apply
 
   const dropdownRef = useRef(null);
@@ -35,17 +35,20 @@ const FacilityMain = () => {
   useEffect(() => {
     const initialize = async () => {
       try {
-        await getEntireFacilityList(setType(selectedCategory));
+        const category = location.state?.category ?? 0;
+        await getEntireFacilityList(setType(category));
       } catch (err) {
-        console.error("Failed to fetch use Info:", err);
+        console.error("Failed to fetch facility list:", err);
       }
     };
     initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCategory]);
+  }, []);
 
   const setType = (category) => {
     switch (category) {
+      case 0:
+        return "";
       case 1:
         return "간이운동장";
       case 2:
@@ -67,14 +70,26 @@ const FacilityMain = () => {
     setPendingCategory(categoryNumber); // Temporarily set the selected category
   };
 
-  const resetCategories = () => {
+  const resetCategories = async () => {
     setPendingCategory(null); // Reset pending category
     setSelectedCategory(null);
+    try {
+      await getEntireFacilityList("");
+    } catch (error) {
+      console.error("Failed to reset categories:", error);
+    }
   };
 
-  const handleCategoryApply = () => {
-    setSelectedCategory(pendingCategory); // Apply the selected category
-    setCategoryOpen(false); // Close the category menu
+  const handleCategoryApply = async () => {
+    try {
+      setSelectedCategory(pendingCategory); // Apply the selected category
+      setCategoryOpen(false); // Close the category menu
+
+      // Use pendingCategory directly to fetch the data
+      await getEntireFacilityList(setType(pendingCategory));
+    } catch (error) {
+      console.error("Failed to apply category filter:", error);
+    }
   };
 
   const handleAlignSelect = (align) => {
@@ -103,7 +118,7 @@ const FacilityMain = () => {
   }, [isCategoryOpen]);
 
   if (loading || !entireFacilityList) {
-    return <p>Loading</p>;
+    return <p>Loading...</p>;
   }
 
   if (error) {
@@ -143,7 +158,7 @@ const FacilityMain = () => {
             selectedCategory || pendingCategory
               ? styles["category-selected"]
               : ""
-          }`} // Apply additional style when a category is selected
+          }`}
           onClick={() => setCategoryOpen((prev) => !prev)}
         >
           <img
@@ -158,21 +173,21 @@ const FacilityMain = () => {
         </div>
       </div>
       <div className={styles["facility-list"]}>
-        {entireFacilityList.length === 0 ? (
+        {entireFacilityList.map((facility) => (
+          <FacilityItem
+            key={facility.facilityId}
+            facilityId={facility.facilityId}
+            name={facility.facilityName}
+            type={facility.facilityType}
+            distance={facility.km}
+            isPublic={true}
+          />
+        ))}
+
+        {entireFacilityList.length === 0 && (
           <div className={styles["empty-message"]}>
             주변 체육 시설이 없습니다.
           </div>
-        ) : (
-          entireFacilityList.map((facility) => (
-            <FacilityItem
-              key={facility.facilityId}
-              facilityId={facility.facilityId}
-              name={facility.facilityName}
-              type={facility.facilityType}
-              distance={facility.km}
-              isPublic={true}
-            />
-          ))
         )}
       </div>
 
@@ -216,7 +231,7 @@ const FacilityMain = () => {
               </button>
               <button
                 className={styles["apply-button"]}
-                onClick={handleCategoryApply} // Apply category when clicked
+                onClick={handleCategoryApply}
               >
                 {t("buttons.apply")}
               </button>

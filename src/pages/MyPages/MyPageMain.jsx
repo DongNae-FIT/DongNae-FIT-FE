@@ -18,6 +18,7 @@ const MyPageMain = () => {
       const initialize = async () => {
         try {
           await getUserInfo();
+          console.log(user);
         } catch (err) {
           console.error("Failed to fetch use Info:", err);
         }
@@ -49,7 +50,7 @@ const MyPageMain = () => {
       <div className={styles["profile-container"]}>
         <div className={styles["user-info-wrapper"]}>
           <img
-            src={"/default/default_profile.png"}
+            src={user.progile ? user.profile : "/default/default_profile.png"}
             className={styles["user-info-img"]}
           />
           <div className={styles["user-info-text"]}>

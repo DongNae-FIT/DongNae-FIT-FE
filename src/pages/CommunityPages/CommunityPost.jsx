@@ -65,7 +65,7 @@ const CommunityPost = () => {
 
   const onLikeButtonClick = async () => {
     if (!isAuthenticated) {
-      window.alert("로그인이 필요합니다.");
+      window.alert(t("warning.need_login"));
       navigate("/login");
     }
     try {
@@ -78,7 +78,7 @@ const CommunityPost = () => {
 
   const onSaveButtonClick = async () => {
     if (!isAuthenticated) {
-      window.alert("로그인이 필요합니다.");
+      window.alert(t("warning.need_login"));
       navigate("/login");
     }
     try {
@@ -102,7 +102,11 @@ const CommunityPost = () => {
       <div className={styles["post-wrapper"]}>
         <div className={styles["post-info-wrapper"]}>
           <img
-            src={"/default/default_profile.png"}
+            src={
+              postDetail.memberProfile
+                ? postDetail.memberProfile
+                : "/default/default_profile.png"
+            }
             className={styles["info-img"]}
           />
           <div className={styles["info-text"]}>
@@ -181,8 +185,12 @@ const CommunityPost = () => {
             postDetail.comments.map((comment) => (
               <CommunityComment
                 key={comment.commentId}
+                profileImg={
+                  comment.memberProfile
+                    ? comment.memberProfile
+                    : "/default/default_profile.png"
+                }
                 nickname={comment.memberName}
-                profileImg={comment.memberProfile}
                 content={comment.commentDetail}
               />
             ))

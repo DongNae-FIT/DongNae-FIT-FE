@@ -1,7 +1,17 @@
 {
   "title": "DongNae-FIT",
   "empty_message": "Empty",
-
+  "nickname_message": {
+    "default": "2 to 7 characters in KR, EN",
+    "ok": "The nickname is available.",
+    "in_use": "The nickname is already in use.",
+    "error": "Failed to check nickname availability.",
+    "empty": "Please fill in all fields.",
+    "check_first": "Please check nickname availability first.",
+    "length_error": "The nickname must be 2 to 7 characters long.",
+    "type_error": "The nickname can only contain Korean or English characters.",
+    "empty_error": "Please enter a nickname."
+  },
   "buttons": {
     "done": "Done",
     "find_path": "Find Path",
@@ -11,7 +21,10 @@
     "find_address": "Search"
   },
   "warning": {
-    "price": "The maximum is less than the minimum."
+    "price": "The maximum is less than the minimum.",
+    "max_price": "The price cannot exceed ₩ 9,999,999,999.",
+    "access": "Invalid access. Redirecting to the homepage.",
+    "need_login": "Login is required."
   },
   "login": {
     "title": "Login",

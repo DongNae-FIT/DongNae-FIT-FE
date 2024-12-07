@@ -44,7 +44,7 @@ const ProgramMain = () => {
 
   const applyPriceFilter = async () => {
     if (warningMessage) {
-      window.alert("최소 금액보다 최대 금액이 작습니다.");
+      window.alert(t("warning.price"));
       return;
     }
 
@@ -95,11 +95,9 @@ const ProgramMain = () => {
 
   const checkPriceValidity = (min, max) => {
     if ((min > MAX_PRICE) | (max > MAX_PRICE)) {
-      setWarningMessage(
-        `${t("가격은 99억 9999만 9999원을 넘을 수 없습니다.")}`
-      );
+      setWarningMessage(t("waring.max_price"));
     } else if (min && max && min > max) {
-      setWarningMessage(`${t("warning.price")}`);
+      setWarningMessage(t("warning.price"));
     } else {
       setWarningMessage("");
     }
@@ -179,6 +177,7 @@ const ProgramMain = () => {
           <ProgramItem
             key={program.programId}
             programId={program.programId}
+            imgSrc={program.facilityImage}
             name={program.programName}
             facility={program.facilityName}
             price={`₩ ${program.programPrice.toLocaleString()}`}

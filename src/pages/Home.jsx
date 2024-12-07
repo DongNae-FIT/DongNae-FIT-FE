@@ -51,6 +51,7 @@ const Home = () => {
               recommendedProgramList.map((program) => (
                 <ProgramItemForHome
                   key={program.programId}
+                  imgSrc={program.facilityImage}
                   programId={program.programId}
                   name={program.programName}
                   facility={program.facilityName}
@@ -102,6 +103,11 @@ const Home = () => {
                 <CommunityItemForHome
                   key={post.postId}
                   postId={post.postId}
+                  profileImg={
+                    post.postImage
+                      ? post.postImage
+                      : "/default/default_profile.png"
+                  }
                   nickname={"닉네임"}
                   title={post.postTitle}
                   content={post.postDetail}

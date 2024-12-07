@@ -114,15 +114,6 @@ const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
     } catch (error) {
       console.error("Failed to onboard:", error);
-
-      // 오류 시 알림 및 홈으로 이동
-      if (
-        window.confirm(
-          "[Error] 알 수 없는 오류가 발생하였습니다. 홈 화면으로 이동합니다."
-        )
-      ) {
-        navigate("/");
-      }
       setError(error);
     } finally {
       setLoading(false);

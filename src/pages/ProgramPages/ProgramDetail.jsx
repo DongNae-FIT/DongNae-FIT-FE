@@ -27,7 +27,7 @@ const ProgramDetail = () => {
           const coordinate = {
             lat: programDetail.facilityLatitude,
             lng: programDetail.facilityLongitude,
-            name: programDetail.facilityId,
+            name: programDetail.facilityName,
           };
           setLocations([coordinate]);
         }
@@ -41,7 +41,7 @@ const ProgramDetail = () => {
 
   const onClickLike = async () => {
     if (!isAuthenticated) {
-      window.alert("로그인이 필요합니다.");
+      window.alert(t("warning.need_login"));
       navigate("/login", { state: { from: location.pathname } });
     }
 
@@ -67,7 +67,11 @@ const ProgramDetail = () => {
 
       <div className={styles["location-wrapper"]}>
         <img
-          src={"/default/default_location.png"}
+          src={
+            programDetail.facilityImage
+              ? programDetail.facilityImage
+              : "/default/default_location.png"
+          }
           className={styles["location-img"]}
         />
         <div className={styles["location-text-wrapper"]}>

@@ -21,9 +21,10 @@ const AdditionalInfo = () => {
 
   useEffect(() => {
     if (!location.state?.isLogin) {
-      window.alert("잘못된 접근입니다. 홈으로 이동합니다.");
-      navigate("/"); // 홈으로 이동
+      window.alert(t("warning.access"));
+      navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.state, navigate]);
 
   const handle = {
@@ -41,7 +42,7 @@ const AdditionalInfo = () => {
     setNickname(value);
 
     // 닉네임 변경 시 실시간 검증
-    const error = validateNickname(value);
+    const error = validateNickname(value, t);
     setNicknameErrors(error);
 
     // 중복 체크 상태 초기화
@@ -56,38 +57,34 @@ const AdditionalInfo = () => {
     try {
       await checkNicknameDuplicate(nickname);
       if (isDuplicate) {
-        setNicknameErrors("이미 사용 중인 닉네임입니다.");
+        setNicknameErrors(t("nickname_message.in_use"));
       } else {
         setNicknameErrors(null);
         setNicknameCheck(true);
       }
     } catch (error) {
-      setNicknameErrors("닉네임 중복 확인에 실패했습니다.");
+      setNicknameErrors(t("nickname_message.error"));
     }
   };
 
   const handleDoneButtonClicked = async () => {
-    const nicknameError = validateNickname(nickname);
+    const nicknameError = validateNickname(nickname, t);
 
     if (nicknameError || !region) {
       setNicknameErrors(nicknameError);
-      window.alert("모든 필드를 입력해주세요.");
+      window.alert(t("nickname_message.empty"));
       return;
     }
 
     if (!nicknameCheck) {
-      window.alert("닉네임 중복 확인을 먼저 해주세요.");
+      window.alert(t("nickname_message.check_first"));
       return;
     }
 
     try {
       await onBoard(nickname, region);
-      if (window.confirm("정상적으로 로그인 되었습니다. 홈으로 이동합니다.")) {
-        navigate("/");
-      }
+      navigate("/");
     } catch (error) {
-      window.alert("오류가 발생하였습니다.");
-      navigate("/error");
       console.error("kakao Login failed", error);
     }
   };
@@ -119,11 +116,13 @@ const AdditionalInfo = () => {
             <div className={styles["error-message"]}>{nicknameErrors}</div>
           )}
           {!nicknameErrors && !nicknameCheck && (
-            <div className={styles["default-message"]}>{"한영 2~7자"}</div>
+            <div className={styles["default-message"]}>
+              {t("nickname_message.default")}
+            </div>
           )}
           {nicknameCheck && (
             <div className={styles["check-message"]}>
-              {"사용 가능한 닉네임입니다."}
+              {t("nickname_message.ok")}
             </div>
           )}
         </div>

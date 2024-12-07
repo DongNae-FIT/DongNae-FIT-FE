@@ -16,7 +16,14 @@ const Login = () => {
   return (
     <div className={styles["login"]}>
       <div className={styles["img-section"]}>
-        <img className={styles["login__img"]} src={"introduction_img.png"} />
+        <img
+          className={styles["login__img"]}
+          src={
+            i18n.language == "ko"
+              ? "introduction_img.png"
+              : "introduction_img_eng.png"
+          }
+        />
       </div>
       <div className={styles["kakao-login"]} onClick={handleLogin}>
         <img

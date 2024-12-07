@@ -7,7 +7,9 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("accessToken")
+  );
   const [isOnBoard, setIsOnBoard] = useState(null);
 
   const [isDuplicate, setIsDuplicate] = useState(null);
@@ -17,6 +19,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const initializeAuth = async () => {
+      setLoading(true); // 초기화 시작
       const accessToken = localStorage.getItem("accessToken");
       const refreshToken = localStorage.getItem("refreshToken");
 
@@ -32,7 +35,6 @@ const AuthProvider = ({ children }) => {
         return;
       }
 
-      // AccessToken이 없고 RefreshToken이 있을 경우 토큰 갱신 시도
       try {
         const response = await axios.post(
           `/member/refresh?refreshToken=${refreshToken}`
@@ -44,7 +46,7 @@ const AuthProvider = ({ children }) => {
         console.error("Token refresh failed:", error);
         setIsAuthenticated(false);
       } finally {
-        setLoading(false);
+        setLoading(false); // 초기화 완료
       }
     };
 

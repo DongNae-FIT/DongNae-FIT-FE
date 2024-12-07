@@ -104,14 +104,13 @@ const Home = () => {
                   key={post.postId}
                   postId={post.postId}
                   profileImg={
-                    post.postImage
+                    post.memberProfile
                       ? post.memberProfile
                       : "/default/default_profile.png"
                   }
                   nickname={post.memberName}
                   title={post.postTitle}
                   content={post.postDetail}
-                  imgSrc={post.postImage}
                   date={post.postDate}
                   likeCount={post.postLikeCount}
                   saveCount={post.postSaveCount}

@@ -7,16 +7,22 @@
   padding-top: calc(var(--body-padding) * 4 - 60px);
 }
 
-.login__title {
-  font-size: 1.5rem;
-  font-weight: 600;
+.img-section {
+  height: 100%;
+  width: 100%;
+  background-color: var(--main-color);
+  object-fit: contain;
+  margin: calc(var(--body-padding) * 2) 0;
+  display: flex;
+  justify-content: center;
 }
 
 .login__img {
   height: 100%;
-  width: 100%;
-  margin: 25px 0;
-  background-color: grey;
+  width: 90%;
+  max-width: 350px;
+  background-color: var(--main-color);
+  object-fit: contain;
 }
 
 .login__kakao {

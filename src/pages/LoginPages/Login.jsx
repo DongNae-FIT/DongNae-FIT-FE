@@ -15,8 +15,9 @@ const Login = () => {
 
   return (
     <div className={styles["login"]}>
-      <div className={styles["login__title"]}>{t("login.title")}</div>
-      <div className={styles["login__img"]}></div>
+      <div className={styles["img-section"]}>
+        <img className={styles["login__img"]} src={"introduction_img.png"} />
+      </div>
       <div className={styles["kakao-login"]} onClick={handleLogin}>
         <img
           className={styles["kakao-login__symbol"]}

@@ -42,15 +42,21 @@ const Home = () => {
             />
           </div>
           <div className={styles["program-list"]}>
-            {recommendedProgramList.map((program) => (
-              <ProgramItemForHome
-                key={program.programId}
-                programId={program.programId}
-                name={program.programName}
-                facility={program.facilityName}
-                price={program.programPrice}
-              />
-            ))}
+            {recommendedProgramList.length === 0 ? (
+              <div className={styles["empty-message"]}>
+                추천 스포츠 강좌가 없습니다.
+              </div>
+            ) : (
+              recommendedProgramList.map((program) => (
+                <ProgramItemForHome
+                  key={program.programId}
+                  programId={program.programId}
+                  name={program.programName}
+                  facility={program.facilityName}
+                  price={program.programPrice}
+                />
+              ))
+            )}
           </div>
         </div>
         <div className={styles["home__section"]}>
@@ -86,21 +92,27 @@ const Home = () => {
             />
           </div>
           <div className={styles["community-list"]}>
-            {trendingPostList.map((post) => (
-              <CommunityItemForHome
-                key={post.postId}
-                postId={post.postId}
-                nickname={"닉네임"}
-                title={post.postTitle}
-                content={post.postDetail}
-                imgSrc={post.postImage}
-                date="2024-10-11 11:11:11"
-                likeCount={post.postLikeCount}
-                saveCount={post.postSaveCount}
-                //  postId,  title,  content,  imgSrc,  date,  likeCount,  saveCount,
-                //postId, postTitle, postDetail, postImage, postLikeCount, postSaveCount
-              />
-            ))}
+            {trendingPostList.length === 0 ? (
+              <div className={styles["empty-message"]}>
+                실시간 인기글 게시글이 없습니다.
+              </div>
+            ) : (
+              trendingPostList.map((post) => (
+                <CommunityItemForHome
+                  key={post.postId}
+                  postId={post.postId}
+                  nickname={"닉네임"}
+                  title={post.postTitle}
+                  content={post.postDetail}
+                  imgSrc={post.postImage}
+                  date="2024-10-11 11:11:11"
+                  likeCount={post.postLikeCount}
+                  saveCount={post.postSaveCount}
+                  //  postId,  title,  content,  imgSrc,  date,  likeCount,  saveCount,
+                  //postId, postTitle, postDetail, postImage, postLikeCount, postSaveCount
+                />
+              ))
+            )}
           </div>
         </div>
       </div>

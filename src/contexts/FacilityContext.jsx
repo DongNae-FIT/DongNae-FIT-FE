@@ -31,14 +31,19 @@ const FacilityProvider = ({ children }) => {
     setError(null);
 
     try {
-      const facility = entireFacilityList.find(
-        (item) => item.facilityId === facilityId
-      );
-
-      if (!facility) {
-        throw new Error("해당 시설을 찾을 수 없습니다.");
+      setFacilityDetail(null);
+      await getEntireFacilityList();
+      if (entireFacilityList.length > 0) {
+        console.log("전체", entireFacilityList);
+        const facility = entireFacilityList.find(
+          (item) => item.facilityId === facilityId
+        );
+        console.log("facility", facility);
+        if (!facility) {
+          throw new Error("해당 시설을 찾을 수 없습니다.");
+        }
+        setFacilityDetail(facility);
       }
-      setFacilityDetail(facility);
     } catch (err) {
       setError(err.message || "Failed to load facility details");
     } finally {

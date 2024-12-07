@@ -3,31 +3,53 @@ import { useTranslation } from "react-i18next";
 import styles from "@/pages/FacilityPages/FacilityDetail.module.css";
 import KakaoMap from "@/components/KakaoMap";
 import useFacility from "@/hooks/useFacility";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const FacilityDetail = () => {
   const { t } = useTranslation();
-  const facilityId = useParams();
+  const { facilityId } = useParams();
   const isPublic = true;
-  const { locations, setLocation } = [];
-  const { getFacilityDetail, facilityDetail } = useFacility();
+  const [locations, setLocations] = useState(null);
+  const { getEntireFacilityList, entireFacilityList, loading, error } =
+    useFacility();
+  const [facilityDetail, setFacilityDetail] = useState(null);
 
   useEffect(() => {
     const initialize = async () => {
       try {
-        await getFacilityDetail(facilityId);
-        setLocation({
-          name: facilityDetail.facilityAddr,
-          lat: facilityDetail.facilityLatitude,
-          lng: facilityDetail.facilityLongitude,
-        });
+        await getEntireFacilityList();
+
+        if (entireFacilityList.length > 0 && facilityId) {
+          const facility = entireFacilityList.find(
+            (item) => item.facilityId == facilityId
+          );
+          setFacilityDetail(facility);
+
+          if (facility) {
+            const coordinate = {
+              lat: facility.facilityLatitude,
+              lng: facility.facilityLongitude,
+              name: facility.facilityName,
+            };
+            setLocations([coordinate]);
+          }
+        }
       } catch (err) {
         console.error("Failed to fetch use Info:", err);
       }
     };
     initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (loading || !facilityDetail || !locations) {
+    return <p>Loading</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div className={styles["facility-detail"]}>
@@ -48,7 +70,7 @@ const FacilityDetail = () => {
               className={styles["find-path-button"]}
               onClick={() => {
                 window.open(
-                  `https://map.kakao.com/link/to/${locations.name},${locations.lat},${locations.lng}`
+                  `https://map.kakao.com/link/to/${facilityDetail.facilityName},${facilityDetail.facilityLatitude},${facilityDetail.facilityLongitude}`
                 );
               }}
             >

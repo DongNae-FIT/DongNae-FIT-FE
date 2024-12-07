@@ -193,3 +193,9 @@
   width: 20px;
   cursor: pointer;
 }
+
+.empty-message {
+  text-align: center;
+  padding-top: 10%;
+  color: var(--main-grey);
+}

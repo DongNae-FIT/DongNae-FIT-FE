@@ -181,3 +181,9 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 25;
 }
+
+.empty-message {
+  text-align: center;
+  padding-top: 40%;
+  color: var(--main-grey);
+}

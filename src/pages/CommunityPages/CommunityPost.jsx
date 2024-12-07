@@ -175,14 +175,18 @@ const CommunityPost = () => {
           {t("community.comment")}
         </span>
         <div className={styles["comment-list"]}>
-          {postDetail.comments.map((comment) => (
-            <CommunityComment
-              key={comment.commentId}
-              nickname={comment.memberName}
-              profileImg={comment.memberProfile}
-              content={comment.commentDetail}
-            />
-          ))}
+          {postDetail.comments.length === 0 ? (
+            <div className={styles["empty-message"]}>댓글이 없습니다.</div>
+          ) : (
+            postDetail.comments.map((comment) => (
+              <CommunityComment
+                key={comment.commentId}
+                nickname={comment.memberName}
+                profileImg={comment.memberProfile}
+                content={comment.commentDetail}
+              />
+            ))
+          )}
         </div>
       </div>
       <div className={styles["comment-input-wrapper"]}>

@@ -182,6 +182,12 @@ const ProgramMain = () => {
             price={`${program.programPrice.toLocaleString()}원`}
           />
         ))}
+
+        {entireProgramList.length === 0 ? (
+          <div className={styles["empty-message"]}>강좌가 없습니다.</div>
+        ) : (
+          <></>
+        )}
       </div>
 
       {isPriceOpen && (

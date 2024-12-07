@@ -158,15 +158,22 @@ const FacilityMain = () => {
         </div>
       </div>
       <div className={styles["facility-list"]}>
-        {entireFacilityList.map((facility) => (
-          <FacilityItem
-            key={facility.facilityId}
-            name={facility.facilityName}
-            type={facility.facilityType}
-            distance={facility.km}
-            isPublic={true}
-          />
-        ))}
+        {entireFacilityList.length === 0 ? (
+          <div className={styles["empty-message"]}>
+            주변 체육 시설이 없습니다.
+          </div>
+        ) : (
+          entireFacilityList.map((facility) => (
+            <FacilityItem
+              key={facility.facilityId}
+              facilityId={facility.facilityId}
+              name={facility.facilityName}
+              type={facility.facilityType}
+              distance={facility.km}
+              isPublic={true}
+            />
+          ))
+        )}
       </div>
 
       {isCategoryOpen && (

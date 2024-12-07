@@ -32,20 +32,24 @@ const CommunityMain = () => {
   return (
     <div className={styles["community-main"]}>
       <div className={styles["post-list"]}>
-        {entirePostList.map((post) => (
-          <CommunityItem
-            key={post.postId}
-            postId={post.postId}
-            title={post.postTitle}
-            content={post.postDetail}
-            imgSrc={post.postImage}
-            date="2024-10-11 11:11:11"
-            likeCount={post.postLikeCount}
-            saveCount={post.postSaveCount}
-            //  postId,  title,  content,  imgSrc,  date,  likeCount,  saveCount,
-            //postId, postTitle, postDetail, postImage, postLikeCount, postSaveCount
-          />
-        ))}
+        {entirePostList.length === 0 ? (
+          <div className={styles["empty-message"]}>게시글이 없습니다.</div>
+        ) : (
+          entirePostList.map((post) => (
+            <CommunityItem
+              key={post.postId}
+              postId={post.postId}
+              title={post.postTitle}
+              content={post.postDetail}
+              imgSrc={post.postImage}
+              date="2024-10-11 11:11:11"
+              likeCount={post.postLikeCount}
+              saveCount={post.postSaveCount}
+              //  postId,  title,  content,  imgSrc,  date,  likeCount,  saveCount,
+              //postId, postTitle, postDetail, postImage, postLikeCount, postSaveCount
+            />
+          ))
+        )}
       </div>
       <button className={styles["write-button"]} onClick={onWriteClicked}>
         <img

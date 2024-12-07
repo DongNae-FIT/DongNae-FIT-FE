@@ -52,6 +52,8 @@ const ProgramDetail = () => {
     }
   };
 
+  console.log(programDetail);
+
   if (loading || !locations) {
     return <p>Loading</p>;
   }
@@ -140,6 +142,12 @@ const ProgramDetail = () => {
               content={review.reviewPost}
             />
           ))}
+
+          {programDetail.reviewData.length === 0 ? (
+            <div className={styles["empty-message"]}>리뷰가 없습니다.</div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
 

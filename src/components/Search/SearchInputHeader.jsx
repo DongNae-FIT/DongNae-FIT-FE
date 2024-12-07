@@ -12,6 +12,7 @@ const SearchInputHeader = ({ searchInput = "" }) => {
   const handleEnterKeyDown = (e) => {
     if (e.key === "Enter") {
       navigate("/search/result/all", { state: { searchInput: searchValue } });
+      window.location.reload(); // 새로고침 추가
     }
   };
 
@@ -25,7 +26,7 @@ const SearchInputHeader = ({ searchInput = "" }) => {
       <img
         src={"/icon/icon_left_black.png"}
         className={styles["search__back-icon"]}
-        onClick={() => navigate(-1)}
+        onClick={() => navigate("/")}
       />
       <div className={styles["search__input-container"]}>
         <input

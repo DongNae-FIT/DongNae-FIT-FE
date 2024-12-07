@@ -9,6 +9,7 @@ import useMain from "@/hooks/useMain";
 import ProgramItem from "@/components/Program/ProgramItem";
 import FacilityItem from "@/components/Facility/FacilityItem";
 import CommunityItem from "@/components/Community/CommunityItem";
+import Loading from "@/utils/Loading";
 
 const SearchResultAll = () => {
   const { t } = useTranslation();
@@ -35,7 +36,7 @@ const SearchResultAll = () => {
     !searchResultAll.facilityData ||
     !searchResultAll.postData
   ) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   if (error) {

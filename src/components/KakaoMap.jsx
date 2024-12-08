@@ -15,7 +15,7 @@ const KakaoMap = ({ locations, mapHeight }) => {
           height: `${mapHeight}px`,
           minHeight: "40vh",
         }}
-        level={9}
+        level={8.2}
       >
         {locations.map((location) => (
           <MapMarker

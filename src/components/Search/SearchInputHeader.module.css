@@ -15,6 +15,7 @@
 
 .search__back-icon {
   width: 18px;
+  cursor: pointer;
 }
 
 .search__input-container {

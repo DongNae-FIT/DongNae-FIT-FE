@@ -36,6 +36,7 @@
   width: 100%;
   font-weight: 500;
   flex: 1;
+  cursor: pointer;
 }
 
 .popup-overlay {

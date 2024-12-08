@@ -58,6 +58,7 @@
   width: 100%;
   font-weight: 500;
   flex: 1;
+  cursor: pointer;
 }
 
 .done-button {
@@ -69,6 +70,7 @@
   width: 100%;
   color: var(--white);
   font-weight: 500;
+  cursor: pointer;
 }
 
 .popup-overlay {

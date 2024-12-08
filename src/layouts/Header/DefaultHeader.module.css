@@ -16,6 +16,7 @@
 
 .header__icon {
   width: 25px;
+  cursor: pointer;
 }
 
 .header__title {

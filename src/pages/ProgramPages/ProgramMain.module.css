@@ -155,6 +155,7 @@
   border: 0;
   border-radius: 8px;
   flex-grow: 1;
+  cursor: pointer;
 }
 
 .apply-button {
@@ -165,6 +166,7 @@
   border: 0;
   border-radius: 8px;
   flex-grow: 2;
+  cursor: pointer;
 }
 
 .overlay {

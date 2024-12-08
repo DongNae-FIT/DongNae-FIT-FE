@@ -27,6 +27,7 @@
 
 .login__kakao {
   width: 100%;
+  cursor: pointer;
 }
 
 .kakao-login {
@@ -38,6 +39,7 @@
   width: 100%;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .kakao-login__symbol {

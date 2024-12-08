@@ -131,7 +131,7 @@ const FacilityMain = () => {
       <div className={styles["filter-section"]}>
         <div
           className={styles["align"]}
-          onClick={() => setAlignOpen((prev) => !prev)}
+          //    onClick={() => setAlignOpen((prev) => !prev)}
           ref={dropdownRef}
         >
           <img
@@ -139,7 +139,7 @@ const FacilityMain = () => {
             className={styles["down-arrow-icon"]}
           />
           {selectedAlign}
-          {isAlignOpen && (
+          {/* {isAlignOpen && (
             <div className={styles["dropdown-menu"]}>
               <div
                 className={`${styles["dropdown-item"]} ${
@@ -152,7 +152,7 @@ const FacilityMain = () => {
                 {t("facility.align1")}
               </div>
             </div>
-          )}
+          )} */}
         </div>
         <div
           className={`${styles["category"]} ${

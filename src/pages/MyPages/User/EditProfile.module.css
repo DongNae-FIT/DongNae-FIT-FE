@@ -23,6 +23,7 @@
   border: 1px solid var(--sub-grey);
   aspect-ratio: 1;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .section {
@@ -60,6 +61,7 @@
   font-weight: 500;
   width: 100%;
   flex: 1;
+  cursor: pointer;
 }
 
 .error-message {

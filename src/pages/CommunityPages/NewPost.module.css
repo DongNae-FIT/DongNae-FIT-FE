@@ -28,6 +28,7 @@
 .img-icon {
   width: 25px;
   aspect-ratio: 1;
+  cursor: pointer;
 }
 
 .image-submit {

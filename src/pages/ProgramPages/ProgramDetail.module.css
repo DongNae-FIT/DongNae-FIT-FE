@@ -60,6 +60,7 @@
   font-size: 0.8rem;
   resize: none;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .info-wrapper {
@@ -86,6 +87,7 @@
 .program-like-icon {
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .content {
@@ -151,6 +153,7 @@
   border: 1px solid var(--main-grey);
   border-radius: 30px;
   font-size: 0.9rem;
+  cursor: pointer;
 }
 
 .write-icon {

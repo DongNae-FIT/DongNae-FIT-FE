@@ -141,7 +141,7 @@ const ProgramMain = () => {
       <div className={styles["filter-wrapper"]}>
         <div
           className={styles["dropdown-type"]}
-          onClick={() => setAlignOpen((prev) => !prev)}
+          //    onClick={() => setAlignOpen((prev) => !prev)}
           ref={dropdownRef}
         >
           <img
@@ -149,7 +149,7 @@ const ProgramMain = () => {
             className={styles["down-arrow-icon"]}
           />
           {selectedAlign}
-          {isAlignOpen && (
+          {/* {isAlignOpen && (
             <div className={styles["dropdown-menu"]}>
               <div
                 className={`${styles["dropdown-item"]} ${
@@ -162,7 +162,7 @@ const ProgramMain = () => {
                 {t("program.align1")}
               </div>
             </div>
-          )}
+          )} */}
         </div>
         <div
           className={styles["dropdown-type"]}

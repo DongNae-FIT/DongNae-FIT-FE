@@ -13,6 +13,7 @@
   align-items: center;
   padding: calc(var(--default-padding) * 0.8) var(--body-padding);
   border-bottom: 1px solid var(--sub-grey);
+  cursor: pointer;
 }
 
 .location-icon {
@@ -26,11 +27,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  cursor: pointer;
-}
-
-.region:hover {
-  color: var(--main-color);
 }
 
 .home__section {
@@ -63,6 +59,7 @@
   font-size: 1.1rem;
   font-weight: 600;
   background-color: var(--white);
+  cursor: pointer;
 }
 
 .home__right-icon {

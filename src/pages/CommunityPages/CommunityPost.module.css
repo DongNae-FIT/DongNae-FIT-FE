@@ -96,6 +96,7 @@
   flex-direction: row;
   align-items: center;
   gap: 3px;
+  cursor: pointer;
 }
 
 .like-active {

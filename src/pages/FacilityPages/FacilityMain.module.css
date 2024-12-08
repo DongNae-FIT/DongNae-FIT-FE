@@ -162,6 +162,7 @@
   padding: 0.7em 0;
   text-align: center;
   flex: 1;
+  cursor: pointer;
 }
 
 .apply-button {
@@ -172,6 +173,7 @@
   text-align: center;
   flex: 3;
   color: var(--white);
+  cursor: pointer;
 }
 
 .overlay {

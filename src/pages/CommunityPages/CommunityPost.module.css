@@ -175,7 +175,7 @@
   left: 50%;
   transform: translateX(-50%);
   padding: var(--default-padding) var(--body-padding);
-  max-width: 900px;
+  max-width: 1024px;
 }
 
 .comment-input-box {

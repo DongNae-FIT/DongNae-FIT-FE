@@ -111,7 +111,7 @@
   bottom: 0;
   width: 100%;
   z-index: 30;
-  max-width: 900px;
+  max-width: 1024px;
 }
 
 .category-title {
@@ -183,7 +183,7 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 25;
-  max-width: 900px;
+  max-width: 1024px;
   align-items: center;
 }
 

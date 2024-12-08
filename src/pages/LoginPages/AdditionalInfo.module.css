@@ -80,7 +80,7 @@
   transform: translateX(-50%);
   width: 100vw;
   height: 100vh;
-  max-width: 900px;
+  max-width: 1024px;
   background: red;
   display: flex;
   justify-content: center;

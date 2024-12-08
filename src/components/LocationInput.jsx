@@ -13,7 +13,7 @@ const LocationInput = ({ onSelectAddress }) => {
     zIndex: "30",
     width: "100vw",
     height: "100vh",
-    maxWidth: "900px",
+    maxWidth: "1024px",
   };
 
   return <DaumPostcode onComplete={handleComplete} style={style} />;

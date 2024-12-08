@@ -49,7 +49,7 @@ const FacilityDetail = () => {
   }
 
   if (error) {
-    return <p>Error: {error.message || 'An unknown error occurred'}</p>;
+    return <p>Error: {error.message || "An unknown error occurred"}</p>;
   }
 
   return (

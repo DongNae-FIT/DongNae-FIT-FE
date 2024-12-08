@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "@/pages/SearchPages/SearchResultAll.module.css";
+import styles from "@/pages/SearchPages/SearchResultFacility.module.css";
 
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -20,7 +20,7 @@ const SearchResultFacility = () => {
   useEffect(() => {
     const initialize = async () => {
       try {
-        await getEntireFacilityList(undefined, location.state.searchInput);
+        await getEntireFacilityList("", location.state.searchInput);
       } catch (err) {
         console.error("Failed to fetch entrie post:", err);
       }

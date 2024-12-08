@@ -37,7 +37,7 @@ const FacilityMain = () => {
     const initialize = async () => {
       try {
         const category = location.state?.category ?? 0;
-        await getEntireFacilityList(setType(category));
+        await getEntireFacilityList(setType(category), "");
       } catch (err) {
         console.error("Failed to fetch facility list:", err);
       }
@@ -75,7 +75,7 @@ const FacilityMain = () => {
     setPendingCategory(null); // Reset pending category
     setSelectedCategory(null);
     try {
-      await getEntireFacilityList("");
+      await getEntireFacilityList();
     } catch (error) {
       console.error("Failed to reset categories:", error);
     }
@@ -87,7 +87,7 @@ const FacilityMain = () => {
       setCategoryOpen(false); // Close the category menu
 
       // Use pendingCategory directly to fetch the data
-      await getEntireFacilityList(setType(pendingCategory));
+      await getEntireFacilityList(setType(pendingCategory), "");
     } catch (error) {
       console.error("Failed to apply category filter:", error);
     }

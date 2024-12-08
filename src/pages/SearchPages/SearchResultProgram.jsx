@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "@/pages/SearchPages/SearchResultAll.module.css";
+import styles from "@/pages/SearchPages/SearchResultProgram.module.css";
 
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";

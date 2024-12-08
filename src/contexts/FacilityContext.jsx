@@ -10,7 +10,7 @@ const FacilityProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const { authAxios } = useContext(AuthContext);
 
-  const getEntireFacilityList = async (type, searchInput = "") => {
+  const getEntireFacilityList = async (type = "", searchInput = "") => {
     setLoading(true);
     setError(null);
     try {

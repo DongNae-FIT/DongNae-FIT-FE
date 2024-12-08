@@ -45,7 +45,7 @@ const CommunityPost = () => {
     };
     initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [like, save]);
 
   const handleEnterKeyDown = (e) => {
     if (e.key === "Enter") {

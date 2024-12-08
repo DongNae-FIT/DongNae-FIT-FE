@@ -66,15 +66,25 @@ const CommunityProvider = ({ children }) => {
     }
   };
 
-  const saveNewPost = async (postTitle, postDetail) => {
+  const saveNewPost = async (
+    isPostSubmited,
+    postTitle,
+    postDetail,
+    form = ""
+  ) => {
     setLoading(true);
     setError(null);
+    setPostId(null);
     try {
       const response = await authAxios.post("/api/auth/posts", {
         postTitle,
         postDetail,
       });
-      setPostId(response.data.data.postId);
+      if (isPostSubmited) {
+        return saveNewPostImg(response.data.data.postId, form);
+      } else {
+        return response.data.data.postId;
+      }
     } catch (error) {
       setError("Failed to save new post");
     } finally {
@@ -85,12 +95,14 @@ const CommunityProvider = ({ children }) => {
   const saveNewPostImg = async (postId, formData) => {
     setLoading(true);
     setError(null);
+    setPostId(null);
     try {
       const response = await authAxios.post(
         `/api/auth/posts/${postId}/image`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
+      return postId;
     } catch (error) {
       console.error("Failed to save postImg", error);
       setError(error.message);

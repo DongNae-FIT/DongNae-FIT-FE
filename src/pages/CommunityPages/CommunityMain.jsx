@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import useCommunity from "@/hooks/useCommunity";
 import useAuth from "@/hooks/useAuth";
 import { format } from "date-fns";
+import Loading from "@/utils/Loading";
 
 const CommunityMain = () => {
   const { t } = useTranslation();
@@ -33,6 +34,14 @@ const CommunityMain = () => {
   const formattedDate = (data) => {
     return format(new Date(data), "yy/MM/dd HH:mm");
   };
+
+  if (loading || !entirePostList) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <p>Error: {error.message || "An unknown error occurred"}</p>;
+  }
 
   return (
     <div className={styles["community-main"]}>

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import styles from "@/pages/CommunityPages/NewPost.module.css";
@@ -17,26 +17,35 @@ const NewPost = () => {
   const [previewImg, setPreviewImg] = useState([]);
 
   const onDoneClick = async () => {
-    const isPostSubmited = postImg.current?.files[0] !== undefined;
-
     try {
-      await saveNewPost(postTitle, postContent);
-      if (postId) {
-        if (isPostSubmited) {
-          const formData = new FormData();
-          formData.append("postImage", postImg.current.files[0]);
-          try {
-            await saveNewPostImg(postId, formData);
-          } catch (err) {
-            console.log(err);
-          }
-        }
-        navigate(`/community/post/${postId}`, { state: { fromNew: true } });
+      const isPostSubmited = postImg.current?.files[0] !== undefined;
+      const formData = new FormData();
+
+      if (isPostSubmited) {
+        formData.append("postImage", postImg.current.files[0]);
+      }
+
+      const pId = await saveNewPost(
+        isPostSubmited,
+        postTitle,
+        postContent,
+        isPostSubmited && formData
+      );
+
+      console.log(pId);
+      if (pId) {
+        navigate(`/community/post/${pId}`, { state: { fromNew: true } });
       }
     } catch (err) {
       console.log(err);
     }
   };
+
+  // useState(() => {
+  //   if (postId) {
+  //     navigate(`/community/post/${postId}`, { state: { fromNew: true } });
+  //   }
+  // }, [postId]);
 
   const handleImgUpload = () => {
     postImg.current?.click();

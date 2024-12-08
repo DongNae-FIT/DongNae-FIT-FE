@@ -21,18 +21,25 @@ const Home = () => {
   const { getDataForHome, recommendedProgramList, trendingPostList } =
     useMain();
   const { user, getUserInfo, loading, error } = useMyPage();
-
   useEffect(() => {
-    if (isAuthenticated) {
-      const initialize = async () => {
-        try {
-          await getUserInfo();
-        } catch (err) {
-          console.error("Failed to fetch use Info:", err);
+    const initialize = async () => {
+      try {
+        await getDataForHome();
+        if (isAuthenticated) {
+          const getUser = async () => {
+            try {
+              await getUserInfo();
+            } catch (err) {
+              console.error("Failed to fetch use Info:", err);
+            }
+          };
+          getUser();
         }
-      };
-      initialize();
-    }
+      } catch (err) {
+        console.error("Failed to fetch entrie post:", err);
+      }
+    };
+    initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -47,18 +54,6 @@ const Home = () => {
       "An unknown error occurred";
     return <p>Error: {errorMessage}</p>;
   }
-
-  useEffect(() => {
-    const initialize = async () => {
-      try {
-        await getDataForHome();
-      } catch (err) {
-        console.error("Failed to fetch entrie post:", err);
-      }
-    };
-    initialize();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const formattedDate = (data) => {
     return format(new Date(data), "yy/MM/dd HH:mm");

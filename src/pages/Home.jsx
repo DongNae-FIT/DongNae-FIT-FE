@@ -10,25 +10,43 @@ import useMain from "@/hooks/useMain";
 import { useEffect } from "react";
 import { format } from "date-fns";
 import useMyPage from "@/hooks/useMyPage";
+import useAuth from "@/hooks/useAuth";
+import Loading from "@/utils/Loading";
 
 const Home = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuth();
+
   const { getDataForHome, recommendedProgramList, trendingPostList } =
     useMain();
   const { user, getUserInfo, loading, error } = useMyPage();
 
   useEffect(() => {
-    const initialize = async () => {
-      try {
-        await getUserInfo();
-      } catch (err) {
-        console.error("Failed to fetch use Info:", err);
-      }
-    };
-    initialize();
+    if (isAuthenticated) {
+      const initialize = async () => {
+        try {
+          await getUserInfo();
+        } catch (err) {
+          console.error("Failed to fetch use Info:", err);
+        }
+      };
+      initialize();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    const errorMessage =
+      error?.response?.data?.message ||
+      error?.message ||
+      "An unknown error occurred";
+    return <p>Error: {errorMessage}</p>;
+  }
 
   useEffect(() => {
     const initialize = async () => {

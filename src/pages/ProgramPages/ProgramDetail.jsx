@@ -39,6 +39,7 @@ const ProgramDetail = () => {
         name: programDetail.facilityName,
       };
       setLocations([coordinate]);
+      setLike(programDetail.programData.programSaveStatus);
     } else {
       setLocations([]);
     }

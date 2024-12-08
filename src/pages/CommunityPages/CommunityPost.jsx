@@ -35,10 +35,6 @@ const CommunityPost = () => {
     const initialize = async () => {
       try {
         await getPostDetail(postId);
-        if (postDetail) {
-          setLike(postDetail.postLikeStatus);
-          setSave(postDetail.postSaveStatus);
-        }
       } catch (err) {
         console.log(err);
       }
@@ -46,6 +42,13 @@ const CommunityPost = () => {
     initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [like, save]);
+
+  useEffect(() => {
+    if (postDetail) {
+      setLike(postDetail.postLikeStatus);
+      setSave(postDetail.postSaveStatus);
+    }
+  }, [postDetail]);
 
   const handleEnterKeyDown = (e) => {
     if (e.key === "Enter") {

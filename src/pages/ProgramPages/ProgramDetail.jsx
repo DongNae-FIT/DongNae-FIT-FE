@@ -62,8 +62,6 @@ const ProgramDetail = () => {
     return <Loading />;
   }
 
-  console.log(programDetail);
-
   if (error) {
     return <p>Error: {error}</p>;
   }
@@ -124,21 +122,50 @@ const ProgramDetail = () => {
             <div>{t("program.url")}</div>
           </div>
           <div className={styles["content-right"]}>
-            <div>{programDetail.programData.programTarget}</div>
-            <div>
-              {programDetail.programData.programStart}
-              {" ~ "}
-              {programDetail.programData.programEnd}
+            <div className={styles["overflow"]}>
+              {programDetail?.programData?.programTarget
+                ? programDetail.programData.programTarget
+                : "-"}
             </div>
-            <div>
-              {programDetail.programData.programWeek}{" "}
-              {programDetail.programData.programTime}
+
+            <div className={styles["overflow"]}>
+              {programDetail?.programData?.programStart
+                ? programDetail.programData.programStart
+                : "-"}{" "}
+              ~{" "}
+              {programDetail?.programData?.programEnd
+                ? programDetail.programData.programEnd
+                : "-"}
             </div>
-            <div>
-              ₩ {programDetail.programData.programPrice.toLocaleString()}
+
+            <div className={styles["overflow"]}>
+              {programDetail?.programData?.programWeek
+                ? programDetail.programData.programWeek
+                : "-"}{" "}
+              {programDetail?.programData?.programTime
+                ? programDetail.programData.programTime
+                : "-"}
             </div>
-            <a href={programDetail.programData.programUrl} target="_blank">
-              {programDetail.programData.programUrl}
+
+            <div className={styles["overflow"]}>
+              ₩{" "}
+              {programDetail?.programData?.programPrice
+                ? programDetail.programData.programPrice.toLocaleString()
+                : "-"}
+            </div>
+
+            <a
+              className={styles["overflow"]}
+              href={
+                programDetail?.programData?.programUrl
+                  ? programDetail.programData.programUrl
+                  : "#"
+              }
+              target="_blank"
+            >
+              {programDetail?.programData?.programUrl
+                ? programDetail.programData.programUrl
+                : "-"}
             </a>
           </div>
         </div>

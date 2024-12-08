@@ -7,6 +7,8 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useCommunity from "@/hooks/useCommunity";
 import useAuth from "@/hooks/useAuth";
 import Loading from "@/utils/Loading";
+import { format } from "date-fns";
+
 const CommunityPost = () => {
   const { t } = useTranslation();
   const { postId } = useParams();
@@ -33,7 +35,6 @@ const CommunityPost = () => {
     const initialize = async () => {
       try {
         await getPostDetail(postId);
-        console.log(postDetail);
         if (postDetail) {
           setLike(postDetail.postLikeStatus);
           setSave(postDetail.postSaveStatus);
@@ -98,6 +99,10 @@ const CommunityPost = () => {
     return <p>Error: {error.message || "An unknown error occurred"}</p>;
   }
 
+  const formattedDate = (data) => {
+    return format(new Date(data), "yy/MM/dd HH:mm");
+  };
+
   return (
     <div className={styles["community-post"]}>
       <div className={styles["post-wrapper"]}>
@@ -112,7 +117,9 @@ const CommunityPost = () => {
           />
           <div className={styles["info-text"]}>
             <div className={styles["nickname"]}>{postDetail.memberName}</div>
-            <div className={styles["date"]}>{postDetail.postDate}</div>
+            <div className={styles["date"]}>
+              {formattedDate(postDetail.postDate)}
+            </div>
           </div>
           <img
             src={"/icon/icon_dots_grey.png"}
@@ -206,10 +213,15 @@ const CommunityPost = () => {
           <input
             type="text"
             className={styles["comment-input"]}
-            placeholder={t("community.comment_placeholder")}
+            placeholder={
+              isAuthenticated
+                ? t("community.comment_placeholder")
+                : t("warning.need_login")
+            }
             value={commentValue}
             onChange={(e) => setCommentValue(e.target.value)}
             onKeyDown={handleEnterKeyDown}
+            disabled={isAuthenticated ? false : true}
           />
           <img
             src={"/icon/icon_submit_colored.png"}

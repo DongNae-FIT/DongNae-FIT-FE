@@ -5,6 +5,7 @@ import useMyPage from "@/hooks/useMyPage";
 import CommunityItem from "@/components/Community/CommunityItem";
 import Loading from "@/utils/Loading";
 import { useTranslation } from "react-i18next";
+import { format } from "date-fns";
 
 const MyPost = () => {
   const { authInfo, getMyPost, loading, error } = useMyPage();
@@ -30,6 +31,10 @@ const MyPost = () => {
     return <p>Error: {error}</p>;
   }
 
+  const formattedDate = (data) => {
+    return format(new Date(data), "yy/MM/dd HH:mm");
+  };
+
   return (
     <div className={styles["community"]}>
       <div className={styles["post-list"]}>
@@ -40,7 +45,7 @@ const MyPost = () => {
             title={post.postTitle}
             content={post.postDetail}
             imgSrc={post.postImage}
-            date="2024-10-11 11:11:11"
+            date={formattedDate(post.postDate)}
             likeCount={post.postLikeCount}
             saveCount={post.postSaveCount}
           />

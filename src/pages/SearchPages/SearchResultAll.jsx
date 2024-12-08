@@ -10,6 +10,7 @@ import ProgramItem from "@/components/Program/ProgramItem";
 import FacilityItem from "@/components/Facility/FacilityItem";
 import CommunityItem from "@/components/Community/CommunityItem";
 import Loading from "@/utils/Loading";
+import { format } from "date-fns";
 
 const SearchResultAll = () => {
   const { t } = useTranslation();
@@ -42,6 +43,11 @@ const SearchResultAll = () => {
   if (error) {
     return <p>Error: {error}</p>;
   }
+
+  const formattedDate = (data) => {
+    return format(new Date(data), "yy/MM/dd HH:mm");
+  };
+
   return (
     <div className={styles["search-main"]}>
       <SearchInputHeader searchInput={location.state.searchInput} />
@@ -107,7 +113,7 @@ const SearchResultAll = () => {
                   title={post.postTitle}
                   content={post.postDetail}
                   imgSrc={post.postImage}
-                  date="2024-10-11 11:11:11"
+                  date={formattedDate(post.postDate)}
                   likeCount={post.postLikeCount}
                   saveCount={post.postSaveCount}
                 />

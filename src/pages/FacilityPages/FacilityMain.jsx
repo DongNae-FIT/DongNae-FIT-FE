@@ -61,7 +61,7 @@ const FacilityMain = () => {
       case 5:
         return "생활체육관";
       case 6:
-        return "기타";
+        return "기타시설";
       default:
         return ""; // 예외 처리
     }
@@ -186,9 +186,7 @@ const FacilityMain = () => {
         ))}
 
         {entireFacilityList.length === 0 && (
-          <div className={styles["empty-message"]}>
-            {t("empty_message")}
-          </div>
+          <div className={styles["empty-message"]}>{t("empty_message")}</div>
         )}
       </div>
 

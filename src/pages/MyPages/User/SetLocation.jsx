@@ -63,7 +63,6 @@ const SetLocation = () => {
     setOpenPostcode(false);
     try {
       const result = await setLocationInfo(address);
-      console.log(result);
       const coordinate = {
         lat: result.latitude,
         lng: result.longitude,

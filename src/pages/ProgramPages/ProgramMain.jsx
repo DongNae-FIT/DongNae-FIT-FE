@@ -127,7 +127,7 @@ const ProgramMain = () => {
     setSelectedAlign(t("program.align1"));
   }, [i18n.language, t]);
 
-  if (loading || !entireProgramList || !locations || locations.length === 0) {
+  if (loading || !entireProgramList || !locations) {
     return <Loading />;
   }
 
@@ -136,9 +136,7 @@ const ProgramMain = () => {
   }
   return (
     <div className={styles["program-main"]}>
-      {locations.length > 0 && (
-        <KakaoMap locations={locations} mapHeight={300 * 0.9} />
-      )}
+      <KakaoMap locations={locations} mapHeight={300 * 0.9} />
 
       <div className={styles["filter-wrapper"]}>
         <div

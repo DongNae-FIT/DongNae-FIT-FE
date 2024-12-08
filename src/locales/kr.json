@@ -78,8 +78,8 @@
     "category3": "축구장",
     "category4": "수영장",
     "category5": "생활체육관",
-    "category6": "기타",
-    "public": "공공체육시설",
+    "category6": "기타시설",
+    "public": "공공",
     "time": "운영시간"
   },
   "community": {
@@ -102,7 +102,7 @@
     "mypost": "내가 쓴 글",
     "mycomment": "댓글 단 글",
     "mysave": "저장한 글",
-    "etc": "기타",
+    "etc": "기타시설",
     "logout": "로그아웃",
     "delete": "탈퇴하기"
   },

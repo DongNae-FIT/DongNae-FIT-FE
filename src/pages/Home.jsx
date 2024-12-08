@@ -8,6 +8,7 @@ import FacilityCategoryItem from "@/components/Home/FacilityCategoryItem";
 import CommunityItemForHome from "@/components/Home/CommunityItemForHome";
 import useMain from "@/hooks/useMain";
 import { useEffect } from "react";
+import { format } from "date-fns";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -26,6 +27,10 @@ const Home = () => {
     initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const formattedDate = (data) => {
+    return format(new Date(data), "yy/MM/dd HH:mm");
+  };
 
   return (
     <div className={styles["home"]}>
@@ -111,7 +116,7 @@ const Home = () => {
                   nickname={post.memberName}
                   title={post.postTitle}
                   content={post.postDetail}
-                  date={post.postDate}
+                  date={formattedDate(post.postDate)}
                   likeCount={post.postLikeCount}
                   saveCount={post.postSaveCount}
                   //  postId,  title,  content,  imgSrc,  date,  likeCount,  saveCount,

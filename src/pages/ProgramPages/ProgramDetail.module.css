@@ -18,6 +18,7 @@
   gap: 8px;
   padding: var(--default-padding) var(--body-padding);
   border-bottom: 1px solid var(--sub-grey);
+  width: 100%;
 }
 
 .location-img {
@@ -29,17 +30,26 @@
 .location-text-wrapper {
   display: flex;
   flex-direction: column;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   flex: 1;
 }
 
 .facility-name {
   font-size: 0.9rem;
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .facility-address {
   font-size: 0.85rem;
   color: var(--main-grey);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .find-path-button {
@@ -48,6 +58,8 @@
   border-radius: 5px;
   padding: 0.2em 1em;
   font-size: 0.8rem;
+  resize: none;
+  white-space: nowrap;
 }
 
 .info-wrapper {
@@ -66,6 +78,9 @@
   justify-content: space-between;
   font-size: 1rem;
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .program-like-icon {
@@ -76,7 +91,7 @@
 .content {
   display: flex;
   flex-direction: row;
-  gap: 70px;
+  gap: 60px;
   font-size: 0.9rem;
 }
 
@@ -85,12 +100,22 @@
   flex-direction: column;
   gap: 15px;
   color: var(--main-grey);
+  white-space: nowrap;
 }
 
 .content-right {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .review-wrapper {

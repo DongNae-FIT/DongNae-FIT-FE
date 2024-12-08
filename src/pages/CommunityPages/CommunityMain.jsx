@@ -6,6 +6,7 @@ import CommunityItem from "@/components/Community/CommunityItem";
 import { useEffect } from "react";
 import useCommunity from "@/hooks/useCommunity";
 import useAuth from "@/hooks/useAuth";
+import { format } from "date-fns";
 
 const CommunityMain = () => {
   const { t } = useTranslation();
@@ -29,6 +30,10 @@ const CommunityMain = () => {
     navigate("/community/new/post");
   };
 
+  const formattedDate = (data) => {
+    return format(new Date(data), "yy/MM/dd HH:mm");
+  };
+
   return (
     <div className={styles["community-main"]}>
       <div className={styles["post-list"]}>
@@ -42,7 +47,7 @@ const CommunityMain = () => {
               title={post.postTitle}
               content={post.postDetail}
               imgSrc={post.postImage}
-              date="2024-10-11 11:11:11"
+              date={formattedDate(post.postDate)}
               likeCount={post.postLikeCount}
               saveCount={post.postSaveCount}
               //  postId,  title,  content,  imgSrc,  date,  likeCount,  saveCount,

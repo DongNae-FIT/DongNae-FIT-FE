@@ -59,6 +59,7 @@
     "instructor": "Instructor",
     "program_period": "Period",
     "day_and_time": "Day and Time",
+    "price": "Price",
     "url": "URL",
     "review_title": "Program Reviews",
     "review_button": "Write Review",
@@ -79,7 +80,7 @@
     "category4": "Swimming",
     "category5": "Community ",
     "category6": "Others",
-    "public": "Public Facilities",
+    "public": "Public",
     "time": "Operating Hours"
   },
   "community": {

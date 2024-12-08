@@ -24,15 +24,24 @@
 
 .name {
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .price {
   font-weight: 500;
   padding-top: 5px;
   font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .facility {
   font-size: 0.9rem;
   color: var(--main-grey);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

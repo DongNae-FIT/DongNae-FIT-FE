@@ -49,7 +49,11 @@ const CommunityPost = () => {
 
   const handleEnterKeyDown = (e) => {
     if (e.key === "Enter") {
-      handleSubmitComment();
+      if (commentValue === "") {
+        return;
+      } else {
+        handleSubmitComment();
+      }
     }
   };
 

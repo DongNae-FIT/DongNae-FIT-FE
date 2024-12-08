@@ -20,9 +20,18 @@ const NewReview = () => {
 
   const onDoneClick = async () => {
     try {
-      const period = (dateFrom + "~" + dateTo).replaceAll("-", "");
-      await saveNewReview(programId, instructor, period, reviewDetails);
-      navigate(`/program/${programId}`, { state: { fromNew: true } });
+      if (
+        instructor === "" ||
+        dateFrom === "" ||
+        dateTo === "" ||
+        reviewDetails === ""
+      ) {
+        window.alert(t("nickname_message.empty"));
+      } else {
+        const period = (dateFrom + "~" + dateTo).replaceAll("-", "");
+        await saveNewReview(programId, instructor, period, reviewDetails);
+        navigate(`/program/${programId}`, { state: { fromNew: true } });
+      }
     } catch (err) {
       console.log(err);
     }

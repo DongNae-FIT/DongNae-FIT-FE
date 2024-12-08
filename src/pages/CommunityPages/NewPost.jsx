@@ -18,23 +18,27 @@ const NewPost = () => {
 
   const onDoneClick = async () => {
     try {
-      const isPostSubmited = postImg.current?.files[0] !== undefined;
-      const formData = new FormData();
+      if (postTitle === "" || postContent === "") {
+        window.alert(t("nickname_message.empty"));
+      } else {
+        const isPostSubmited = postImg.current?.files[0] !== undefined;
+        const formData = new FormData();
 
-      if (isPostSubmited) {
-        formData.append("postImage", postImg.current.files[0]);
-      }
+        if (isPostSubmited) {
+          formData.append("postImage", postImg.current.files[0]);
+        }
 
-      const pId = await saveNewPost(
-        isPostSubmited,
-        postTitle,
-        postContent,
-        isPostSubmited && formData
-      );
+        const pId = await saveNewPost(
+          isPostSubmited,
+          postTitle,
+          postContent,
+          isPostSubmited && formData
+        );
 
-      console.log(pId);
-      if (pId) {
-        navigate(`/community/post/${pId}`, { state: { fromNew: true } });
+        console.log(pId);
+        if (pId) {
+          navigate(`/community/post/${pId}`, { state: { fromNew: true } });
+        }
       }
     } catch (err) {
       console.log(err);

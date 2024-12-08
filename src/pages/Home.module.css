@@ -9,14 +9,14 @@
 .current-region {
   display: flex;
   flex-direction: row;
-  gap: 3px;
+  gap: 8px;
   align-items: center;
   padding: calc(var(--default-padding) * 0.8) var(--body-padding);
   border-bottom: 1px solid var(--sub-grey);
 }
 
 .location-icon {
-  height: 1.5rem;
+  height: 1rem;
   aspect-ratio: 1;
 }
 
@@ -26,6 +26,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.region:hover {
+  color: var(--main-color);
 }
 
 .home__section {

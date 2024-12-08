@@ -64,10 +64,13 @@ const Home = () => {
       <BannerSwiper />
       <div className={styles["current-region"]}>
         <img
-          src={"/icon/icon_location_black.png"}
+          src={"/icon/icon_down_grey.png"}
           className={styles["location-icon"]}
         />
-        <div className={styles["region"]}>
+        <div
+          className={styles["region"]}
+          onClick={() => navigate("/mypage/set/location")}
+        >
           {user.region ? user.region : "서울특별시 강남구"}
         </div>
       </div>

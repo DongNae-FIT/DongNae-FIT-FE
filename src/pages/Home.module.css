@@ -6,6 +6,25 @@
   padding: 0 var(--body-padding);
 }
 
+.current-region {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  align-items: center;
+  padding: calc(var(--default-padding) * 0.8) var(--body-padding);
+  border-bottom: 1px solid var(--sub-grey);
+}
+
+.location-icon {
+  height: 1.5rem;
+  aspect-ratio: 1;
+}
+
+.region {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
 .home__section {
   padding: var(--default-padding) 0;
 }

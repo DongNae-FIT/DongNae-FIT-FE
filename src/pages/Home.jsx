@@ -9,12 +9,26 @@ import CommunityItemForHome from "@/components/Home/CommunityItemForHome";
 import useMain from "@/hooks/useMain";
 import { useEffect } from "react";
 import { format } from "date-fns";
+import useMyPage from "@/hooks/useMyPage";
 
 const Home = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { getDataForHome, recommendedProgramList, trendingPostList } =
     useMain();
+  const { user, getUserInfo, loading, error } = useMyPage();
+
+  useEffect(() => {
+    const initialize = async () => {
+      try {
+        await getUserInfo();
+      } catch (err) {
+        console.error("Failed to fetch use Info:", err);
+      }
+    };
+    initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const initialize = async () => {
@@ -35,6 +49,15 @@ const Home = () => {
   return (
     <div className={styles["home"]}>
       <BannerSwiper />
+      <div className={styles["current-region"]}>
+        <img
+          src={"/icon/icon_location_black.png"}
+          className={styles["location-icon"]}
+        />
+        <div className={styles["region"]}>
+          {user.region ? user.region : "서울특별시 강남구"}
+        </div>
+      </div>
       <div className={styles["home__contents"]}>
         <div className={styles["home__section"]}>
           <div

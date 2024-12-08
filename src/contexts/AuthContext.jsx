@@ -131,6 +131,7 @@ const AuthProvider = ({ children }) => {
       setIsAuthenticated(false);
       setUser(null);
       navigate("/");
+      window.location.reload();
     } catch (error) {
       console.error("Logout failed:", error);
       setError(error.message);

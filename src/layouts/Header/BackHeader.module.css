@@ -6,7 +6,7 @@
   height: var(--header-height);
   display: flex;
   align-items: center;
-  padding: 10px var(--body-padding) 0;
+  padding: 10px var(--body-padding);
   background-color: var(--white);
 }
 
